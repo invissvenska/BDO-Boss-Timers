@@ -1,19 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:background="@color/black"
+    tools:context=".activities.MainActivity">
 
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <ImageView
+        android:id="@+id/main_image_boss_previous_one"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
+        app:srcCompat="@drawable/vell_big"
+        android:contentDescription="@string/image"/>
+
+    <ImageView
+        android:id="@+id/main_image_boss_previous_two"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
+        app:srcCompat="@drawable/vell_big"
+        android:contentDescription="@string/image" />
+
+    <TextView
+        android:id="@+id/main_text_boss_title_previous"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/main_image_boss_previous_two"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/main_text_boss_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
+        app:layout_constraintVertical_bias="0.238" />
+
+    <TextView
+        android:id="@+id/main_text_boss_title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238" />
+
+    <ImageButton
+        android:id="@+id/main_image_boss_one"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:background="@drawable/button_transparent"
+        android:onClick="onBossClicked"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/vell_big"
+        android:contentDescription="@string/image"/>
+
+    <ImageButton
+        android:id="@+id/main_image_boss_two"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:background="@drawable/button_transparent"
+        android:onClick="onBossClicked"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55"
+        app:srcCompat="@drawable/vell_big"
+        android:contentDescription="@string/image"/>
+
+    <ImageButton
+        android:id="@+id/main_image_imperial"
+        android:layout_width="85dp"
+        android:layout_height="99dp"
+        android:background="@drawable/button_transparent"
+        android:padding="5dp"
+        android:onClick="executeTest"
+        app:layout_constraintBottom_toTopOf="@+id/main_image_parley_reduction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_image_barter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/imperial"
+        android:contentDescription="@string/image"/>
+
+    <TextView
+        android:id="@+id/main_text_imperial_prev"
+        android:layout_width="85dp"
+        android:layout_height="99dp"
+        android:background="@drawable/button_dark_gray"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/main_image_barter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_image_barter"
+        app:layout_constraintTop_toBottomOf="@+id/main_image_imperial"
+        app:layout_constraintVertical_bias="1" />
+
+    <TextView
+        android:id="@+id/main_text_imperial_next"
+        android:layout_width="85dp"
+        android:layout_height="99dp"
+        android:background="@drawable/button_dark_gray"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_image_barter"
+        app:layout_constraintTop_toBottomOf="@+id/main_text_imperial_prev"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/main_image_parley_increase"
+        android:layout_width="85dp"
+        android:layout_height="99dp"
+        android:background="@drawable/button_transparent"
+        android:onClick="onParleyIncreaseButtonClick"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_image_parley_reduction"
+        app:layout_constraintEnd_toEndOf="@+id/main_image_barter"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_image_barter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:srcCompat="@drawable/parley_inc"
+        android:contentDescription="@string/image"/>
+
+    <ImageButton
+        android:id="@+id/main_image_parley_reduction"
+        android:layout_width="85dp"
+        android:layout_height="99dp"
+        android:background="@drawable/button_transparent"
+        android:onClick="onParleyReductionButtonClick"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_image_barter"
+        app:layout_constraintEnd_toEndOf="@+id/main_image_barter"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_image_barter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:srcCompat="@drawable/parley"
+        android:contentDescription="@string/image"/>
+
+    <ImageButton
+        android:id="@+id/main_image_barter"
+        android:layout_width="85dp"
+        android:layout_height="99dp"
+        android:padding="5dp"
+        android:onClick="onBarterButtonClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_image_boss_two"
+        app:layout_constraintVertical_bias="0.993"
+        android:background="@drawable/button_transparent"
+        app:srcCompat="@drawable/barter"
+        android:contentDescription="@string/image"/>
+
+    <TextView
+        android:id="@+id/main_text_barter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/reset_available"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/main_text_imperial_next"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/main_image_barter"
+        app:layout_constraintTop_toBottomOf="@+id/main_image_boss_two" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
