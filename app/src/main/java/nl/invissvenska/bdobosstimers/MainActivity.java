@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
                 3,
                 1730,
                 1731,
-                74,
                 3,
-                10,
+                3,
+                60,
                 true);
     }
 
@@ -123,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
 
         //next boss
         final TextView nextBossTitle = findViewById(R.id.main_text_boss_title);
+        nextBossTitle.setText(nextBoss.getName() + " " + nextBoss.getTimeSpawn());
+        final TextView nextBossTitle2 = findViewById(R.id.main_text_boss_title3);
         ImageView nextBossImageOne = findViewById(R.id.main_image_boss_one);
         ImageView nextBossImageTwo = findViewById(R.id.main_image_boss_two);
         nextBossImageOne.setImageResource(nextBoss.getBossOneImageResource());
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
         timer = new CountDownTimer(nextBoss.getMinutesToSpawn() * 60 * 1000, 1000L) {
             @Override
             public void onTick(long millisUntilFinished) {
-                nextBossTitle.setText(nextBoss.getName() + " " + nextBoss.getTimeSpawn() + " " + TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
+                nextBossTitle2.setText(TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
             }
 
             @Override
