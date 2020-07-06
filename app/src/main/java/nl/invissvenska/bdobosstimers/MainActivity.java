@@ -232,7 +232,18 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
 //        startActivity(intent)
 //    }
 
-    public void onBossSettingsChanged(View view) {
+    public void executeTest(View view) {
+    }
+
+    public void onParleyIncreaseButtonClick(View view) {
+
+    }
+
+    public void onParleyReductionButtonClick(View view) {
+
+    }
+
+    public void onBarterButtonClick(View view) {
 
     }
 
