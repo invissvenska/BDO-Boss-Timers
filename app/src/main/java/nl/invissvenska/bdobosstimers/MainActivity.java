@@ -231,4 +231,16 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
 //        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
 //        startActivity(intent)
 //    }
+
+    public void onBossSettingsChanged(View view) {
+
+    }
+
+    public void onDaySettingChanged(View view) {
+
+    }
+
+    public void onBossClicked(View view) {
+
+    }
 }
