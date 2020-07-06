@@ -2,24 +2,15 @@ package nl.invissvenska.bdobosstimers;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
-
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.helper.BossSettings;
@@ -39,32 +30,12 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-
-//        BossHelper.Boss previous = BossHelper.getInstance().getPreviousBoss();
-//
-//        Log.d("BOSS PREV", previous.getName() + " " + previous.getTimeSpawn() + " " + previous.getMinutesToSpawn());
-//
-//        BossHelper.Boss boss = BossHelper.getInstance().getNextBoss();
-//
-//        Log.d("BOSS", boss.getName() + " " + boss.getTimeSpawn() + " " + boss.getMinutesToSpawn());
-
         checkAndRunAlertService();
-
     }
 
 
     private BossSettings createTestSettings() {
-        return new BossSettings(false,
+        return new BossSettings(true,
                 false,
                 false,
                 false,
@@ -73,18 +44,18 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
                 false,
                 false,
                 false,
+                2,
                 3,
                 3,
                 3,
                 3,
                 3,
                 3,
+                1730,
+                1731,
+                74,
                 3,
-                0,
-                2400,
-                39,
-                1,
-                1,
+                10,
                 true);
     }
 
@@ -102,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
     @Override
     protected void onPause() {
         cancelRefresher();
-        if(timer != null) {
+        if (timer != null) {
             timer.cancel();
         }
         super.onPause();
@@ -124,6 +95,9 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
 
     @Override
     public void synchronize() {
+        if (timer != null) {
+            timer.cancel();
+        }
         updateBoss();
         refresher = new BossRefresher(this);
         refresher.execute();
@@ -149,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
 
         //next boss
         final TextView nextBossTitle = findViewById(R.id.main_text_boss_title);
-        nextBossTitle.setText(nextBoss.getName() + " " + nextBoss.getTimeSpawn()  + " " + TimeHelper.getInstance().minutesToHoursAndMinutes(nextBoss.getMinutesToSpawn()));
         ImageView nextBossImageOne = findViewById(R.id.main_image_boss_one);
         ImageView nextBossImageTwo = findViewById(R.id.main_image_boss_two);
         nextBossImageOne.setImageResource(nextBoss.getBossOneImageResource());
@@ -160,10 +133,10 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
             nextBossImageTwo.setVisibility(View.GONE);
         }
 
-        timer = new CountDownTimer(TimeHelper.getInstance().getSecondsToSpawn(nextBoss.getTimeSpawn()), 1000L) {
+        timer = new CountDownTimer(nextBoss.getMinutesToSpawn() * 60 * 1000, 1000L) {
             @Override
             public void onTick(long millisUntilFinished) {
-                nextBossTitle.setText(nextBoss.getName() + " " + nextBoss.getTimeSpawn()  + " " + millisUntilFinished);
+                nextBossTitle.setText(nextBoss.getName() + " " + nextBoss.getTimeSpawn() + " " + TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
             }
 
             @Override
@@ -175,30 +148,7 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
 
     }
 
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
-    class BossRefresher extends AsyncTask<Void, Void, Void> {
+    static class BossRefresher extends AsyncTask<Void, Void, Void> {
 
         private SynchronizedActivity synchronizedActivity;
 
@@ -216,23 +166,14 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
             return null;
         }
 
-        //        override fun doInBackground(vararg params: Void?): Void?{
-//                Thread.sleep(10000)
-//        return null
-//        }
-//
-//        override fun onPostExecute(result: Void?) {
-//            synchronizedActivity.synchronize()
-//        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            synchronizedActivity.synchronize();
+        }
     }
 
-//    fun executeTest(@Suppress("UNUSED_PARAMETER") view: View) {
-//        val intent = Intent(this, SettingsActivity::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-//        startActivity(intent)
-//    }
-
     public void executeTest(View view) {
+
     }
 
     public void onParleyIncreaseButtonClick(View view) {

@@ -14,7 +14,7 @@ public class BossHelper {
     private final Integer[] timeIntGrid = {25, 200, 500, 900, 1200, 1600, 1900, 2225, 2325};
 
     private final String[][] bossGrid = {
-            {KARANDA + "&" + KUTUM, KARANDA, KZARKA, OFFIN, KUTUM, NOUVER, KZARKA, EMPTY},
+            {KARANDA + "&" + KUTUM, KARANDA, KZARKA, KZARKA, OFFIN, KUTUM, NOUVER, KZARKA, EMPTY},
             {KARANDA, KUTUM, KZARKA, NOUVER, KUTUM, NOUVER, KARANDA, GARMOTH, EMPTY},
             {KUTUM + "&" + KZARKA, KARANDA, KZARKA, KARANDA, EMPTY, KUTUM + "&" + OFFIN, VELL, KARANDA + "&" + KZARKA, MURAKA + "&" + QUINT},
             {NOUVER, KUTUM, NOUVER, KUTUM, NOUVER, KZARKA, KUTUM, GARMOTH, EMPTY},
@@ -153,7 +153,6 @@ public class BossHelper {
         }
         return enabled;
     }
-
 
     public class Boss {
         private String name;

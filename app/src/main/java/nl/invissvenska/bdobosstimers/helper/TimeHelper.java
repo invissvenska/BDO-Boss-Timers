@@ -49,6 +49,13 @@ public class TimeHelper {
         return hours == 0 ? remainingMinutes + " minutes" : hours + " hours and " + remainingMinutes + " minutes";
     }
 
+    public String secondsToHoursAndMinutesAndSeconds(Long seconds) {
+        Integer hours = Math.toIntExact(seconds / 3600);
+        Integer minutes = Math.toIntExact(((seconds - (hours * 3600)) / 60));
+        Integer remainingSeconds = Math.toIntExact(seconds - (hours * 3600) - (minutes * 60));
+        return hours+":"+minutes+":"+remainingSeconds;
+    }
+
     public Integer normalizeDayOfTheWeek(Integer weekDay, @Nullable Integer addDays) {
         addDays = addDays == null ? 0 : addDays;
         Integer alteredWeekDay = (weekDay + addDays) % 7 - 2;
