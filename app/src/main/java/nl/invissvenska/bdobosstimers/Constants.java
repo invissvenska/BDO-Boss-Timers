@@ -1,4 +1,4 @@
-package nl.invissvenska.bdobosstimers.function;
+package nl.invissvenska.bdobosstimers;
 
 public class Constants {
 

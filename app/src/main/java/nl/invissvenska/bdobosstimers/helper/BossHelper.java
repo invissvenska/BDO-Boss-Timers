@@ -1,11 +1,8 @@
 package nl.invissvenska.bdobosstimers.helper;
 
-import java.util.HashMap;
-import java.util.Map;
+import nl.invissvenska.bdobosstimers.util.Boss;
 
-import nl.invissvenska.bdobosstimers.R;
-
-import static nl.invissvenska.bdobosstimers.function.Constants.*;
+import static nl.invissvenska.bdobosstimers.Constants.*;
 
 public class BossHelper {
 
@@ -23,18 +20,6 @@ public class BossHelper {
             {KUTUM + "&" + NOUVER, KZARKA, KUTUM, NOUVER, KZARKA, VELL, GARMOTH, KZARKA + "&" + NOUVER, EMPTY}
     };
 
-    private final Map<String, Integer> imageMap = new HashMap<String, Integer>() {{
-        put(GARMOTH, R.drawable.garmoth_big);
-        put(KARANDA, R.drawable.karanda_big);
-        put(KZARKA, R.drawable.kzarka_big);
-        put(KUTUM, R.drawable.kutum_big);
-        put(OFFIN, R.drawable.offin_big);
-        put(NOUVER, R.drawable.nouver_big);
-        put(QUINT, R.drawable.quint_big);
-        put(MURAKA, R.drawable.muraka_big);
-        put(VELL, R.drawable.vell_big);
-    }};
-
     private BossHelper() {
     }
 
@@ -45,15 +30,19 @@ public class BossHelper {
         return INSTANCE;
     }
 
-    public Boss getNextBoss() {
+    public Boss getNextBoss(Integer position) {
         final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
         final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(null);
         for (int i = 0; i < timeIntGrid.length; i++) {
             if (timeIntGrid[i] > now && !bossGrid[dayOfTheWeek][i].equals(EMPTY)) {
-                return resolveBoss(now, i, dayOfTheWeek);
+                if(i + position < timeIntGrid.length) {
+                    return resolveBoss(now, i + position, dayOfTheWeek);
+                } else {
+                    return resolveBoss(now, i + position - timeIntGrid.length, TimeHelper.getInstance().getDayOfTheWeek(1));
+                }
             }
         }
-        return resolveBoss(now - 2400, 0, TimeHelper.getInstance().getDayOfTheWeek(1));
+        return resolveBoss(now - 2400, position, TimeHelper.getInstance().getDayOfTheWeek(1));
     }
 
     public Boss getPreviousBoss() {
@@ -91,7 +80,7 @@ public class BossHelper {
         Integer alertTimes = bossSettings.getAlertTimes() != null ? bossSettings.getAlertTimes() : 3;
 
         //time to spawn
-        if (nextBoss.minutesToSpawn > limitMin || soundsPlayed >= alertTimes) {
+        if (nextBoss.getMinutesToSpawn() > limitMin || soundsPlayed >= alertTimes) {
             return false;
         }
 
@@ -153,46 +142,4 @@ public class BossHelper {
         }
         return enabled;
     }
-
-    public class Boss {
-        private String name;
-        private String timeSpawn;
-        private Integer minutesToSpawn;
-        private Integer bossOneImageResource;
-        private Integer bossTwoImageResource;
-
-        public Boss(String name, String timeSpawn, Integer minutesToSpawn) {
-            this.name = name;
-            this.timeSpawn = timeSpawn;
-            this.minutesToSpawn = minutesToSpawn;
-            if (name.contains("&")) {
-                String[] names = name.split(("&"));
-                bossOneImageResource = imageMap.get(names[0]);
-                bossTwoImageResource = imageMap.get(names[1]);
-            } else {
-                bossOneImageResource = imageMap.get(name);
-            }
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getTimeSpawn() {
-            return this.timeSpawn;
-        }
-
-        public Integer getMinutesToSpawn() {
-            return this.minutesToSpawn;
-        }
-
-        public Integer getBossOneImageResource() {
-            return bossOneImageResource;
-        }
-
-        public Integer getBossTwoImageResource() {
-            return bossTwoImageResource;
-        }
-    }
-
 }

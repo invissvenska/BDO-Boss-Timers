@@ -1,38 +1,41 @@
 package nl.invissvenska.bdobosstimers;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.helper.BossSettings;
-import nl.invissvenska.bdobosstimers.helper.TimeHelper;
+import nl.invissvenska.bdobosstimers.list.BossAdapter;
 import nl.invissvenska.bdobosstimers.service.BossAlertService;
+import nl.invissvenska.bdobosstimers.util.Boss;
+import nl.invissvenska.bdobosstimers.util.BossRefresher;
 
-import static nl.invissvenska.bdobosstimers.function.Constants.UPDATE_MESSAGE;
+import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
+import static nl.invissvenska.bdobosstimers.Constants.UPDATE_MESSAGE;
 
 public class MainActivity extends AppCompatActivity implements SynchronizedActivity {
 
     private BossRefresher refresher = null;
     private CountDownTimer timer = null;
+    private BossAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         checkAndRunAlertService();
-    }
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        adapter = new BossAdapter();
+        recyclerView.setAdapter(adapter);
+    }
 
     private BossSettings createTestSettings() {
         return new BossSettings(true,
@@ -99,79 +102,49 @@ public class MainActivity extends AppCompatActivity implements SynchronizedActiv
             timer.cancel();
         }
         updateBoss();
-        refresher = new BossRefresher(this);
-        refresher.execute();
+
+//        BossRefresher refresher = createSynchronize();
+//        refresher.execute();
+        new BossRefresher(this).execute();
     }
+
+//    private BossRefresher createSynchronize() {
+//        if (refresher == null){
+//            return refresher = new BossRefresher(this);
+//        }
+//        refresher.cancel(true);
+//        return refresher = new BossRefresher(this);
+//    }
 
     private void updateBoss() {
 
-        final BossHelper.Boss nextBoss = BossHelper.getInstance().getNextBoss();
-        BossHelper.Boss previousBoss = BossHelper.getInstance().getPreviousBoss();
+        final Boss nextBoss = BossHelper.getInstance().getNextBoss(0);
+        final Boss previousBoss = BossHelper.getInstance().getPreviousBoss();
 
-        //previous boss
-        TextView previousBossTitle = findViewById(R.id.main_text_boss_title_previous);
-        previousBossTitle.setText(getResources().getString(R.string.previous_boss_announce, TimeHelper.getInstance().minutesToHoursAndMinutes(previousBoss.getMinutesToSpawn() * -1)));
-        ImageView previousBossImageOne = findViewById(R.id.main_image_boss_previous_one);
-        ImageView previousBossImageTwo = findViewById(R.id.main_image_boss_previous_two);
-        previousBossImageOne.setImageResource(previousBoss.getBossOneImageResource());
-        if (previousBoss.getBossTwoImageResource() != null) {
-            previousBossImageTwo.setVisibility(View.VISIBLE);
-            previousBossImageTwo.setImageResource(previousBoss.getBossTwoImageResource());
-        } else {
-            previousBossImageTwo.setVisibility(View.GONE);
-        }
+        adapter.clear();
+        adapter.add(previousBoss);
+        adapter.add(nextBoss);
 
-        //next boss
-        final TextView nextBossTitle = findViewById(R.id.main_text_boss_title);
-        nextBossTitle.setText(nextBoss.getName() + " " + nextBoss.getTimeSpawn());
-        final TextView nextBossTitle2 = findViewById(R.id.main_text_boss_title3);
-        ImageView nextBossImageOne = findViewById(R.id.main_image_boss_one);
-        ImageView nextBossImageTwo = findViewById(R.id.main_image_boss_two);
-        nextBossImageOne.setImageResource(nextBoss.getBossOneImageResource());
-        if (nextBoss.getBossTwoImageResource() != null) {
-            nextBossImageTwo.setVisibility(View.VISIBLE);
-            nextBossImageTwo.setImageResource(nextBoss.getBossTwoImageResource());
-        } else {
-            nextBossImageTwo.setVisibility(View.GONE);
+        for (int i = 1; i <= 7; i++) {
+            Boss boss = BossHelper.getInstance().getNextBoss(i);
+            if (!boss.getName().equals(EMPTY)) {
+                adapter.add(boss);
+            }
         }
 
         timer = new CountDownTimer(nextBoss.getMinutesToSpawn() * 60 * 1000, 1000L) {
             @Override
             public void onTick(long millisUntilFinished) {
-                nextBossTitle2.setText(TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
+                // nextBossTitle2.setText(TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
             }
 
             @Override
             public void onFinish() {
-
+                updateBoss();
             }
         };
         timer.start();
 
-    }
-
-    static class BossRefresher extends AsyncTask<Void, Void, Void> {
-
-        private SynchronizedActivity synchronizedActivity;
-
-        public BossRefresher(SynchronizedActivity synchronizedActivity) {
-            this.synchronizedActivity = synchronizedActivity;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                Thread.sleep(10000L);
-            } catch (InterruptedException e) {
-                Log.e("BDO", "Thread interrupted: ", e);
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            synchronizedActivity.synchronize();
-        }
     }
 
     public void executeTest(View view) {

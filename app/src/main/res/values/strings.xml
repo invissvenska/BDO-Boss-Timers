@@ -1,18 +1,6 @@
 <resources>
     <string name="app_name">BDO Boss Timers</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
-
-
-    <string name="abc">ABC</string>
     <string name="weekday">"Current day of the Week: %1$d, Hour  %2$d"</string>
     <!--    <string name="nextBossAnnounce">"Next Boss%1$s to spawn %2$s%n<b>%3$s</b>b>%n Spawn Time is at %4$s!%nThat's in %5$s!"</string>-->
     <string name="next_boss_announce_red">"Next Boss%s to spawn %s:<![CDATA[<br>]]>
@@ -33,15 +21,5 @@
         That's in <![CDATA[<b><font color="#558b2f">%s</font></b>]]>!"</string>
     <string name="explain">"<![CDATA[<b><font color="#558b2f">Enabled</font></b><br>]]><![CDATA[<b><font color="#ff8f00">Time-Restricted</font></b><br>]]><![CDATA[<b><font color="#c62828">Disabled</font></b>]]>"</string>
     <string name="previous_boss_announce">" %1$s  ago!"</string>
-    <string name="reset_available">Reset available!</string>
-    <string name="next_reset_in_red">Barter Reset in<![CDATA[<br><b><font color="#c62828">%s</font></b><br>]]>That\'s at %s!</string>
-    <string name="next_reset_in_orange">Barter Reset in<![CDATA[<br><b><font color="#ff8f00">%s</font></b><br>]]>That\'s at %s!</string>
-    <string name="next_reset_in_yellow">Barter Reset in<![CDATA[<br><b><font color="#fdd835">%s</font></b><br>]]>That\'s at %s!</string>
-    <string name="next_reset_in_green">Barter Reset in<![CDATA[<br><b><font color="#558b2f">%s</font></b><br>]]>That\'s at %s!</string>
-    <string name="next_imperial_red">Next:<![CDATA[<br><b><font color="#c62828">%s</font></b>]]></string>
-    <string name="next_imperial_orange">Next:<![CDATA[<br><b><font color="#ff8f00">%s</font></b>]]></string>
-    <string name="next_imperial_yellow">Next:<![CDATA[<br><b><font color="#fdd835">%s</font></b>]]></string>
-    <string name="next_imperial_green">Next:<![CDATA[<br><b><font color="#558b2f">%s</font></b>]]></string>
-    <string name="prev_imperial">Previous:%n%1$s</string>
     <string name="image">Image</string>
 </resources>

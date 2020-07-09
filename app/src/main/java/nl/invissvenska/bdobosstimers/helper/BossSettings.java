@@ -6,15 +6,15 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static nl.invissvenska.bdobosstimers.function.Constants.GARMOTH;
-import static nl.invissvenska.bdobosstimers.function.Constants.KARANDA;
-import static nl.invissvenska.bdobosstimers.function.Constants.KUTUM;
-import static nl.invissvenska.bdobosstimers.function.Constants.KZARKA;
-import static nl.invissvenska.bdobosstimers.function.Constants.MURAKA;
-import static nl.invissvenska.bdobosstimers.function.Constants.NOUVER;
-import static nl.invissvenska.bdobosstimers.function.Constants.OFFIN;
-import static nl.invissvenska.bdobosstimers.function.Constants.QUINT;
-import static nl.invissvenska.bdobosstimers.function.Constants.VELL;
+import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
+import static nl.invissvenska.bdobosstimers.Constants.KARANDA;
+import static nl.invissvenska.bdobosstimers.Constants.KUTUM;
+import static nl.invissvenska.bdobosstimers.Constants.KZARKA;
+import static nl.invissvenska.bdobosstimers.Constants.MURAKA;
+import static nl.invissvenska.bdobosstimers.Constants.NOUVER;
+import static nl.invissvenska.bdobosstimers.Constants.OFFIN;
+import static nl.invissvenska.bdobosstimers.Constants.QUINT;
+import static nl.invissvenska.bdobosstimers.Constants.VELL;
 
 public class BossSettings implements Parcelable {
 

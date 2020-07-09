@@ -14,10 +14,11 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import nl.invissvenska.bdobosstimers.R;
+import nl.invissvenska.bdobosstimers.util.Boss;
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.helper.BossSettings;
 
-import static nl.invissvenska.bdobosstimers.function.Constants.UPDATE_MESSAGE;
+import static nl.invissvenska.bdobosstimers.Constants.UPDATE_MESSAGE;
 
 public class BossAlertService extends Service {
 
@@ -79,7 +80,7 @@ public class BossAlertService extends Service {
         protected Void doInBackground(Void... voids) {
             Integer limitMin = bossSettings.getAlertBefore() != null ? bossSettings.getAlertBefore() : 15;
             while (true) {
-                BossHelper.Boss nextBoss = BossHelper.getInstance().getNextBoss();
+                Boss nextBoss = BossHelper.getInstance().getNextBoss(0);
                 if (BossHelper.getInstance().checkAlertAllowed(nextBoss, bossSettings, soundsPlayed)) {
                     mediaPlayer.seekTo(0);
                     mediaPlayer.start();
