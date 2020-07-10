@@ -86,6 +86,7 @@ public class BossAlertService extends Service {
                     mediaPlayer.start();
                     vibrate();
                     soundsPlayed++;
+                    Log.d("BDO", "BOSS ALERT BOSS ALERT");
                 } else if (nextBoss.getMinutesToSpawn() > limitMin) {
                     soundsPlayed = 0;
                 }

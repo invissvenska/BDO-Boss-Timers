@@ -1,25 +1,4 @@
 <resources>
     <string name="app_name">BDO Boss Timers</string>
-
-    <string name="weekday">"Current day of the Week: %1$d, Hour  %2$d"</string>
-    <!--    <string name="nextBossAnnounce">"Next Boss%1$s to spawn %2$s%n<b>%3$s</b>b>%n Spawn Time is at %4$s!%nThat's in %5$s!"</string>-->
-    <string name="next_boss_announce_red">"Next Boss%s to spawn %s:<![CDATA[<br>]]>
-        <![CDATA[<b><font color="#0277bd">%s</font></b><br>]]>
-        Spawn Time is at <![CDATA[<b>%s</b>]]>!<![CDATA[<br>]]>
-        That's in <![CDATA[<b><font color="#c62828">%s</font></b>]]>!"</string>
-    <string name="next_boss_announce_orange">"Next Boss%s to spawn %s:<![CDATA[<br>]]>
-        <![CDATA[<b><font color="#0277bd">%s</font></b><br>]]>
-        Spawn Time is at %s!<![CDATA[<br>]]>
-        That's in <![CDATA[<b><font color="#ff8f00">%s</font></b>]]>!"</string>
-    <string name="next_boss_announce_yellow">"Next Boss%s to spawn %s:<![CDATA[<br>]]>
-        <![CDATA[<b><font color="#0277bd">%s</font></b><br>]]>
-        Spawn Time is at %s!<![CDATA[<br>]]>
-        That's in <![CDATA[<b><font color="#fdd835">%s</font></b>]]>!"</string>
-    <string name="next_boss_announce_green">"Next Boss%s to spawn %s:<![CDATA[<br>]]>
-        <![CDATA[<b><font color="#0277bd">%s</font></b><br>]]>
-        Spawn Time is at %s!<![CDATA[<br>]]>
-        That's in <![CDATA[<b><font color="#558b2f">%s</font></b>]]>!"</string>
-    <string name="explain">"<![CDATA[<b><font color="#558b2f">Enabled</font></b><br>]]><![CDATA[<b><font color="#ff8f00">Time-Restricted</font></b><br>]]><![CDATA[<b><font color="#c62828">Disabled</font></b>]]>"</string>
-    <string name="previous_boss_announce">" %1$s  ago!"</string>
     <string name="image">Image</string>
 </resources>

@@ -8,65 +8,65 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/garmoth_big"
             android:key="garmoth_alert"
             android:summary="Enable boss alerts for Garmoth"
-            android:icon="@drawable/garmoth_big"
             android:title="Garmoth" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/karanda_big"
             android:key="karanda_alert"
             android:summary="Enable boss alerts for Karanda"
-            android:icon="@drawable/karanda_big"
             android:title="Karanda" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/kutum_big"
             android:key="kutum_alert"
             android:summary="Enable boss alerts for Kutum"
-            android:icon="@drawable/kutum_big"
             android:title="Kutum" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/kzarka_big"
             android:key="kzarka_alert"
             android:summary="Enable boss alerts for Kzarka"
-            android:icon="@drawable/kzarka_big"
             android:title="Kzarka" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/muraka_big"
             android:key="muraka_alert"
             android:summary="Enable boss alerts for Muraka"
-            android:icon="@drawable/muraka_big"
             android:title="Muraka" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/nouver_big"
             android:key="nouver_alert"
             android:summary="Enable boss alerts for Nouver"
-            android:icon="@drawable/nouver_big"
             android:title="Nouver" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/offin_big"
             android:key="offin_alert"
             android:summary="Enable boss alerts for Offin"
-            android:icon="@drawable/offin_big"
             android:title="Offin" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/quint_big"
             android:key="quint_alert"
             android:summary="Enable boss alerts for Quint"
-            android:icon="@drawable/quint_big"
             android:title="Quint" />
 
         <SwitchPreference
             android:defaultValue="false"
+            android:icon="@drawable/vell_big"
             android:key="vell_alert"
             android:summary="Enable boss alerts for Vell"
-            android:icon="@drawable/vell_big"
             android:title="Vell" />
 
     </PreferenceCategory>
@@ -137,29 +137,44 @@
             android:title="Vibration"
             app:iconSpaceReserved="false" />
 
-        <nl.invissvenska.bdobosstimers.pref.NumberPickerPreference
+        <nl.invissvenska.bdobosstimers.pref.NumberDialogPreference
             android:key="alert_before"
             android:title="Alert before the boss spawns"
             app:iconSpaceReserved="false"
-            app:numberPickerPreference_minValue="0"
             app:numberPickerPreference_maxValue="30"
-            app:numberPickerPreference_unitText=" minutes"/>
+            app:numberPickerPreference_minValue="0"
+            app:numberPickerPreference_unitText=" minutes" />
 
-        <nl.invissvenska.bdobosstimers.pref.NumberPickerPreference
+        <nl.invissvenska.bdobosstimers.pref.NumberDialogPreference
             android:key="number_of_alerts"
             android:title="Number of alerts"
             app:iconSpaceReserved="false"
-            app:numberPickerPreference_minValue="0"
             app:numberPickerPreference_maxValue="5"
-            app:numberPickerPreference_unitText=" times"/>
+            app:numberPickerPreference_minValue="0"
+            app:numberPickerPreference_unitText=" times" />
 
-        <nl.invissvenska.bdobosstimers.pref.NumberPickerPreference
+        <nl.invissvenska.bdobosstimers.pref.NumberDialogPreference
             android:key="alert_delay"
             android:title="Time between alerts"
             app:iconSpaceReserved="false"
-            app:numberPickerPreference_minValue="0"
             app:numberPickerPreference_maxValue="60"
-            app:numberPickerPreference_unitText=" seconds"/>
+            app:numberPickerPreference_minValue="0"
+            app:numberPickerPreference_unitText=" seconds" />
+
+        <nl.invissvenska.bdobosstimers.pref.TimeDialogPreference
+            android:key="time_from"
+            android:title="No alerts after"
+            app:customFormat="HH:mm"
+            app:force24HourModePicker="true"
+            app:iconSpaceReserved="false" />
+
+        <nl.invissvenska.bdobosstimers.pref.TimeDialogPreference
+            android:key="time_to"
+            android:title="No alerts before"
+            app:customFormat="HH:mm"
+            app:force24HourModePicker="true"
+            app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
+
 </PreferenceScreen>

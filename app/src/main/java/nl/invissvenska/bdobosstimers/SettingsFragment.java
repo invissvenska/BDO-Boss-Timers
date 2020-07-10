@@ -1,18 +1,20 @@
 package nl.invissvenska.bdobosstimers;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import nl.invissvenska.bdobosstimers.pref.NumberPickerPreference;
-import nl.invissvenska.bdobosstimers.pref.NumberPickerPreferenceDialog;
+import nl.invissvenska.bdobosstimers.pref.NumberDialogPreference;
+import nl.invissvenska.bdobosstimers.pref.NumberPickerPreferenceDialogFragment;
+import nl.invissvenska.bdobosstimers.pref.TimeDialogPreference;
+import nl.invissvenska.bdobosstimers.pref.TimePreferenceDialogFragment;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    private static final String DIALOG_FRAGMENT_TAG = "NumberPickerDialog";
+    private static final String DIALOG_FRAGMENT_TAG = "CustomPreferenceDialog";
 
     public SettingsFragment() {
         //keep empty constructor
@@ -30,10 +32,29 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {
-        if (preference instanceof NumberPickerPreference) {
-            NumberPickerPreferenceDialog dialog = NumberPickerPreferenceDialog.getInstance(preference.getKey());
-            dialog.setTargetFragment(this, 0);
-            dialog.show(getParentFragmentManager(), DIALOG_FRAGMENT_TAG);
+        DialogFragment dialogFragment = null;
+        if (preference instanceof NumberDialogPreference) {
+            NumberDialogPreference dialogPreference = (NumberDialogPreference) preference;
+            dialogFragment = NumberPickerPreferenceDialogFragment
+                    .newInstance(
+                            dialogPreference.getKey(),
+                            dialogPreference.getMinValue(),
+                            dialogPreference.getMaxValue(),
+                            dialogPreference.getUnitText()
+                    );
+        } else if (preference instanceof TimeDialogPreference) {
+            TimeDialogPreference dialogPreference = (TimeDialogPreference) preference;
+            dialogFragment = TimePreferenceDialogFragment
+                    .newInstance(
+                            dialogPreference.getKey(),
+                            dialogPreference.isForce12HourPicker(),
+                            dialogPreference.isForce24HourPicker(),
+                            dialogPreference.getCustomFormat()
+                    );
+        }
+        if (dialogFragment != null) {
+            dialogFragment.setTargetFragment(this, 0);
+            dialogFragment.show(getParentFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else {
             super.onDisplayPreferenceDialog(preference);
         }

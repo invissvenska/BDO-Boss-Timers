@@ -87,6 +87,16 @@ public final class PreferenceUtil {
         return preferences.getBoolean("sunday_alert", false) ? 2 : 3;
     }
 
+    private Integer getTimeFrom() {
+        String value = preferences.getString("time_from", "00:00");
+        return Integer.valueOf(value.replace(":", ""));
+    }
+
+    private Integer getTimeTo() {
+        String value = preferences.getString("time_to", "00:00");
+        return Integer.valueOf(value.replace(":", ""));
+    }
+
     private Integer getAlertBefore() {
         return preferences.getInt("alert_before", 0);
     }
@@ -120,8 +130,8 @@ public final class PreferenceUtil {
                 isFridayEnabled(),
                 isSaturdayEnabled(),
                 isSundayEnabled(),
-                1730,
-                1731,
+                getTimeFrom(),
+                getTimeTo(),
                 getAlertBefore(),
                 getNumberOfAlerts(),
                 getAlertDelay(),
