@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 
 import static java.lang.Math.ceil;
@@ -43,22 +42,16 @@ public class TimeHelper {
         mode = Mode.NORMAL;
     }
 
-    public String minutesToHoursAndMinutes(Integer minutes) {
-        Integer hours = minutes / 60;
-        Integer remainingMinutes = minutes - hours * 60;
-        return hours == 0 ? remainingMinutes + " minutes" : hours + " hours and " + remainingMinutes + " minutes";
-    }
-
     public String secondsToHoursAndMinutesAndSeconds(Long seconds) {
-        Integer hours = Math.toIntExact(seconds / 3600);
-        Integer minutes = Math.toIntExact(((seconds - (hours * 3600)) / 60));
-        Integer remainingSeconds = Math.toIntExact(seconds - (hours * 3600) - (minutes * 60));
-        return hours+":"+minutes+":"+remainingSeconds;
+        int hours = Math.toIntExact(seconds / 3600);
+        int minutes = Math.toIntExact(((seconds - (hours * 3600)) / 60));
+        int remainingSeconds = Math.toIntExact(seconds - (hours * 3600) - (minutes * 60));
+        return String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds);
     }
 
     public Integer normalizeDayOfTheWeek(Integer weekDay, @Nullable Integer addDays) {
         addDays = addDays == null ? 0 : addDays;
-        Integer alteredWeekDay = (weekDay + addDays) % 7 - 2;
+        int alteredWeekDay = (weekDay + addDays) % 7 - 2;
         return alteredWeekDay < 0 ? alteredWeekDay + 7 : alteredWeekDay;
     }
 
@@ -83,21 +76,14 @@ public class TimeHelper {
     }
 
     public Integer getTimeDifference(Integer time, Integer now) {
-if(time>2400 && time-now>2400) {
-    return (int)((time%2400-now)*0.6);
-} else {
-    return (int)((time - now)*0.6);
-}
-//        return ((if (time>2400 && time-now>2400) (time%2400-now) else (time - now)) * 0.6).toInt();
-//
-//        return time > 2400 && time - now > 2400 ? (int) ((time % 2400 - now) * 0.6) : (int) ((time - now) * 0.6);
+        return time > 2400 && time - now > 2400 ? (int) ((time % 2400 - now) * 0.6) : (int) ((time - now) * 0.6);
     }
 
     public Long getSecondsToSpawn(String time) {
-        Integer hours = Integer.valueOf(time.split(":")[0]);
-        Integer minutes = Integer.valueOf(time.split(":")[1]);
+        int hours = Integer.parseInt(time.split(":")[0]);
+        int minutes = Integer.parseInt(time.split(":")[1]);
 
-        LocalTime spawnTime = LocalTime.of(hours,minutes,0);
+        LocalTime spawnTime = LocalTime.of(hours, minutes, 0);
         LocalTime now = LocalTime.now();
 
         Duration duration = Duration.between(now, spawnTime);
@@ -109,8 +95,8 @@ if(time>2400 && time-now>2400) {
     }
 
     public String hundredToSixtyFormat(Integer hundredTime) {
-        Integer hours = hundredTime % 2400 / 100;
-        Integer minutes = (int) ((hundredTime - (hundredTime / 100) * 100) * 0.6);
+        int hours = hundredTime % 2400 / 100;
+        int minutes = (int) ((hundredTime - (hundredTime / 100) * 100) * 0.6);
         String hoursStr = hours < 10 ? "0" + hours : "" + hours;
         String minutesStr = minutes < 10 ? "0" + minutes : "" + minutes;
         return hoursStr + ":" + minutesStr;
@@ -118,7 +104,6 @@ if(time>2400 && time-now>2400) {
 
     public Integer sixtyToHundredFormat(Integer hours, Integer minutes) {
         return (int) (hours * 100 + ceil(minutes * 1.6667));
-//        return (hours * 100) + minutes;
     }
 
 }

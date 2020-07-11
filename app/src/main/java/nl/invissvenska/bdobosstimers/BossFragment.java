@@ -3,6 +3,7 @@ package nl.invissvenska.bdobosstimers;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,13 +76,14 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
         getActivity().startForegroundService(intent);
     }
 
+
     @Override
-    public void onPause() {
+    public void onDetach() {
         cancelRefresher();
         if (timer != null) {
             timer.cancel();
         }
-        super.onPause();
+        super.onDetach();
     }
 
     @Override
@@ -123,7 +125,7 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
             }
         }
 
-        timer = new CountDownTimer(nextBoss.getMinutesToSpawn() * 60 * 1000, 1000L) {
+        timer = new CountDownTimer((nextBoss.getMinutesToSpawn() + 1) * 60 * 1000, 1000L) {
             @Override
             public void onTick(long millisUntilFinished) {
                 // nextBossTitle2.setText(TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));

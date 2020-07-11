@@ -1,6 +1,5 @@
 package nl.invissvenska.bdobosstimers.list;
 
-import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +37,7 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BossViewHolder holder, int position) {
-        if(position == 0) {
+        if (position == 0) {
             holder.boss1.setImageAlpha(70);
             holder.boss2.setImageAlpha(70);
         } else {
@@ -46,7 +45,7 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
             holder.boss2.setImageAlpha(255);
         }
         final Boss boss = bosses.get(position);
-        holder.name.setText(boss.getName());
+        holder.name.setText(boss.getName().replace("&", " & "));
         holder.spawnTime.setText(boss.getTimeSpawn());
         holder.boss1.setImageResource(boss.getBossOneImageResource());
         if (boss.getBossTwoImageResource() != null) {
@@ -56,17 +55,20 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
             holder.boss2.setVisibility(View.GONE);
         }
         holder.timer = null;
-        holder.timer = new CountDownTimer(boss.getMinutesToSpawn() * 60 * 1000, 1000L) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                holder.timeLeft.setText(TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
-            }
+        if (boss.getMinutesToSpawn() > 0) {
+            holder.timer = new CountDownTimer(boss.getMinutesToSpawn() * 60 * 1000, 1000L) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    holder.timeLeft.setText(TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
+                }
 
-            @Override
-            public void onFinish() {
-            }
-        };
-        holder.timer.start();
+                @Override
+                public void onFinish() {
+                    holder.timeLeft.setText("SPAWNED");
+                }
+            };
+            holder.timer.start();
+        }
     }
 
     @Override
