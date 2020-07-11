@@ -7,4 +7,4 @@ androidPipeline(emailRecipients: 'sven.vd.tweel@gmail.com',
     signingKeystoreAlias: 'bdo-boss-timers-keystore-alias',
     signingPassword: 'bdo-boss-timers-password',
     signingKeystoreFileId: 'bdo-boss-timers-keystore',
-    signingKeystoreFile: 'bdo-boss-timers-app.jks')
+    signingKeystoreFile: 'bdo-boss-timers.jks')
