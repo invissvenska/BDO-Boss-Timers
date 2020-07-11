@@ -79,16 +79,16 @@ public class TimeHelper {
         return time > 2400 && time - now > 2400 ? (int) ((time % 2400 - now) * 0.6) : (int) ((time - now) * 0.6);
     }
 
-    public Long getSecondsToSpawn(String time) {
-        int hours = Integer.parseInt(time.split(":")[0]);
-        int minutes = Integer.parseInt(time.split(":")[1]);
-
-        LocalTime spawnTime = LocalTime.of(hours, minutes, 0);
-        LocalTime now = LocalTime.now();
-
-        Duration duration = Duration.between(now, spawnTime);
-        return duration.getSeconds();
-    }
+//    public Long getSecondsToSpawn(String time) {
+//        int hours = Integer.parseInt(time.split(":")[0]);
+//        int minutes = Integer.parseInt(time.split(":")[1]);
+//
+//        LocalTime spawnTime = LocalTime.of(hours, minutes, 0);
+//        LocalTime now = LocalTime.now();
+//
+//        Duration duration = Duration.between(now, spawnTime);
+//        return duration.getSeconds();
+//    }
 
     public void getTimeDifferenceToNow(Integer time) {
         getTimeDifference(time, getTimeOfTheDay());
