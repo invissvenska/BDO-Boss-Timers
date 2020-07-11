@@ -2,7 +2,16 @@ package nl.invissvenska.bdobosstimers.helper;
 
 import nl.invissvenska.bdobosstimers.util.Boss;
 
-import static nl.invissvenska.bdobosstimers.Constants.*;
+import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
+import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
+import static nl.invissvenska.bdobosstimers.Constants.KARANDA;
+import static nl.invissvenska.bdobosstimers.Constants.KUTUM;
+import static nl.invissvenska.bdobosstimers.Constants.KZARKA;
+import static nl.invissvenska.bdobosstimers.Constants.MURAKA;
+import static nl.invissvenska.bdobosstimers.Constants.NOUVER;
+import static nl.invissvenska.bdobosstimers.Constants.OFFIN;
+import static nl.invissvenska.bdobosstimers.Constants.QUINT;
+import static nl.invissvenska.bdobosstimers.Constants.VELL;
 
 public class BossHelper {
 
@@ -35,14 +44,14 @@ public class BossHelper {
         final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(null);
         for (int i = 0; i < timeIntGrid.length; i++) {
             if (timeIntGrid[i] > now && !bossGrid[dayOfTheWeek][i].equals(EMPTY)) {
-                if(i + position < timeIntGrid.length) {
-                    return resolveBoss(now, i + position, dayOfTheWeek);
+                if (i + position < timeIntGrid.length) {
+                    return resolveBoss(now, i + position, dayOfTheWeek, false);
                 } else {
-                    return resolveBoss(now, i + position - timeIntGrid.length, TimeHelper.getInstance().getDayOfTheWeek(1));
+                    return resolveBoss(now, i + position - timeIntGrid.length, TimeHelper.getInstance().getDayOfTheWeek(1), false);
                 }
             }
         }
-        return resolveBoss(now - 2400, position, TimeHelper.getInstance().getDayOfTheWeek(1));
+        return resolveBoss(now - 2400, position, TimeHelper.getInstance().getDayOfTheWeek(1), false);
     }
 
     public Boss getPreviousBoss() {
@@ -51,29 +60,31 @@ public class BossHelper {
         for (int i = 0; i < timeIntGrid.length; i++) {
             if (timeIntGrid[i] > now || i + 1 == timeIntGrid.length) {
                 if (i > 0 && bossGrid[dayOfTheWeek][i - 1].equals(EMPTY)) {
-                    return resolveBoss(now, i - 2, dayOfTheWeek);
+                    return resolveBoss(now, i - 2, dayOfTheWeek, true);
                 } else if (i > 0) {
-                    return resolveBoss(now, i - 1, dayOfTheWeek);
+                    return resolveBoss(now, i - 1, dayOfTheWeek, true);
                 } else {
                     int backPointer = 1;
                     while (bossGrid[TimeHelper.getInstance().getDayOfTheWeek(-1)][timeIntGrid.length - backPointer].equals(EMPTY)) {
                         backPointer++;
                     }
-                    return resolveBoss(2400 + now, timeIntGrid.length - backPointer, TimeHelper.getInstance().getDayOfTheWeek(-1));
+                    return resolveBoss(2400 + now, timeIntGrid.length - backPointer, TimeHelper.getInstance().getDayOfTheWeek(-1), true);
                 }
             }
         }
-        return resolveBoss(2400 + now, timeIntGrid.length - 1, dayOfTheWeek);
+        return resolveBoss(2400 + now, timeIntGrid.length - 1, dayOfTheWeek, true);
     }
 
-    private Boss resolveBoss(Integer now, Integer pointer, Integer dayOfWeek) {
+    private Boss resolveBoss(Integer now, Integer pointer, Integer dayOfWeek, Boolean previousBoss) {
         Integer time = timeIntGrid[pointer];
         Integer timeDiff = TimeHelper.getInstance().getTimeDifference(time, now);
         String timeSpawn = timeGrid[pointer];
         String bossName = bossGrid[dayOfWeek][pointer];
+        if (timeDiff < 0 && !previousBoss) {
+            timeDiff = TimeHelper.getInstance().getTimeDifferenceNextDay(time, now);
+        }
         return new Boss(bossName, timeSpawn, timeDiff);
     }
-
 
     public Boolean checkAlertAllowed(Boss nextBoss, BossSettings bossSettings, Integer soundsPlayed) {
         Integer limitMin = bossSettings.getAlertBefore() != null ? bossSettings.getAlertBefore() : 15;

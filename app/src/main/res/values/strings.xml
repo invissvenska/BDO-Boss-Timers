@@ -2,4 +2,5 @@
     <string name="app_name">BDO Boss Timers</string>
     <string name="image">Image</string>
     <string name="spawned">Spawned</string>
+    <string name="fab_content_desc">Settings</string>
 </resources>

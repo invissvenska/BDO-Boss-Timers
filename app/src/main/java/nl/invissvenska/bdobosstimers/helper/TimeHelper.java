@@ -80,6 +80,10 @@ public class TimeHelper {
         return time > 2400 && time - now > 2400 ? (int) ((time % 2400 - now) * 0.6) : (int) ((time - now) * 0.6);
     }
 
+    public Integer getTimeDifferenceNextDay(Integer time, Integer now) {
+        return (int) (((2400 - now) + time) * 0.6);
+    }
+
     public void getTimeDifferenceToNow(Integer time) {
         getTimeDifference(time, getTimeOfTheDay());
     }

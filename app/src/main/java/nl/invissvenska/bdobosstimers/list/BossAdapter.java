@@ -40,9 +40,16 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         if (position == 0) {
             holder.boss1.setImageAlpha(70);
             holder.boss2.setImageAlpha(70);
+            holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawned));
+            holder.name.setAlpha(0.4f);
+            holder.spawnTime.setAlpha(0.4f);
+            holder.timeLeft.setAlpha(0.4f);
         } else {
             holder.boss1.setImageAlpha(255);
             holder.boss2.setImageAlpha(255);
+            holder.name.setAlpha(1f);
+            holder.spawnTime.setAlpha(1f);
+            holder.timeLeft.setAlpha(1f);
         }
         final Boss boss = bosses.get(position);
         holder.name.setText(boss.getName().replace("&", " & "));
@@ -55,7 +62,7 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
             holder.boss2.setVisibility(View.GONE);
         }
         holder.timer = null;
-        if (boss.getMinutesToSpawn() > 0) {
+        if (boss.getMinutesToSpawn() > 0 && position != 0) {
             holder.timer = new CountDownTimer(boss.getMinutesToSpawn() * 60 * 1000, 1000L) {
                 @Override
                 public void onTick(long millisUntilFinished) {
