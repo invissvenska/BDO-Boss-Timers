@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BDO Boss Timers</string>
     <string name="image">Image</string>
+    <string name="spawned">Spawned</string>
 </resources>

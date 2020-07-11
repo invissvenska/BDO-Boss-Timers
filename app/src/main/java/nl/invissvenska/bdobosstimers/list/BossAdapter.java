@@ -64,7 +64,7 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
 
                 @Override
                 public void onFinish() {
-                    holder.timeLeft.setText("SPAWNED");
+                    holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawned));
                 }
             };
             holder.timer.start();

@@ -43,6 +43,9 @@ public class NumberDialogPreference extends DialogPreference {
     }
 
     public Integer getValue() {
+        if (value == null) {
+            return DEFAULT_VALUE;
+        }
         return value;
     }
 

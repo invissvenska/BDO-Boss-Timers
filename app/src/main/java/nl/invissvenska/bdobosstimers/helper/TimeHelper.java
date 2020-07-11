@@ -1,9 +1,9 @@
 package nl.invissvenska.bdobosstimers.helper;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.Nullable;
 
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.Calendar;
 
 import static java.lang.Math.ceil;
@@ -42,6 +42,7 @@ public class TimeHelper {
         mode = Mode.NORMAL;
     }
 
+    @SuppressLint("DefaultLocale")
     public String secondsToHoursAndMinutesAndSeconds(Long seconds) {
         int hours = Math.toIntExact(seconds / 3600);
         int minutes = Math.toIntExact(((seconds - (hours * 3600)) / 60));
@@ -78,17 +79,6 @@ public class TimeHelper {
     public Integer getTimeDifference(Integer time, Integer now) {
         return time > 2400 && time - now > 2400 ? (int) ((time % 2400 - now) * 0.6) : (int) ((time - now) * 0.6);
     }
-
-//    public Long getSecondsToSpawn(String time) {
-//        int hours = Integer.parseInt(time.split(":")[0]);
-//        int minutes = Integer.parseInt(time.split(":")[1]);
-//
-//        LocalTime spawnTime = LocalTime.of(hours, minutes, 0);
-//        LocalTime now = LocalTime.now();
-//
-//        Duration duration = Duration.between(now, spawnTime);
-//        return duration.getSeconds();
-//    }
 
     public void getTimeDifferenceToNow(Integer time) {
         getTimeDifference(time, getTimeOfTheDay());

@@ -42,17 +42,14 @@ public class NumberPickerPreferenceDialogFragment extends CustomPreferenceDialog
             text = savedInstanceState.getInt(SAVE_STATE_TIME);
         }
 
-        final Integer minValue = getArguments().getInt(ARG_MIN_VALUE, 0);
-        final Integer maxValue = getArguments().getInt(ARG_MAX_VALUE, 100);
-
+        final int minValue = getArguments().getInt(ARG_MIN_VALUE, 0);
+        final int maxValue = getArguments().getInt(ARG_MAX_VALUE, 100);
 
         np = new NumberPicker(getActivity());
         np.setMinValue(minValue);
         np.setMaxValue(maxValue);
         np.setValue(text);
     }
-
-
 
     @Override
     public void onDialogClosed(boolean positiveResult) {
@@ -65,8 +62,6 @@ public class NumberPickerPreferenceDialogFragment extends CustomPreferenceDialog
             }
         }
     }
-
-
 
     @Override
     View getPickerView() {
