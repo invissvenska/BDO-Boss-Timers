@@ -1,6 +1,7 @@
 package nl.invissvenska.bdobosstimers.list;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +25,9 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void clear() {
-        bosses.clear();
+    public void remove(int index) {
+        bosses.remove(index);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -61,7 +63,9 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         } else {
             holder.boss2.setVisibility(View.GONE);
         }
-        holder.timer = null;
+        if (holder.timer != null) {
+            holder.timer.cancel();
+        }
         if (boss.getMinutesToSpawn() > 0 && position != 0) {
             holder.timer = new CountDownTimer(boss.getMinutesToSpawn() * 60 * 1000, 1000L) {
                 @Override
