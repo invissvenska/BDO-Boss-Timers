@@ -83,7 +83,7 @@ public class BossHelper {
         if (timeDiff < 0 && !previousBoss) {
             timeDiff = TimeHelper.getInstance().getTimeDifferenceNextDay(time, now);
         }
-        return new Boss(bossName, timeSpawn, timeDiff);
+        return new Boss(bossName, timeSpawn, time);
     }
 
     public Boolean checkAlertAllowed(Boss nextBoss, BossSettings bossSettings, Integer soundsPlayed) {
