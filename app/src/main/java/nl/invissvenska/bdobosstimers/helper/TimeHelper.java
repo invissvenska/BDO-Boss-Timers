@@ -22,26 +22,6 @@ public class TimeHelper {
         return INSTANCE;
     }
 
-    enum Mode {
-        NORMAL, DEBUG;
-    }
-
-    private Mode mode = Mode.NORMAL;
-    private Integer timeOfTheDay = 0;
-    private Integer dayOfTheWeek = 0;
-
-    public void setDebug(Integer timeOfTheDay, Integer dayOfTheWeek) {
-        this.timeOfTheDay = timeOfTheDay;
-        this.dayOfTheWeek = dayOfTheWeek;
-        mode = Mode.DEBUG;
-    }
-
-    public void setNormal() {
-        timeOfTheDay = 0;
-        dayOfTheWeek = 0;
-        mode = Mode.NORMAL;
-    }
-
     @SuppressLint("DefaultLocale")
     public String secondsToHoursAndMinutesAndSeconds(Long seconds) {
         int hours = Math.toIntExact(seconds / 3600);
@@ -57,9 +37,6 @@ public class TimeHelper {
     }
 
     public Integer getDayOfTheWeek(@Nullable Integer addDays) {
-        if (mode == Mode.DEBUG) {
-            return dayOfTheWeek;
-        }
         addDays = addDays == null ? 0 : addDays;
         Calendar cal = Calendar.getInstance();
         Integer weekDay = cal.get(Calendar.DAY_OF_WEEK);
@@ -67,9 +44,6 @@ public class TimeHelper {
     }
 
     public Integer getTimeOfTheDay() {
-        if (mode == Mode.DEBUG) {
-            return timeOfTheDay;
-        }
         Calendar cal = Calendar.getInstance();
         Integer hourOfDay = cal.get(Calendar.HOUR_OF_DAY);
         Integer minuteOfTheDay = cal.get(Calendar.MINUTE);
@@ -99,5 +73,4 @@ public class TimeHelper {
     public Integer sixtyToHundredFormat(Integer hours, Integer minutes) {
         return (int) (hours * 100 + ceil(minutes * 1.6667));
     }
-
 }

@@ -3,7 +3,6 @@ package nl.invissvenska.bdobosstimers;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +27,8 @@ import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
 import static nl.invissvenska.bdobosstimers.Constants.UPDATE_MESSAGE;
 
 public class BossFragment extends Fragment implements SynchronizedActivity {
+
+    private static final Integer MAX_BOSS_COUNT = 6;
 
     private BossRefresher refresher = null;
     private CountDownTimer timer = null;
@@ -61,7 +62,6 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
-
         return view;
     }
 
@@ -110,25 +110,16 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     }
 
     private void updateBoss() {
-
         final Boss nextBoss = BossHelper.getInstance().getNextBoss(0);
-        final Boss previousBoss = BossHelper.getInstance().getPreviousBoss();
-
-        adapter.clear();
-        adapter.add(previousBoss);
-        adapter.add(nextBoss);
-
-        for (int i = 1; i <= 7; i++) {
-            Boss boss = BossHelper.getInstance().getNextBoss(i);
-            if (!boss.getName().equals(EMPTY)) {
-                adapter.add(boss);
-            }
+        if (adapter.getItemCount() == 0) {
+            initializeOverview(nextBoss);
+        } else {
+            renewOverview();
         }
 
         timer = new CountDownTimer((nextBoss.getMinutesToSpawn() + 1) * 60 * 1000, 1000L) {
             @Override
             public void onTick(long millisUntilFinished) {
-                // nextBossTitle2.setText(TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
             }
 
             @Override
@@ -137,6 +128,25 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
             }
         };
         timer.start();
+    }
 
+    private void initializeOverview(Boss nextBoss) {
+        adapter.add(BossHelper.getInstance().getPreviousBoss());
+        adapter.add(nextBoss);
+
+        for (int i = 1; i <= MAX_BOSS_COUNT; i++) {
+            Boss boss = BossHelper.getInstance().getNextBoss(i);
+            if (!boss.getName().equals(EMPTY)) {
+                adapter.add(boss);
+            }
+        }
+    }
+
+    private void renewOverview() {
+        adapter.remove(0);
+        Boss boss = BossHelper.getInstance().getNextBoss(MAX_BOSS_COUNT);
+        if (!boss.getName().equals(EMPTY)) {
+            adapter.add(boss);
+        }
     }
 }
