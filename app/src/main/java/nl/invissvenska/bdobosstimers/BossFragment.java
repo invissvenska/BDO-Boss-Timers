@@ -20,20 +20,15 @@ import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.list.BossAdapter;
 import nl.invissvenska.bdobosstimers.service.BossAlertService;
 import nl.invissvenska.bdobosstimers.util.Boss;
-import nl.invissvenska.bdobosstimers.util.BossRefresher;
-import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
-import static nl.invissvenska.bdobosstimers.Constants.UPDATE_MESSAGE;
 
 public class BossFragment extends Fragment implements SynchronizedActivity {
 
     private static final Integer MAX_BOSS_COUNT = 6;
 
-    private BossRefresher refresher = null;
     private CountDownTimer timer = null;
     private BossAdapter adapter;
-    private PreferenceUtil preferences;
 
     public BossFragment() {
         //keep default constructor
@@ -42,7 +37,6 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        preferences = PreferenceUtil.getInstance(getContext());
     }
 
     @Nullable
@@ -67,7 +61,6 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
 
     private void communicateWithService() {
         Intent serviceIntent = new Intent(getContext(), BossAlertService.class);
-        serviceIntent.putExtra(UPDATE_MESSAGE, preferences.getSettings());
         getActivity().startService(serviceIntent);
     }
 
@@ -76,10 +69,8 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
         getActivity().startForegroundService(intent);
     }
 
-
     @Override
     public void onDetach() {
-        cancelRefresher();
         if (timer != null) {
             timer.cancel();
         }
@@ -93,20 +84,12 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
         communicateWithService();
     }
 
-    private void cancelRefresher() {
-        if (refresher != null) {
-            refresher.cancel(true);
-            refresher = null;
-        }
-    }
-
     @Override
     public void synchronize() {
         if (timer != null) {
             timer.cancel();
         }
         updateBoss();
-        new BossRefresher(this).execute();
     }
 
     private void updateBoss() {
