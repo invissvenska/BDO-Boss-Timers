@@ -12,5 +12,4 @@ public class Constants {
     public final static String QUINT = "Quint";
     public final static String MURAKA = "Muraka";
     public final static String EMPTY = "";
-    public final static String UPDATE_MESSAGE = "ConfigurationMessage";
 }

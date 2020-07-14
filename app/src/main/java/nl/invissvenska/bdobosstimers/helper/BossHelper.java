@@ -1,5 +1,7 @@
 package nl.invissvenska.bdobosstimers.helper;
 
+import android.util.Log;
+
 import nl.invissvenska.bdobosstimers.util.Boss;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
@@ -92,6 +94,7 @@ public class BossHelper {
 
         //time to spawn
         if (nextBoss.getMinutesToSpawn() > limitMin || soundsPlayed >= alertTimes) {
+            Log.d("BossHelper", "nog niet alerten: " + nextBoss.getMinutesToSpawn() + " " + limitMin);
             return false;
         }
 
@@ -120,29 +123,40 @@ public class BossHelper {
                 state = bossSettings.getSunday() != null ? bossSettings.getSunday() : 1;
                 break;
         }
+        Log.d("BossHelper", "1 state: " + state);
 
         //disabled
         if (state == 3) {
+            Log.d("BossHelper", "state = 3, nog niet alerten");
             return false;
         }
 
-        //check time
-        if (state == 2) {
-            Integer timeFrom = bossSettings.getTimeFrom() != null ? bossSettings.getTimeFrom() : 0;
-            int timeTo = bossSettings.getTimeTo() != null ? bossSettings.getTimeTo() : 0;
-            Integer timeOfTheDay = TimeHelper.getInstance().getTimeOfTheDay();
-            if (timeFrom < timeTo) {
-                //normal case
-                if (timeOfTheDay > timeFrom && timeOfTheDay < timeTo) {
-                    return false;
-                }
-            } else if (timeFrom > timeTo) {
-                if (timeOfTheDay < timeFrom && timeOfTheDay > timeTo) {
-                    return false;
-                }
-            }
-            //else, probably no time set, continue
-        }
+//        //check time
+//        if (state == 2) {
+//            Integer timeFrom = bossSettings.getTimeFrom() != null ? bossSettings.getTimeFrom() : 0;
+//            int timeTo = bossSettings.getTimeTo() != null ? bossSettings.getTimeTo() : 0;
+//            Integer timeOfTheDay = TimeHelper.getInstance().getTimeOfTheDay();
+////            if (timeFrom < timeTo) {
+//                //normal case
+//            Log.d("BossHelper", "normal case. from:" + timeFrom + " to:" + timeTo + "  now:" + timeOfTheDay);
+//
+//            Log.d("BossHelper", "normal case. from:" + (timeOfTheDay > timeFrom) + " to:" + (timeOfTheDay < timeTo));
+//
+//            if (timeOfTheDay < timeFrom && timeOfTheDay > timeTo) {
+//                    Log.d("BossHelper", "silent period. from:" + timeFrom + " to:" + timeTo + "  now:" + timeOfTheDay);
+//                    return false;
+////                }
+////            } else if (timeFrom > timeTo) {
+////                if (timeOfTheDay < timeFrom && timeOfTheDay > timeTo) {
+////                    Log.d("BossHelper", "silent period 2. from:" + timeFrom + " to:" + timeTo + "  now:" + timeOfTheDay);
+////                    return false;
+////                }
+//            }
+//            //else, probably no time set, continue
+//        }
+
+
+        Log.d("BossHelper", "laatste checks");
 
         String[] bosses = nextBoss.getName().split("&");
         boolean enabled = false;
@@ -151,6 +165,7 @@ public class BossHelper {
                 enabled = true;
             }
         }
+        Log.d("BossHelper", "enabled " + enabled);
         return enabled;
     }
 }

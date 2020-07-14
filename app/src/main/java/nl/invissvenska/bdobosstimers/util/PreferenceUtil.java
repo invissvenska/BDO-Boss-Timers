@@ -89,12 +89,14 @@ public final class PreferenceUtil {
 
     private Integer getTimeFrom() {
         String value = preferences.getString("time_from", "00:00");
-        return Integer.valueOf(value.replace(":", ""));
+//        return Integer.valueOf(value.replace(":", ""));
+        return 0;
     }
 
     private Integer getTimeTo() {
         String value = preferences.getString("time_to", "00:00");
-        return Integer.valueOf(value.replace(":", ""));
+//        return Integer.valueOf(value.replace(":", ""));
+        return 0;
     }
 
     private Integer getAlertBefore() {

@@ -141,7 +141,7 @@
             android:key="alert_before"
             android:title="Alert before the boss spawns"
             app:iconSpaceReserved="false"
-            app:numberPickerPreference_maxValue="30"
+            app:numberPickerPreference_maxValue="60"
             app:numberPickerPreference_minValue="0"
             app:numberPickerPreference_unitText=" minutes" />
 
@@ -150,7 +150,7 @@
             android:title="Number of alerts"
             app:iconSpaceReserved="false"
             app:numberPickerPreference_maxValue="5"
-            app:numberPickerPreference_minValue="0"
+            app:numberPickerPreference_minValue="1"
             app:numberPickerPreference_unitText=" times" />
 
         <nl.invissvenska.bdobosstimers.pref.NumberDialogPreference
@@ -161,19 +161,19 @@
             app:numberPickerPreference_minValue="0"
             app:numberPickerPreference_unitText=" seconds" />
 
-        <nl.invissvenska.bdobosstimers.pref.TimeDialogPreference
-            android:key="time_from"
-            android:title="No alerts after"
-            app:customFormat="HH:mm"
-            app:force24HourModePicker="true"
-            app:iconSpaceReserved="false" />
+<!--        <nl.invissvenska.bdobosstimers.pref.TimeDialogPreference-->
+<!--            android:key="time_from"-->
+<!--            android:title="No alerts after"-->
+<!--            app:customFormat="HH:mm"-->
+<!--            app:force24HourModePicker="true"-->
+<!--            app:iconSpaceReserved="false" />-->
 
-        <nl.invissvenska.bdobosstimers.pref.TimeDialogPreference
-            android:key="time_to"
-            android:title="No alerts before"
-            app:customFormat="HH:mm"
-            app:force24HourModePicker="true"
-            app:iconSpaceReserved="false" />
+<!--        <nl.invissvenska.bdobosstimers.pref.TimeDialogPreference-->
+<!--            android:key="time_to"-->
+<!--            android:title="No alerts before"-->
+<!--            app:customFormat="HH:mm"-->
+<!--            app:force24HourModePicker="true"-->
+<!--            app:iconSpaceReserved="false" />-->
 
     </PreferenceCategory>
 
