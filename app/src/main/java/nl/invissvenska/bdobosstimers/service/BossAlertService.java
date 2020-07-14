@@ -1,19 +1,23 @@
 package nl.invissvenska.bdobosstimers.service;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import nl.invissvenska.bdobosstimers.R;
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
@@ -80,13 +84,11 @@ public class BossAlertService extends Service {
                 BossSettings bossSettings = PreferenceUtil.getInstance(context).getSettings();
                 Integer limitMin = bossSettings.getAlertBefore() != null ? bossSettings.getAlertBefore() : 15;
                 Boss nextBoss = BossHelper.getInstance().getNextBoss(0);
-                Log.d("BDO", nextBoss.getTimeSpawn());
                 if (BossHelper.getInstance().checkAlertAllowed(nextBoss, bossSettings, soundsPlayed)) {
                     mediaPlayer.seekTo(0);
                     mediaPlayer.start();
-                    vibrate(bossSettings);
+                    showNotification(bossSettings, nextBoss);
                     soundsPlayed++;
-                    Log.d("BDO", "BOSS ALERT BOSS ALERT");
                 } else if (nextBoss.getMinutesToSpawn() > limitMin) {
                     soundsPlayed = 0;
                 }
@@ -98,14 +100,34 @@ public class BossAlertService extends Service {
             }
         }
 
-        private void vibrate(BossSettings bossSettings) {
-            if ((bossSettings.getVibration() != null ? bossSettings.getVibration() : false)) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                } else {
-                    vibrator.vibrate(500);
+        private void showNotification(BossSettings bossSettings, Boss boss) {
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            String NOTIFICATION_CHANNEL_ID = "bdo_boss_spawn_channel_0";
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "BDO Boss Spawn Notifications", NotificationManager.IMPORTANCE_DEFAULT);
+
+                // Configure the notification channel.
+                notificationChannel.setDescription("Alerts for when a boss spawns");
+                if ((bossSettings.getVibration() != null ? bossSettings.getVibration() : false)) {
+                    notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+                    notificationChannel.enableVibration(true);
                 }
+                notificationManager.createNotificationChannel(notificationChannel);
             }
+
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
+
+            notificationBuilder.setAutoCancel(true)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
+                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), boss.getBossOneImageResource()))
+                    .setContentTitle("BDO World boss")
+                    .setContentText(boss.getName() + " will spawn in " + boss.getMinutesToSpawn() + " minutes at " + boss.getTimeSpawn());
+
+            notificationManager.notify(/*notification id*/1, notificationBuilder.build());
         }
 
         @Override
