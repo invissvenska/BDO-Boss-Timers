@@ -94,6 +94,8 @@ public class NumberDialogPreference extends DialogPreference {
     protected void onSetInitialValue(Object defaultValue) {
         if (defaultValue == null) {
             setSerializedValue(getPersistedInt(DEFAULT_VALUE));
+        } else if (defaultValue instanceof String) {
+            setSerializedValue(Integer.valueOf((String)defaultValue));
         } else {
             setSerializedValue((Integer) defaultValue);
         }

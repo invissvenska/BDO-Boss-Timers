@@ -89,24 +89,26 @@ public final class PreferenceUtil {
 
     private Integer getTimeFrom() {
         String value = preferences.getString("time_from", "00:00");
-        return Integer.valueOf(value.replace(":", ""));
+//        return Integer.valueOf(value.replace(":", ""));
+        return 0;
     }
 
     private Integer getTimeTo() {
         String value = preferences.getString("time_to", "00:00");
-        return Integer.valueOf(value.replace(":", ""));
+//        return Integer.valueOf(value.replace(":", ""));
+        return 0;
     }
 
     private Integer getAlertBefore() {
-        return preferences.getInt("alert_before", 0);
+        return preferences.getInt("alert_before", 1);
     }
 
     private Integer getNumberOfAlerts() {
-        return preferences.getInt("number_of_alerts", 0);
+        return preferences.getInt("number_of_alerts", 1);
     }
 
     private Integer getAlertDelay() {
-        return preferences.getInt("alert_delay", 0);
+        return preferences.getInt("alert_delay", 5);
     }
 
     private Boolean isVibrationEnabled() {
