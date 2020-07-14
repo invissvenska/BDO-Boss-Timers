@@ -100,15 +100,15 @@ public final class PreferenceUtil {
     }
 
     private Integer getAlertBefore() {
-        return preferences.getInt("alert_before", 0);
+        return preferences.getInt("alert_before", 1);
     }
 
     private Integer getNumberOfAlerts() {
-        return preferences.getInt("number_of_alerts", 0);
+        return preferences.getInt("number_of_alerts", 1);
     }
 
     private Integer getAlertDelay() {
-        return preferences.getInt("alert_delay", 0);
+        return preferences.getInt("alert_delay", 5);
     }
 
     private Boolean isVibrationEnabled() {
