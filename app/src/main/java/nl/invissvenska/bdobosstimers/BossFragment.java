@@ -1,6 +1,7 @@
 package nl.invissvenska.bdobosstimers;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -66,7 +67,11 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
 
     private void checkAndRunAlertService() {
         Intent intent = new Intent(getContext(), BossAlertService.class);
-        getActivity().startForegroundService(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getActivity().startForegroundService(intent);
+        } else {
+            getActivity().startService(intent);
+        }
     }
 
     @Override
