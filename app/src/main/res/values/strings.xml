@@ -3,4 +3,14 @@
     <string name="image">Image</string>
     <string name="spawned">Spawned</string>
     <string name="fab_content_desc">Settings</string>
+    <string-array name="preference_server_selection">
+        <item>EU</item>
+        <item>NA</item>
+        <item>SEA</item>
+    </string-array>
+    <string-array name="preference_server_selection_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>
