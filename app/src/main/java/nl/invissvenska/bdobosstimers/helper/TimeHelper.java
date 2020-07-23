@@ -24,9 +24,9 @@ public class TimeHelper {
 
     @SuppressLint("DefaultLocale")
     public String secondsToHoursAndMinutesAndSeconds(Long seconds) {
-        int hours = Math.toIntExact(seconds / 3600);
-        int minutes = Math.toIntExact(((seconds - (hours * 3600)) / 60));
-        int remainingSeconds = Math.toIntExact(seconds - (hours * 3600) - (minutes * 60));
+        int hours = toIntExact(seconds / 3600);
+        int minutes = toIntExact(((seconds - (hours * 3600)) / 60));
+        int remainingSeconds = toIntExact(seconds - (hours * 3600) - (minutes * 60));
         return String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds);
     }
 
@@ -72,5 +72,12 @@ public class TimeHelper {
 
     public Integer sixtyToHundredFormat(Integer hours, Integer minutes) {
         return (int) (hours * 100 + ceil(minutes * 1.6667));
+    }
+
+    private static int toIntExact(long value) {
+        if ((int)value != value) {
+            throw new ArithmeticException("integer overflow");
+        }
+        return (int)value;
     }
 }
