@@ -83,7 +83,7 @@ public class BossAlertService extends Service {
             while (true) {
                 BossSettings bossSettings = PreferenceUtil.getInstance(context).getSettings();
                 Integer limitMin = bossSettings.getAlertBefore() != null ? bossSettings.getAlertBefore() : 15;
-                Boss nextBoss = BossHelper.getInstance().getNextBoss(0);
+                Boss nextBoss = BossHelper.getInstance().getNextBoss(0, bossSettings.getSelectedServer());
                 if (BossHelper.getInstance().checkAlertAllowed(nextBoss, bossSettings, soundsPlayed)) {
                     mediaPlayer.seekTo(0);
                     mediaPlayer.start();
