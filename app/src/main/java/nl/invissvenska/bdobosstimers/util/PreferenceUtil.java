@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
+import nl.invissvenska.bdobosstimers.SERVER;
 import nl.invissvenska.bdobosstimers.helper.BossSettings;
 
 public final class PreferenceUtil {
@@ -87,15 +88,26 @@ public final class PreferenceUtil {
         return preferences.getBoolean("sunday_alert", false) ? 2 : 3;
     }
 
+    private SERVER getSelectedServer() {
+        String value = preferences.getString("selected_server", "1");
+        int newValue = Integer.parseInt(value);
+        switch (newValue) {
+            case 1:
+                return SERVER.EU;
+            case 2:
+                return SERVER.NA;
+            case 3:
+                return SERVER.SEA;
+            default:
+                return SERVER.EU;
+        }
+    }
+
     private Integer getTimeFrom() {
-        String value = preferences.getString("time_from", "00:00");
-//        return Integer.valueOf(value.replace(":", ""));
         return 0;
     }
 
     private Integer getTimeTo() {
-        String value = preferences.getString("time_to", "00:00");
-//        return Integer.valueOf(value.replace(":", ""));
         return 0;
     }
 
@@ -137,6 +149,7 @@ public final class PreferenceUtil {
                 getAlertBefore(),
                 getNumberOfAlerts(),
                 getAlertDelay(),
-                isVibrationEnabled());
+                isVibrationEnabled(),
+                getSelectedServer());
     }
 }

@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
+import nl.invissvenska.bdobosstimers.helper.BossSettings;
 import nl.invissvenska.bdobosstimers.list.BossAdapter;
 import nl.invissvenska.bdobosstimers.service.BossAlertService;
 import nl.invissvenska.bdobosstimers.util.Boss;
+import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
 
@@ -98,7 +100,8 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     }
 
     private void updateBoss() {
-        final Boss nextBoss = BossHelper.getInstance().getNextBoss(0);
+        BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
+        final Boss nextBoss = BossHelper.getInstance().getNextBoss(0, bossSettings.getSelectedServer());
         if (adapter.getItemCount() == 0) {
             initializeOverview(nextBoss);
         } else {
@@ -119,11 +122,12 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     }
 
     private void initializeOverview(Boss nextBoss) {
-        adapter.add(BossHelper.getInstance().getPreviousBoss());
+        BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
+        adapter.add(BossHelper.getInstance().getPreviousBoss(bossSettings.getSelectedServer()));
         adapter.add(nextBoss);
 
         for (int i = 1; i <= MAX_BOSS_COUNT; i++) {
-            Boss boss = BossHelper.getInstance().getNextBoss(i);
+            Boss boss = BossHelper.getInstance().getNextBoss(i, bossSettings.getSelectedServer());
             if (!boss.getName().equals(EMPTY)) {
                 adapter.add(boss);
             }
@@ -131,8 +135,9 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     }
 
     private void renewOverview() {
+        BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
         adapter.remove(0);
-        Boss boss = BossHelper.getInstance().getNextBoss(MAX_BOSS_COUNT);
+        Boss boss = BossHelper.getInstance().getNextBoss(MAX_BOSS_COUNT, bossSettings.getSelectedServer());
         if (!boss.getName().equals(EMPTY)) {
             adapter.add(boss);
         }
