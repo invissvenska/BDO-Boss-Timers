@@ -28,7 +28,7 @@ import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
 
 public class BossFragment extends Fragment implements SynchronizedActivity {
 
-    private static final Integer MAX_BOSS_COUNT = 6;
+    private static final Integer MAX_BOSS_COUNT = 14;
 
     private CountDownTimer timer = null;
     private BossAdapter adapter;
@@ -87,6 +87,7 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     @Override
     public void onResume() {
         super.onResume();
+        adapter.clear();
         synchronize();
         communicateWithService();
     }

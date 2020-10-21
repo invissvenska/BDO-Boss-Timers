@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.Nullable;
 
-import java.util.Calendar;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.ZonedDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import static java.lang.Math.ceil;
 
@@ -38,15 +41,15 @@ public class TimeHelper {
 
     public Integer getDayOfTheWeek(@Nullable Integer addDays) {
         addDays = addDays == null ? 0 : addDays;
-        Calendar cal = Calendar.getInstance();
-        Integer weekDay = cal.get(Calendar.DAY_OF_WEEK);
+        ZonedDateTime convertedTime = convertLocalZoneToUTC();
+        Integer weekDay = convertedTime.getDayOfWeek().getValue() + 1;
         return normalizeDayOfTheWeek(weekDay, addDays);
     }
 
     public Integer getTimeOfTheDay() {
-        Calendar cal = Calendar.getInstance();
-        Integer hourOfDay = cal.get(Calendar.HOUR_OF_DAY);
-        Integer minuteOfTheDay = cal.get(Calendar.MINUTE);
+        ZonedDateTime convertedTime = convertLocalZoneToUTC();
+        Integer hourOfDay = convertedTime.getHour();
+        Integer minuteOfTheDay = convertedTime.getMinute();
         return sixtyToHundredFormat(hourOfDay, minuteOfTheDay);
     }
 
@@ -58,26 +61,46 @@ public class TimeHelper {
         return (int) (((2400 - now) + time) * 0.6);
     }
 
-    public void getTimeDifferenceToNow(Integer time) {
-        getTimeDifference(time, getTimeOfTheDay());
-    }
-
-    public String hundredToSixtyFormat(Integer hundredTime) {
-        int hours = hundredTime % 2400 / 100;
-        int minutes = (int) ((hundredTime - (hundredTime / 100) * 100) * 0.6);
-        String hoursStr = hours < 10 ? "0" + hours : "" + hours;
-        String minutesStr = minutes < 10 ? "0" + minutes : "" + minutes;
-        return hoursStr + ":" + minutesStr;
-    }
-
     public Integer sixtyToHundredFormat(Integer hours, Integer minutes) {
         return (int) (hours * 100 + ceil(minutes * 1.6667));
     }
 
     private static int toIntExact(long value) {
-        if ((int)value != value) {
+        if ((int) value != value) {
             throw new ArithmeticException("integer overflow");
         }
-        return (int)value;
+        return (int) value;
+    }
+
+    private ZonedDateTime convertLocalZoneToUTC() {
+        ZoneId utcZoneId = ZoneId.of("UTC");
+        ZoneId localZoneId = ZoneId.systemDefault();
+
+        LocalDateTime ldt = LocalDateTime.now();
+        ZonedDateTime configTime = ldt.atZone(localZoneId);
+        return configTime.withZoneSameInstant(utcZoneId);
+    }
+
+    public String hundredToSixtyFormat(Integer hundredTime) {
+        String timeFormat = "HH:mm";
+        DateTimeFormatter format = DateTimeFormatter.ofPattern(timeFormat);
+        return format.format(convertUTCToLocalZone(hundredTime));
+    }
+
+    private ZonedDateTime convertUTCToLocalZone(final int time) {
+        ZoneId utcZoneId = ZoneId.of("UTC");
+        ZoneId localZoneId = ZoneId.systemDefault();
+
+        LocalDateTime ldt = LocalDateTime.now().withHour(hundredToSixtyFormatHours(time)).withMinute(hundredToSixtyFormatMinutes(time));
+        ZonedDateTime configTime = ldt.atZone(utcZoneId);
+        return configTime.withZoneSameInstant(localZoneId);
+    }
+
+    private Integer hundredToSixtyFormatHours(Integer hundredTime) {
+        return hundredTime % 2400 / 100;
+    }
+
+    private Integer hundredToSixtyFormatMinutes(Integer hundredTime) {
+        return (int) ((hundredTime - (hundredTime / 100) * 100) * 0.6);
     }
 }

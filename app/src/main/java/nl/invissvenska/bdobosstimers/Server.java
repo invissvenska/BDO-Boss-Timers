@@ -1,5 +1,5 @@
 package nl.invissvenska.bdobosstimers;
 
-public enum SERVER {
+public enum Server {
     EU, NA, SEA
 }

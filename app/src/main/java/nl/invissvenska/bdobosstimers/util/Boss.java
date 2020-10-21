@@ -24,9 +24,9 @@ public class Boss {
     private Integer bossOneImageResource;
     private Integer bossTwoImageResource;
 
-    public Boss(String name, String timeSpawn, Integer timeIntSpawn) {
+    public Boss(String name, Integer timeIntSpawn) {
         this.name = name;
-        this.timeSpawn = timeSpawn;
+        this.timeSpawn = TimeHelper.getInstance().hundredToSixtyFormat(timeIntSpawn);
         this.timeIntSpawn = timeIntSpawn;
         Map<String, Integer> imageMap = new HashMap<String, Integer>() {{
             put(GARMOTH, R.drawable.garmoth_big);
