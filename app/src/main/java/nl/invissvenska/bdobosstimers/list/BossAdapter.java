@@ -40,20 +40,6 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BossViewHolder holder, int position) {
         try {
-            if (position == 0) {
-                holder.boss1.setImageAlpha(70);
-                holder.boss2.setImageAlpha(70);
-                holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawned));
-                holder.name.setAlpha(0.4f);
-                holder.spawnTime.setAlpha(0.4f);
-                holder.timeLeft.setAlpha(0.4f);
-            } else {
-                holder.boss1.setImageAlpha(255);
-                holder.boss2.setImageAlpha(255);
-                holder.name.setAlpha(1f);
-                holder.spawnTime.setAlpha(1f);
-                holder.timeLeft.setAlpha(1f);
-            }
             final Boss boss = bosses.get(position);
             holder.name.setText(boss.getName().replace("&", " & "));
             holder.spawnTime.setText(boss.getTimeSpawn());
@@ -80,6 +66,22 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
                     }
                 };
                 holder.timer.start();
+            } else if (boss.getMinutesToSpawn() == 0) {
+                holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawning));
+            }
+            if (position == 0) {
+                holder.boss1.setImageAlpha(70);
+                holder.boss2.setImageAlpha(70);
+                holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawned));
+                holder.name.setAlpha(0.4f);
+                holder.spawnTime.setAlpha(0.4f);
+                holder.timeLeft.setAlpha(0.4f);
+            } else {
+                holder.boss1.setImageAlpha(255);
+                holder.boss2.setImageAlpha(255);
+                holder.name.setAlpha(1f);
+                holder.spawnTime.setAlpha(1f);
+                holder.timeLeft.setAlpha(1f);
             }
         } catch (NullPointerException e) {
             Log.e("BDO", "something was null: " + e.getMessage());
