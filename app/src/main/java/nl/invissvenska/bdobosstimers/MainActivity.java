@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AndroidThreeTen.init(this);
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        } else {
+            Timber.plant(new ReleaseTree());
+        }
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, new BossFragment());

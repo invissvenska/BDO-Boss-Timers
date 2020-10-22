@@ -1,11 +1,10 @@
 package nl.invissvenska.bdobosstimers.helper;
 
-import android.util.Log;
-
 import java.util.List;
 
 import nl.invissvenska.bdobosstimers.Server;
 import nl.invissvenska.bdobosstimers.util.Boss;
+import timber.log.Timber;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
 
@@ -42,10 +41,10 @@ public class BossHelper {
         return bosses;
     }
 
-    public  List<Boss> getPrevBoss(Server server, Integer addDays, List<Boss> bosses, Integer max) {
+    public List<Boss> getPrevBoss(Server server, Integer addDays, List<Boss> bosses, Integer max) {
         final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
         final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(addDays);
-        for (int i = ServerHelper.getInstance().getTimeIntGrid(server).length-1; i >= 0; i--) {
+        for (int i = ServerHelper.getInstance().getTimeIntGrid(server).length - 1; i >= 0; i--) {
             // loopt over the timespans
             if ((addDays <= -1 || (ServerHelper.getInstance().getTimeIntGrid(server)[i] < now)) && !ServerHelper.getInstance().getBossGrid(server)[dayOfTheWeek][i].equals(EMPTY)) {
                 //check if timespan is greater (future) then current time
@@ -77,7 +76,7 @@ public class BossHelper {
 
         //time to spawn
         if (nextBoss.getMinutesToSpawn() > limitMin || soundsPlayed >= alertTimes) {
-            Log.d("BossHelper", "nog niet alerten: " + nextBoss.getMinutesToSpawn() + " " + limitMin);
+            Timber.d("Don't alert yet, minutes till spawn: %d, minutes to alert ahead: %d", nextBoss.getMinutesToSpawn(), limitMin);
             return false;
         }
 
@@ -106,24 +105,22 @@ public class BossHelper {
                 state = bossSettings.getSunday() != null ? bossSettings.getSunday() : 1;
                 break;
         }
-        Log.d("BossHelper", "1 state: " + state);
 
-        //disabled
+        //state 3 means today is 'off'
         if (state == 3) {
-            Log.d("BossHelper", "state = 3, nog niet alerten");
+            Timber.d("Today is not enabled in settings. So we don't alert anything today");
             return false;
         }
-
-        Log.d("BossHelper", "laatste checks");
+        Timber.d("Today is enabled in settings. We can alert something.");
 
         String[] bosses = nextBoss.getName().split("&");
         boolean enabled = false;
         for (String boss : bosses) {
             if (bossSettings.getEnabledBosses().contains(boss)) {
                 enabled = true;
+                Timber.d("Boss: %s found in settings, we will alert!", boss);
             }
         }
-        Log.d("BossHelper", "enabled " + enabled);
         return enabled;
     }
 }

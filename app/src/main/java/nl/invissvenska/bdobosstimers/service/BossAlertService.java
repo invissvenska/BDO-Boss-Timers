@@ -14,7 +14,6 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -26,6 +25,7 @@ import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.helper.BossSettings;
 import nl.invissvenska.bdobosstimers.util.Boss;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
+import timber.log.Timber;
 
 public class BossAlertService extends Service {
 
@@ -98,7 +98,7 @@ public class BossAlertService extends Service {
                 try {
                     Thread.sleep(1000L * (bossSettings.getAlertDelay() != null ? bossSettings.getAlertDelay() : 10));
                 } catch (InterruptedException e) {
-                    Log.e("BDO", "Thread interrupted: ", e);
+                    Timber.e(e, "Thread interrupted: %s", e.getMessage());
                 }
             }
         }
