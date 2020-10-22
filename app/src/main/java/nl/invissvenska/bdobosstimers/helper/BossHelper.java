@@ -41,23 +41,22 @@ public class BossHelper {
         return bosses;
     }
 
-    public List<Boss> getPreviousBoss(Server server, Integer addDays, List<Boss> bosses, Integer max) {
+    public Boss getPreviousBoss(Server server, Integer addDays) {
+        Boss boss = null;
         final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
         final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(addDays);
         for (int i = ServerHelper.getInstance().getTimeIntGrid(server).length - 1; i >= 0; i--) {
             // loopt over the timespans
             if ((addDays <= -1 || (ServerHelper.getInstance().getTimeIntGrid(server)[i] < now)) && !ServerHelper.getInstance().getBossGrid(server)[dayOfTheWeek][i].equals(EMPTY)) {
                 //check if timespan is greater (future) then current time
-                bosses.add(resolveBoss(i, dayOfTheWeek, server));
-            }
-            if (bosses.size() >= max) {
+                boss = resolveBoss(i, dayOfTheWeek, server);
                 break;
             }
         }
-        if (bosses.size() < max) {
-            return getPreviousBoss(server, addDays - 1, bosses, max);
+        if (boss == null) {
+            return getPreviousBoss(server, addDays - 1);
         }
-        return bosses;
+        return boss;
     }
 
     private Boss resolveBoss(Integer pointer, Integer dayOfWeek, Server server) {
