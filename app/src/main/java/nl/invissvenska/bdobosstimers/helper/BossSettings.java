@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.invissvenska.bdobosstimers.SERVER;
+import nl.invissvenska.bdobosstimers.Server;
 
 import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
 import static nl.invissvenska.bdobosstimers.Constants.KARANDA;
@@ -42,7 +42,7 @@ public class BossSettings implements Parcelable {
     private Integer alertTimes;
     private Integer alertDelay;
     private Boolean vibration;
-    private SERVER server;
+    private Server server;
 
     public BossSettings(Parcel parcel) {
         kzarka = parcel.readInt() == 1;
@@ -67,14 +67,14 @@ public class BossSettings implements Parcelable {
         alertTimes = parcel.readInt();
         alertDelay = parcel.readInt();
         vibration = parcel.readInt() == 1;
-        server = SERVER.valueOf(parcel.readString());
+        server = Server.valueOf(parcel.readString());
     }
 
     public BossSettings(Boolean kzarka, Boolean karanda, Boolean nouver, Boolean kutum, Boolean garmoth,
                         Boolean offin, Boolean vell, Boolean quint, Boolean muraka, Integer monday,
                         Integer tuesday, Integer wednesday, Integer thursday, Integer friday, Integer saturday,
                         Integer sunday, Integer timeFrom, Integer timeTo, Integer alertBefore,
-                        Integer alertTimes, Integer alertDelay, Boolean vibration, SERVER server) {
+                        Integer alertTimes, Integer alertDelay, Boolean vibration, Server server) {
         this.kzarka = kzarka;
         this.karanda = karanda;
         this.nouver = nouver;
@@ -228,7 +228,7 @@ public class BossSettings implements Parcelable {
         return vibration;
     }
 
-    public SERVER getSelectedServer() {
+    public Server getSelectedServer() {
         return server;
     }
 }

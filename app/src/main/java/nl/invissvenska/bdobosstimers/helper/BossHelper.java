@@ -2,19 +2,10 @@ package nl.invissvenska.bdobosstimers.helper;
 
 import android.util.Log;
 
-import nl.invissvenska.bdobosstimers.SERVER;
+import nl.invissvenska.bdobosstimers.Server;
 import nl.invissvenska.bdobosstimers.util.Boss;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
-import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
-import static nl.invissvenska.bdobosstimers.Constants.KARANDA;
-import static nl.invissvenska.bdobosstimers.Constants.KUTUM;
-import static nl.invissvenska.bdobosstimers.Constants.KZARKA;
-import static nl.invissvenska.bdobosstimers.Constants.MURAKA;
-import static nl.invissvenska.bdobosstimers.Constants.NOUVER;
-import static nl.invissvenska.bdobosstimers.Constants.OFFIN;
-import static nl.invissvenska.bdobosstimers.Constants.QUINT;
-import static nl.invissvenska.bdobosstimers.Constants.VELL;
 
 public class BossHelper {
 
@@ -30,51 +21,50 @@ public class BossHelper {
         return INSTANCE;
     }
 
-    public Boss getNextBoss(Integer position, SERVER server) {
+    public Boss getNextBoss(Integer position, Server server) {
         final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
         final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(null);
         for (int i = 0; i < ServerHelper.getInstance().getTimeIntGrid(server).length; i++) {
-            if (ServerHelper.getInstance().getTimeIntGrid(server)[i] > now && !ServerHelper.getInstance().getBossGrid(server)[dayOfTheWeek][i].equals(EMPTY)) {
+            if (ServerHelper.getInstance().getTimeIntGrid(server)[i] > now) {
                 if (i + position < ServerHelper.getInstance().getTimeIntGrid(server).length) {
-                    return resolveBoss(now, i + position, dayOfTheWeek, false,server);
+                    return resolveBoss(i + position, dayOfTheWeek, server);
                 } else {
-                    return resolveBoss(now, i + position - ServerHelper.getInstance().getTimeIntGrid(server).length, TimeHelper.getInstance().getDayOfTheWeek(1), false,server);
+                    return resolveBoss(i + position - ServerHelper.getInstance().getTimeIntGrid(server).length, TimeHelper.getInstance().getDayOfTheWeek(1), server);
                 }
             }
         }
-        return resolveBoss(now - 2400, position, TimeHelper.getInstance().getDayOfTheWeek(1), false,server);
+        return resolveBoss(position, TimeHelper.getInstance().getDayOfTheWeek(1), server);
     }
 
-    public Boss getPreviousBoss(SERVER server) {
+    public Boss getPreviousBoss(Server server) {
         final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
         final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(null);
         for (int i = 0; i < ServerHelper.getInstance().getTimeIntGrid(server).length; i++) {
             if (ServerHelper.getInstance().getTimeIntGrid(server)[i] > now || i + 1 == ServerHelper.getInstance().getTimeIntGrid(server).length) {
                 if (i > 0 && ServerHelper.getInstance().getBossGrid(server)[dayOfTheWeek][i - 1].equals(EMPTY)) {
-                    return resolveBoss(now, i - 2, dayOfTheWeek, true, server);
+                    return resolveBoss(i - 2, dayOfTheWeek, server);
                 } else if (i > 0) {
-                    return resolveBoss(now, i - 1, dayOfTheWeek, true, server);
+                    return resolveBoss(i - 1, dayOfTheWeek, server);
                 } else {
                     int backPointer = 1;
                     while (ServerHelper.getInstance().getBossGrid(server)[TimeHelper.getInstance().getDayOfTheWeek(-1)][ServerHelper.getInstance().getTimeIntGrid(server).length - backPointer].equals(EMPTY)) {
                         backPointer++;
                     }
-                    return resolveBoss(2400 + now, ServerHelper.getInstance().getTimeIntGrid(server).length - backPointer, TimeHelper.getInstance().getDayOfTheWeek(-1), true,server);
+                    return resolveBoss(ServerHelper.getInstance().getTimeIntGrid(server).length - backPointer, TimeHelper.getInstance().getDayOfTheWeek(-1), server);
                 }
             }
         }
-        return resolveBoss(2400 + now, ServerHelper.getInstance().getTimeIntGrid(server).length - 1, dayOfTheWeek, true,server);
+        return resolveBoss(ServerHelper.getInstance().getTimeIntGrid(server).length - 1, dayOfTheWeek, server);
     }
 
-    private Boss resolveBoss(Integer now, Integer pointer, Integer dayOfWeek, Boolean previousBoss, SERVER server) {
-        Integer time = ServerHelper.getInstance().getTimeIntGrid(server)[pointer];
-        Integer timeDiff = TimeHelper.getInstance().getTimeDifference(time, now);
-        String timeSpawn = ServerHelper.getInstance().getTimeGrid(server)[pointer];
-        String bossName = ServerHelper.getInstance().getBossGrid(server)[dayOfWeek][pointer];
-        if (timeDiff < 0 && !previousBoss) {
-            timeDiff = TimeHelper.getInstance().getTimeDifferenceNextDay(time, now);
+    private Boss resolveBoss(Integer pointer, Integer dayOfWeek, Server server) {
+        try {
+            Integer time = ServerHelper.getInstance().getTimeIntGrid(server)[pointer];
+            String bossName = ServerHelper.getInstance().getBossGrid(server)[dayOfWeek][pointer];
+            return new Boss(bossName, time);
+        } catch (Exception e) {
+            return new Boss(EMPTY, 0);
         }
-        return new Boss(bossName, timeSpawn, time);
     }
 
     public Boolean checkAlertAllowed(Boss nextBoss, BossSettings bossSettings, Integer soundsPlayed) {

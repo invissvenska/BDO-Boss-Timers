@@ -87,6 +87,7 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     @Override
     public void onResume() {
         super.onResume();
+        adapter.clear();
         synchronize();
         communicateWithService();
     }
