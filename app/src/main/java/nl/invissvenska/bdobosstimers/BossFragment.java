@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.helper.BossSettings;
 import nl.invissvenska.bdobosstimers.list.BossAdapter;
@@ -24,11 +27,7 @@ import nl.invissvenska.bdobosstimers.service.BossAlertService;
 import nl.invissvenska.bdobosstimers.util.Boss;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 
-import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
-
 public class BossFragment extends Fragment implements SynchronizedActivity {
-
-    private static final Integer MAX_BOSS_COUNT = 6;
 
     private CountDownTimer timer = null;
     private BossAdapter adapter;
@@ -102,14 +101,15 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
 
     private void updateBoss() {
         BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
-        final Boss nextBoss = BossHelper.getInstance().getNextBoss(0, bossSettings.getSelectedServer());
+
+        List<Boss> bosses = BossHelper.getInstance().getNextBosses(bossSettings.getSelectedServer(), 0, new ArrayList<>(), bossSettings.getMaxBosses());
         if (adapter.getItemCount() == 0) {
-            initializeOverview(nextBoss);
+            initializeOverview(bosses);
         } else {
-            renewOverview();
+            renewOverview(bosses);
         }
 
-        timer = new CountDownTimer((nextBoss.getMinutesToSpawn() + 1) * 60 * 1000, 1000L) {
+        timer = new CountDownTimer((bosses.get(0).getMinutesToSpawn() + 1) * 60 * 1000, 1000L) {
             @Override
             public void onTick(long millisUntilFinished) {
             }
@@ -122,25 +122,17 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
         timer.start();
     }
 
-    private void initializeOverview(Boss nextBoss) {
+    private void initializeOverview(List<Boss> bosses) {
         BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
-        adapter.add(BossHelper.getInstance().getPreviousBoss(bossSettings.getSelectedServer()));
-        adapter.add(nextBoss);
-
-        for (int i = 1; i <= MAX_BOSS_COUNT; i++) {
-            Boss boss = BossHelper.getInstance().getNextBoss(i, bossSettings.getSelectedServer());
-            if (!boss.getName().equals(EMPTY)) {
-                adapter.add(boss);
-            }
+        adapter.add(BossHelper.getInstance().getPreviousBoss(bossSettings.getSelectedServer(), 0));
+        for (Boss boss : bosses) {
+            adapter.add(boss);
         }
     }
 
-    private void renewOverview() {
+    private void renewOverview(List<Boss> bosses) {
         BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
         adapter.remove(0);
-        Boss boss = BossHelper.getInstance().getNextBoss(MAX_BOSS_COUNT, bossSettings.getSelectedServer());
-        if (!boss.getName().equals(EMPTY)) {
-            adapter.add(boss);
-        }
+        adapter.add(bosses.get(bossSettings.getMaxBosses() - 1));
     }
 }
