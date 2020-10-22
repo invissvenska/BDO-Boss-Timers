@@ -8,11 +8,11 @@
 
         <ListPreference
             android:defaultValue="1"
-            android:dialogTitle="Select your server region"
+            android:dialogTitle="Select your server"
             android:entries="@array/preference_server_selection"
             android:entryValues="@array/preference_server_selection_values"
             android:key="selected_server"
-            android:title="Server region"
+            android:title="Server &amp; platform"
             app:iconSpaceReserved="false"
             app:useSimpleSummaryProvider="true" />
 
