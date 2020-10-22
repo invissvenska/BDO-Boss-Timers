@@ -98,8 +98,27 @@ public final class PreferenceUtil {
                 return Server.NA;
             case 3:
                 return Server.SEA;
+            case 4:
+                return Server.XBOX_NA;
+            case 5:
+                return Server.XBOX_EU;
             default:
                 return Server.EU;
+        }
+    }
+
+    private Integer getMaximumBosses() {
+        switch (getSelectedServer()) {
+            case EU:
+            case NA:
+                return 8;
+            case SEA:
+                return 5;
+            case XBOX_NA:
+            case XBOX_EU:
+                return 4;
+            default:
+                return 4;
         }
     }
 
@@ -150,6 +169,7 @@ public final class PreferenceUtil {
                 getNumberOfAlerts(),
                 getAlertDelay(),
                 isVibrationEnabled(),
-                getSelectedServer());
+                getSelectedServer(),
+                getMaximumBosses());
     }
 }

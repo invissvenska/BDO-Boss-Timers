@@ -19,6 +19,8 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import java.util.ArrayList;
+
 import nl.invissvenska.bdobosstimers.R;
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.helper.BossSettings;
@@ -83,7 +85,8 @@ public class BossAlertService extends Service {
             while (true) {
                 BossSettings bossSettings = PreferenceUtil.getInstance(context).getSettings();
                 Integer limitMin = bossSettings.getAlertBefore() != null ? bossSettings.getAlertBefore() : 15;
-                Boss nextBoss = BossHelper.getInstance().getNextBoss(0, bossSettings.getSelectedServer());
+
+                Boss nextBoss = BossHelper.getInstance().getBoss(bossSettings.getSelectedServer(), 0, new ArrayList<>(), 1).get(0);
                 if (BossHelper.getInstance().checkAlertAllowed(nextBoss, bossSettings, soundsPlayed)) {
                     mediaPlayer.seekTo(0);
                     mediaPlayer.start();
