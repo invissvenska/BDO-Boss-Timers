@@ -22,7 +22,7 @@ public class BossHelper {
         return INSTANCE;
     }
 
-    public List<Boss> getBoss(Server server, Integer addDays, List<Boss> bosses, Integer max) {
+    public List<Boss> getNextBosses(Server server, Integer addDays, List<Boss> bosses, Integer max) {
         final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
         final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(addDays);
         for (int i = 0; i < ServerHelper.getInstance().getTimeIntGrid(server).length; i++) {
@@ -36,12 +36,12 @@ public class BossHelper {
             }
         }
         if (bosses.size() < max) {
-            return getBoss(server, addDays + 1, bosses, max);
+            return getNextBosses(server, addDays + 1, bosses, max);
         }
         return bosses;
     }
 
-    public List<Boss> getPrevBoss(Server server, Integer addDays, List<Boss> bosses, Integer max) {
+    public List<Boss> getPreviousBoss(Server server, Integer addDays, List<Boss> bosses, Integer max) {
         final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
         final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(addDays);
         for (int i = ServerHelper.getInstance().getTimeIntGrid(server).length - 1; i >= 0; i--) {
@@ -55,7 +55,7 @@ public class BossHelper {
             }
         }
         if (bosses.size() < max) {
-            return getPrevBoss(server, addDays - 1, bosses, max);
+            return getPreviousBoss(server, addDays - 1, bosses, max);
         }
         return bosses;
     }

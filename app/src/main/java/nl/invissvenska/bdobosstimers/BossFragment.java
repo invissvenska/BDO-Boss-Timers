@@ -102,7 +102,7 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     private void updateBoss() {
         BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
 
-        List<Boss> bosses = BossHelper.getInstance().getBoss(bossSettings.getSelectedServer(), 0, new ArrayList<>(), bossSettings.getMaxBosses());
+        List<Boss> bosses = BossHelper.getInstance().getNextBosses(bossSettings.getSelectedServer(), 0, new ArrayList<>(), bossSettings.getMaxBosses());
         if (adapter.getItemCount() == 0) {
             initializeOverview(bosses);
         } else {
@@ -124,7 +124,7 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
 
     private void initializeOverview(List<Boss> bosses) {
         BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
-        adapter.add(BossHelper.getInstance().getPrevBoss(bossSettings.getSelectedServer(), 0, new ArrayList<>(), 1).get(0));
+        adapter.add(BossHelper.getInstance().getPreviousBoss(bossSettings.getSelectedServer(), 0, new ArrayList<>(), 1).get(0));
         for (Boss boss : bosses) {
             adapter.add(boss);
         }
