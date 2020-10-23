@@ -43,6 +43,7 @@ public class BossSettings implements Parcelable {
     private Integer alertDelay;
     private Boolean vibration;
     private Server server;
+    private Integer maxBosses;
 
     public BossSettings(Parcel parcel) {
         kzarka = parcel.readInt() == 1;
@@ -68,13 +69,14 @@ public class BossSettings implements Parcelable {
         alertDelay = parcel.readInt();
         vibration = parcel.readInt() == 1;
         server = Server.valueOf(parcel.readString());
+        maxBosses = parcel.readInt();
     }
 
     public BossSettings(Boolean kzarka, Boolean karanda, Boolean nouver, Boolean kutum, Boolean garmoth,
                         Boolean offin, Boolean vell, Boolean quint, Boolean muraka, Integer monday,
                         Integer tuesday, Integer wednesday, Integer thursday, Integer friday, Integer saturday,
                         Integer sunday, Integer timeFrom, Integer timeTo, Integer alertBefore,
-                        Integer alertTimes, Integer alertDelay, Boolean vibration, Server server) {
+                        Integer alertTimes, Integer alertDelay, Boolean vibration, Server server, Integer maxBosses) {
         this.kzarka = kzarka;
         this.karanda = karanda;
         this.nouver = nouver;
@@ -98,6 +100,7 @@ public class BossSettings implements Parcelable {
         this.alertDelay = alertDelay;
         this.vibration = vibration;
         this.server = server;
+        this.maxBosses = maxBosses;
     }
 
     @Override
@@ -130,6 +133,7 @@ public class BossSettings implements Parcelable {
         dest.writeInt(alertDelay);
         dest.writeInt(vibration ? 1 : 0);
         dest.writeString(server.name());
+        dest.writeInt(maxBosses);
     }
 
     public static final Creator<BossSettings> CREATOR = new Creator<BossSettings>() {
@@ -230,5 +234,9 @@ public class BossSettings implements Parcelable {
 
     public Server getSelectedServer() {
         return server;
+    }
+
+    public Integer getMaxBosses() {
+        return maxBosses;
     }
 }

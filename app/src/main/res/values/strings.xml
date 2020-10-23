@@ -8,10 +8,20 @@
         <item>EU</item>
         <item>NA</item>
         <item>SEA</item>
+        <item>XBOX NA</item>
+        <item>XBOX EU</item>
+        <item>PS4 NA</item>
+        <item>PS4 EU</item>
+        <item>PS4 ASIA</item>
     </string-array>
     <string-array name="preference_server_selection_values">
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
     </string-array>
 </resources>

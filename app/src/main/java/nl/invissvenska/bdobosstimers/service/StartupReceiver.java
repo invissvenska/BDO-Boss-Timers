@@ -3,9 +3,10 @@ package nl.invissvenska.bdobosstimers.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import java.util.Objects;
+
+import timber.log.Timber;
 
 public class StartupReceiver extends BroadcastReceiver {
     @Override
@@ -16,7 +17,7 @@ public class StartupReceiver extends BroadcastReceiver {
                 context.startService(serviceIntent);
             }
         } catch (IllegalStateException e) {
-            Log.e("BDO", "backgroundservice not permitted because: " + e.getMessage());
+            Timber.e(e, "BackgroundService not permitted because: %s", e.getMessage());
         }
     }
 }
