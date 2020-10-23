@@ -35,14 +35,14 @@ public class TimeHelper {
 
     public Integer normalizeDayOfTheWeek(Integer weekDay, @Nullable Integer addDays) {
         addDays = addDays == null ? 0 : addDays;
-        int alteredWeekDay = (weekDay + addDays) % 7 - 2;
+        int alteredWeekDay = (weekDay + addDays) % 7 - 1;
         return alteredWeekDay < 0 ? alteredWeekDay + 7 : alteredWeekDay;
     }
 
     public Integer getDayOfTheWeek(@Nullable Integer addDays) {
         addDays = addDays == null ? 0 : addDays;
         ZonedDateTime convertedTime = convertLocalZoneToUTC();
-        Integer weekDay = convertedTime.getDayOfWeek().getValue() + 1;
+        Integer weekDay = convertedTime.getDayOfWeek().getValue();
         return normalizeDayOfTheWeek(weekDay, addDays);
     }
 
