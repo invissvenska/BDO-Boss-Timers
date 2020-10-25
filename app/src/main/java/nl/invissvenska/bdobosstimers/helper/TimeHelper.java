@@ -53,6 +53,13 @@ public class TimeHelper {
         return sixtyToHundredFormat(hourOfDay, minuteOfTheDay);
     }
 
+    public Integer getTimeOfTheDayWithoutTimeZoneConversion() {
+        LocalDateTime ldt = LocalDateTime.now();
+        Integer hourOfDay = ldt.getHour();
+        Integer minuteOfTheDay = ldt.getMinute();
+        return sixtyToHundredFormat(hourOfDay, minuteOfTheDay);
+    }
+
     public Integer getTimeDifference(Integer time, Integer now) {
         return time > 2400 && time - now > 2400 ? (int) ((time % 2400 - now) * 0.6) : (int) ((time - now) * 0.6);
     }
