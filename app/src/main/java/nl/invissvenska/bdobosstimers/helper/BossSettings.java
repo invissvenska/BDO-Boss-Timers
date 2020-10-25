@@ -44,6 +44,7 @@ public class BossSettings implements Parcelable {
     private Boolean vibration;
     private Server server;
     private Integer maxBosses;
+    private Boolean silentPeriod;
 
     public BossSettings(Parcel parcel) {
         kzarka = parcel.readInt() == 1;
@@ -70,13 +71,15 @@ public class BossSettings implements Parcelable {
         vibration = parcel.readInt() == 1;
         server = Server.valueOf(parcel.readString());
         maxBosses = parcel.readInt();
+        silentPeriod = parcel.readInt() == 1;
     }
 
     public BossSettings(Boolean kzarka, Boolean karanda, Boolean nouver, Boolean kutum, Boolean garmoth,
                         Boolean offin, Boolean vell, Boolean quint, Boolean muraka, Integer monday,
                         Integer tuesday, Integer wednesday, Integer thursday, Integer friday, Integer saturday,
                         Integer sunday, Integer timeFrom, Integer timeTo, Integer alertBefore,
-                        Integer alertTimes, Integer alertDelay, Boolean vibration, Server server, Integer maxBosses) {
+                        Integer alertTimes, Integer alertDelay, Boolean vibration, Server server, Integer maxBosses,
+                        Boolean silentPeriod) {
         this.kzarka = kzarka;
         this.karanda = karanda;
         this.nouver = nouver;
@@ -101,6 +104,7 @@ public class BossSettings implements Parcelable {
         this.vibration = vibration;
         this.server = server;
         this.maxBosses = maxBosses;
+        this.silentPeriod = silentPeriod;
     }
 
     @Override
@@ -134,6 +138,7 @@ public class BossSettings implements Parcelable {
         dest.writeInt(vibration ? 1 : 0);
         dest.writeString(server.name());
         dest.writeInt(maxBosses);
+        dest.writeInt(silentPeriod ? 1 : 0);
     }
 
     public static final Creator<BossSettings> CREATOR = new Creator<BossSettings>() {
@@ -208,11 +213,11 @@ public class BossSettings implements Parcelable {
         return sunday;
     }
 
-    public Integer getTimeFrom() {
+    public Integer getTimeAfter() {
         return timeFrom;
     }
 
-    public Integer getTimeTo() {
+    public Integer getTimeBefore() {
         return timeTo;
     }
 
@@ -238,5 +243,9 @@ public class BossSettings implements Parcelable {
 
     public Integer getMaxBosses() {
         return maxBosses;
+    }
+
+    public Boolean isSilentPeriod() {
+        return silentPeriod;
     }
 }

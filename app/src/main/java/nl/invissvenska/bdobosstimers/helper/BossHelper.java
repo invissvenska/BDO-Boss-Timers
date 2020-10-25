@@ -79,6 +79,15 @@ public class BossHelper {
             return false;
         }
 
+        //silent period
+        if (bossSettings.isSilentPeriod()) {
+            Integer now = TimeHelper.getInstance().getTimeOfTheDayWithoutTimeZoneConversion();
+            if (now >= bossSettings.getTimeAfter() || now < bossSettings.getTimeBefore()) {
+                Timber.d("Don't alert, we are in silent period");
+                return false;
+            }
+        }
+
         //check weekday
         int state = -1;
         switch (TimeHelper.getInstance().getDayOfTheWeek(null)) {
