@@ -18,6 +18,8 @@ import android.os.Vibrator;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
 import java.util.ArrayList;
 
 import nl.invissvenska.bdobosstimers.R;
@@ -37,6 +39,7 @@ public class BossAlertService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        AndroidThreeTen.init(this);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         mediaPlayer = MediaPlayer.create(this, R.raw.inflicted);
         mediaPlayer.setLooping(false);
