@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager;
 
 import nl.invissvenska.bdobosstimers.Server;
 import nl.invissvenska.bdobosstimers.helper.BossSettings;
+import nl.invissvenska.bdobosstimers.helper.TimeHelper;
 
 public final class PreferenceUtil {
 
@@ -130,14 +131,6 @@ public final class PreferenceUtil {
         }
     }
 
-    private Integer getTimeFrom() {
-        return 0;
-    }
-
-    private Integer getTimeTo() {
-        return 0;
-    }
-
     private Integer getAlertBefore() {
         return preferences.getInt("alert_before", 1);
     }
@@ -152,6 +145,26 @@ public final class PreferenceUtil {
 
     private Boolean isVibrationEnabled() {
         return preferences.getBoolean("vibration", false);
+    }
+
+    private Boolean isSilentAlertEnabled() {
+        return preferences.getBoolean("silent_period", false);
+    }
+
+    private Integer getTimeAfter() {
+        String value = preferences.getString("time_after", "00:00");
+        if (value == null) {
+            return TimeHelper.getInstance().sixtyToHundredFormat(0, 0);
+        }
+        return TimeHelper.getInstance().sixtyToHundredFormat(Integer.parseInt(value.split(":")[0]), Integer.parseInt(value.split(":")[1]));
+    }
+
+    private Integer getTimeBefore() {
+        String value = preferences.getString("time_before", "00:00");
+        if (value == null) {
+            return TimeHelper.getInstance().sixtyToHundredFormat(0, 0);
+        }
+        return TimeHelper.getInstance().sixtyToHundredFormat(Integer.parseInt(value.split(":")[0]), Integer.parseInt(value.split(":")[1]));
     }
 
     public BossSettings getSettings() {
@@ -171,13 +184,14 @@ public final class PreferenceUtil {
                 isFridayEnabled(),
                 isSaturdayEnabled(),
                 isSundayEnabled(),
-                getTimeFrom(),
-                getTimeTo(),
+                getTimeAfter(),
+                getTimeBefore(),
                 getAlertBefore(),
                 getNumberOfAlerts(),
                 getAlertDelay(),
                 isVibrationEnabled(),
                 getSelectedServer(),
-                getMaximumBosses());
+                getMaximumBosses(),
+                isSilentAlertEnabled());
     }
 }
