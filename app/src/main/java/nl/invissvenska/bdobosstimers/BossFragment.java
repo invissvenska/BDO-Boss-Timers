@@ -25,6 +25,7 @@ import java.util.List;
 
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.list.BossAdapter;
+import nl.invissvenska.bdobosstimers.list.SpaceItemDecoration;
 import nl.invissvenska.bdobosstimers.service.BossAlertService;
 import nl.invissvenska.bdobosstimers.util.Boss;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
@@ -49,6 +50,7 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
         View view = inflater.inflate(R.layout.content_main, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new BossAdapter();
         recyclerView.setAdapter(adapter);

@@ -4,79 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/medium_margin"
-    android:layout_marginTop="@dimen/small_margin"
-    android:layout_marginEnd="@dimen/medium_margin"
-    android:layout_marginBottom="@dimen/small_margin"
     android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="4dp"
-    app:cardElevation="1dp">
+    app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:id="@+id/details_pane"
+        android:layout_width="125dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
 
-        <ImageView
-            android:id="@+id/main_image_boss_one"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:contentDescription="@string/image"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.047"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/vell_big" />
-
-        <ImageView
-            android:id="@+id/main_image_boss_two"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:contentDescription="@string/image"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.27"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/vell_big" />
-
-        <TextView
-            android:id="@+id/boss_name"
-            android:layout_width="0dp"
-            android:textColor="@color/colorPrimaryDark"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/image_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:gravity="end"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Kzarka &amp; Karanda" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/main_image_boss_single"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/vell_big" />
+
+            <ImageView
+                android:id="@+id/main_image_boss_two"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/vell_big" />
+
+            <ImageView
+                android:id="@+id/main_image_boss_one"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="40dp"
+                android:contentDescription="@string/image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/vell_big" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/spawn_time"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/rounded_corners"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:drawablePadding="4dp"
-            android:gravity="end"
-            android:padding="4dp"
-            android:paddingStart="4dp"
-            android:paddingEnd="10dp"
+            android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/colorWhite"
             app:drawableStartCompat="@drawable/ic_clock"
             app:drawableTint="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_container"
+            tools:text="16:00" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="125dp">
+
+        <TextView
+            android:id="@+id/boss_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="16:00" />
+            tools:text="Kzarka &amp; Karanda" />
 
         <TextView
             android:id="@+id/time_left"
@@ -86,10 +107,12 @@
             android:layout_marginBottom="16dp"
             android:gravity="end"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:text="2:19:05" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </com.google.android.material.card.MaterialCardView>

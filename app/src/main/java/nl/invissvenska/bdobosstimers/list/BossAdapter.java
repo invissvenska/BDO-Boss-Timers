@@ -37,7 +37,7 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
     @NonNull
     @Override
     public BossViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new BossViewHolder(view);
     }
 
@@ -78,18 +78,20 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
             holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawning));
         }
         if (position == 0) {
-            holder.boss1.setImageAlpha(70);
-            holder.boss2.setImageAlpha(70);
             holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawned));
+            holder.bossSingle.setAlpha(0.6f);
+            holder.boss1.setAlpha(0.6f);
+            holder.boss2.setAlpha(0.6f);
             holder.name.setAlpha(0.4f);
-            holder.spawnTime.setAlpha(0.4f);
             holder.timeLeft.setAlpha(0.4f);
+            holder.detailsPane.setBackgroundColor(holder.boss1.getResources().getColor(R.color.colorBossSpawned));
         } else {
-            holder.boss1.setImageAlpha(255);
-            holder.boss2.setImageAlpha(255);
+            holder.bossSingle.setAlpha(1f);
+            holder.boss1.setAlpha(1f);
+            holder.boss2.setAlpha(1f);
             holder.name.setAlpha(1f);
-            holder.spawnTime.setAlpha(1f);
             holder.timeLeft.setAlpha(1f);
+            holder.detailsPane.setBackgroundColor(holder.boss1.getResources().getColor(R.color.colorPrimary));
         }
     }
 

@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import nl.invissvenska.bdobosstimers.R;
@@ -18,6 +19,7 @@ public class BossViewHolder extends RecyclerView.ViewHolder {
     ImageView boss1;
     ImageView boss2;
     CountDownTimer timer;
+    ConstraintLayout detailsPane;
 
     public BossViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -27,5 +29,6 @@ public class BossViewHolder extends RecyclerView.ViewHolder {
         bossSingle = itemView.findViewById(R.id.main_image_boss_single);
         boss1 = itemView.findViewById(R.id.main_image_boss_one);
         boss2 = itemView.findViewById(R.id.main_image_boss_two);
+        detailsPane = itemView.findViewById(R.id.details_pane);
     }
 }

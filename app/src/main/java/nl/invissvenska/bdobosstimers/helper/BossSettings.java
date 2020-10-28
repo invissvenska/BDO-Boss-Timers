@@ -7,17 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.invissvenska.bdobosstimers.Server;
-import nl.invissvenska.bdobosstimers.util.BossProperties;
 
-//import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
-//import static nl.invissvenska.bdobosstimers.Constants.KARANDA;
-//import static nl.invissvenska.bdobosstimers.Constants.KUTUM;
-//import static nl.invissvenska.bdobosstimers.Constants.KZARKA;
-//import static nl.invissvenska.bdobosstimers.Constants.MURAKA;
-//import static nl.invissvenska.bdobosstimers.Constants.NOUVER;
-//import static nl.invissvenska.bdobosstimers.Constants.OFFIN;
-//import static nl.invissvenska.bdobosstimers.Constants.QUINT;
-//import static nl.invissvenska.bdobosstimers.Constants.VELL;
+import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
+import static nl.invissvenska.bdobosstimers.Constants.KARANDA;
+import static nl.invissvenska.bdobosstimers.Constants.KUTUM;
+import static nl.invissvenska.bdobosstimers.Constants.KZARKA;
+import static nl.invissvenska.bdobosstimers.Constants.MURAKA;
+import static nl.invissvenska.bdobosstimers.Constants.NOUVER;
+import static nl.invissvenska.bdobosstimers.Constants.OFFIN;
+import static nl.invissvenska.bdobosstimers.Constants.QUINT;
+import static nl.invissvenska.bdobosstimers.Constants.VELL;
 
 public class BossSettings implements Parcelable {
 
@@ -154,34 +153,34 @@ public class BossSettings implements Parcelable {
         }
     };
 
-    public List<BossProperties> getEnabledBosses() {
-        ArrayList<BossProperties> bosses = new ArrayList<>();
+    public List<String> getEnabledBosses() {
+        ArrayList<String> bosses = new ArrayList<>();
         if (kzarka) {
-            bosses.add(BossProperties.KZARKA);
+            bosses.add(KZARKA);
         }
         if (karanda) {
-            bosses.add(BossProperties.KARANDA);
+            bosses.add(KARANDA);
         }
         if (nouver) {
-            bosses.add(BossProperties.NOUVER);
+            bosses.add(NOUVER);
         }
         if (kutum) {
-            bosses.add(BossProperties.KUTUM);
+            bosses.add(KUTUM);
         }
         if (garmoth) {
-            bosses.add(BossProperties.GARMOTH);
+            bosses.add(GARMOTH);
         }
         if (offin) {
-            bosses.add(BossProperties.OFFIN);
+            bosses.add(OFFIN);
         }
         if (vell) {
-            bosses.add(BossProperties.VELL);
+            bosses.add(VELL);
         }
         if (quint) {
-            bosses.add(BossProperties.QUINT);
+            bosses.add(QUINT);
         }
         if (muraka) {
-            bosses.add(BossProperties.MURAKA);
+            bosses.add(MURAKA);
         }
         return bosses;
     }
