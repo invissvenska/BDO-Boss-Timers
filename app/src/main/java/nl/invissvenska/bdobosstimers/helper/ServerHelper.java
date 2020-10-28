@@ -26,7 +26,7 @@ public class ServerHelper {
         return INSTANCE;
     }
 
-    private final Integer[] timeIntGridEU = {0, 300, 700, 1000, 1400, 1700, 2025, 2125, 2225};
+    private final Integer[] timeIntGridEU = {100, 400, 800, 1100, 1500, 1800, 2125, 2225, 2325};
     private final String[][] bossGridEU = {
             {KARANDA, KZARKA, KZARKA, OFFIN, KUTUM, NOUVER, KZARKA, EMPTY, KARANDA},
             {KUTUM, KZARKA, NOUVER, KUTUM, NOUVER, KARANDA, GARMOTH, EMPTY, KUTUM + "&" + KZARKA},
