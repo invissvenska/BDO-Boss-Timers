@@ -52,16 +52,12 @@ android {
     lintOptions {
         abortOnError false
     }
-    packagingOptions {
-        merge '**/LICENSE.txt'
-        merge '**/NOTICE.txt'
-    }
 }
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.3'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
     implementation 'com.jakewharton.timber:timber:4.7.1'

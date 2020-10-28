@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:padding="16dp"
+        android:padding="@dimen/medium_margin"
         tools:listitem="@layout/list_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
