@@ -118,7 +118,7 @@ public final class PreferenceUtil {
         switch (getSelectedServer()) {
             case EU:
             case NA:
-                return 8;
+                return 7;
             case SEA:
                 return 5;
             case XBOX_NA:

@@ -31,13 +31,13 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
 
     public void remove(int index) {
         bosses.remove(index);
-        notifyDataSetChanged();
+        notifyItemRemoved(0);
     }
 
     @NonNull
     @Override
     public BossViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item2, parent, false);
         return new BossViewHolder(view);
     }
 
@@ -46,11 +46,16 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         final Boss boss = bosses.get(position);
         holder.name.setText(boss.getName().replace("&", " & "));
         holder.spawnTime.setText(boss.getTimeSpawn());
-        holder.boss1.setImageResource(boss.getBossOneImageResource());
         if (boss.getBossTwoImageResource() != null) {
+            holder.boss1.setImageResource(boss.getBossOneImageResource());
             holder.boss2.setImageResource(boss.getBossTwoImageResource());
+            holder.bossSingle.setVisibility(View.GONE);
+            holder.boss1.setVisibility(View.VISIBLE);
             holder.boss2.setVisibility(View.VISIBLE);
         } else {
+            holder.bossSingle.setImageResource(boss.getBossOneImageResource());
+            holder.bossSingle.setVisibility(View.VISIBLE);
+            holder.boss1.setVisibility(View.GONE);
             holder.boss2.setVisibility(View.GONE);
         }
         if (holder.timer != null) {

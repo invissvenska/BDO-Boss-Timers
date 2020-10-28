@@ -14,6 +14,7 @@ public class BossViewHolder extends RecyclerView.ViewHolder {
     TextView name;
     TextView spawnTime;
     TextView timeLeft;
+    ImageView bossSingle;
     ImageView boss1;
     ImageView boss2;
     CountDownTimer timer;
@@ -23,6 +24,7 @@ public class BossViewHolder extends RecyclerView.ViewHolder {
         name = itemView.findViewById(R.id.boss_name);
         spawnTime = itemView.findViewById(R.id.spawn_time);
         timeLeft = itemView.findViewById(R.id.time_left);
+        bossSingle = itemView.findViewById(R.id.main_image_boss_single);
         boss1 = itemView.findViewById(R.id.main_image_boss_one);
         boss2 = itemView.findViewById(R.id.main_image_boss_two);
     }
