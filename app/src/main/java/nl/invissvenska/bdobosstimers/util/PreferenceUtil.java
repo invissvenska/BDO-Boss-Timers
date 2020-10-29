@@ -109,6 +109,8 @@ public final class PreferenceUtil {
                 return Server.PS4_EU;
             case 8:
                 return Server.PS4_ASIA;
+            case 9:
+                return Server.SA;
             default:
                 return Server.EU;
         }
@@ -120,6 +122,7 @@ public final class PreferenceUtil {
             case NA:
                 return 7;
             case SEA:
+            case SA:
                 return 5;
             case XBOX_NA:
             case XBOX_EU:
