@@ -113,7 +113,7 @@
             android:layout_marginBottom="@dimen/medium_margin"
             android:gravity="end"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="32sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

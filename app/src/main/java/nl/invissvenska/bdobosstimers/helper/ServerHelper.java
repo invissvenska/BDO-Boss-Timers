@@ -70,6 +70,17 @@ public class ServerHelper {
             {KARANDA + "&" + NOUVER, KARANDA + "&" + KUTUM, VELL, KARANDA + "&" + KZARKA, KUTUM + "&" + NOUVER, KUTUM}
     };
 
+    private final Integer[] timeIntGridMENA = {800, 1300, 1500, 1600, 1700, 2025, 2125, 2200};
+    private final String[][] bossGridMENA = {
+            {KZARKA + "&" + NOUVER, KUTUM + "&" + KZARKA, EMPTY, EMPTY, KARANDA + "&" + NOUVER, OFFIN, EMPTY, KUTUM},
+            {KZARKA + "&" + KUTUM, KARANDA + "&" + NOUVER, EMPTY, EMPTY, MURAKA + "&" + QUINT, GARMOTH, EMPTY, KARANDA + "&" + OFFIN},
+            {KUTUM + "&" + NOUVER, KZARKA + "&" + NOUVER, EMPTY, EMPTY, KARANDA + "&" + KZARKA, EMPTY, VELL, KZARKA},
+            {KZARKA + "&" + NOUVER, KARANDA + "&" + KUTUM, EMPTY, EMPTY, KUTUM + "&" + NOUVER, GARMOTH, EMPTY, NOUVER},
+            {KUTUM + "&" + KZARKA, NOUVER, EMPTY, EMPTY, KUTUM + "&" + KZARKA, OFFIN, EMPTY, KARANDA},
+            {KUTUM + "&" + NOUVER, KARANDA + "&" + KZARKA, EMPTY, MURAKA + "&" + QUINT, EMPTY, EMPTY, EMPTY, KARANDA},
+            {KARANDA + "&" + NOUVER, KARANDA + "&" + KUTUM, VELL, EMPTY, KUTUM + "&" + NOUVER, GARMOTH, EMPTY, KZARKA}
+    };
+
     private final Integer[] timeIntGridXboxNA = {0, 325, 400, 525, 600, 1400, 1800, 2000, 2100, 2200, 2300};
     private final String[][] bossGridXboxNA = {
             {KARANDA + "&" + KUTUM, KZARKA + "&" + NOUVER, EMPTY, EMPTY, EMPTY, KZARKA + "&" + NOUVER, EMPTY, EMPTY, EMPTY, EMPTY, OFFIN},
@@ -135,6 +146,8 @@ public class ServerHelper {
                 return timeIntGridSA;
             case SEA:
                 return timeIntGridSEA;
+            case MENA:
+                return timeIntGridMENA;
             case XBOX_NA:
                 return timeIntGridXboxNA;
             case XBOX_EU:
@@ -160,6 +173,8 @@ public class ServerHelper {
                 return bossGridSA;
             case SEA:
                 return bossGridSEA;
+            case MENA:
+                return bossGridMENA;
             case XBOX_NA:
                 return bossGridXboxNA;
             case XBOX_EU:
