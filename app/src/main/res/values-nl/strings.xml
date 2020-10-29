@@ -33,7 +33,7 @@
     <string name="pref_cat_server">Server</string>
     <string name="pref_cat_bosses">Bosses</string>
     <string name="pref_cat_week">Week</string>
-    <string name="pref_cat_alert">Alert</string>
+    <string name="pref_cat_alert">Meldingen</string>
 
     <string name="pref_label_server">Server &amp; platform</string>
     <string name="pref_desc_server">Selecteer jouw server en platform</string>
@@ -66,11 +66,11 @@
     <string name="pref_label_alert_vibration">Trillen</string>
     <string name="pref_desc_alert_vibration">Zet trillen aan bij een melding</string>
     <string name="pref_label_alert_before_spawn">Melding voordat de boss spawned</string>
-    <string name="pref_unit_alert_before_spawn"> minuten</string>
+    <string name="pref_unit_alert_before_spawn">&#160;minuten</string>
     <string name="pref_label_alert_number_of">Aantal meldingen</string>
-    <string name="pref_unit_alert_number_of"> keer</string>
+    <string name="pref_unit_alert_number_of">&#160;keer</string>
     <string name="pref_label_alert_interval">Tijd tussen de meldingen</string>
-    <string name="pref_unit_alert_interval"> seconden</string>
+    <string name="pref_unit_alert_interval">&#160;seconden</string>
     <string name="pref_label_alert_silent">Stil (experimenteel)</string>
     <string name="pref_desc_alert_silent">Zet een tijd van/tot waarin je geen meldingen wilt ontvangen</string>
     <string name="pref_label_alert_silent_after">Geen meldingen na</string>

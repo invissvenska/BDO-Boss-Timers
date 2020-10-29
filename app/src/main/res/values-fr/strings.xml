@@ -66,11 +66,11 @@
     <string name="pref_label_alert_vibration">Vibrer</string>
     <string name="pref_desc_alert_vibration">Activer la vibration en cas d\'alerte</string>
     <string name="pref_label_alert_before_spawn">Alerte avant l\'apparition du boss</string>
-    <string name="pref_unit_alert_before_spawn"> minutes</string>
+    <string name="pref_unit_alert_before_spawn">&#160;minutes</string>
     <string name="pref_label_alert_number_of">Nombre d\'alertes</string>
-    <string name="pref_unit_alert_number_of">" fois"</string>
+    <string name="pref_unit_alert_number_of">&#160;fois</string>
     <string name="pref_label_alert_interval">Temps entre les alertes</string>
-    <string name="pref_unit_alert_interval"> seconds</string>
+    <string name="pref_unit_alert_interval">&#160;seconds</string>
     <string name="pref_label_alert_silent">Silencieux (expérimental)</string>
     <string name="pref_desc_alert_silent">Activer pour définir une plage horaire où vous ne recevez aucune alerte</string>
     <string name="pref_label_alert_silent_after">Aucune alerte après</string>
