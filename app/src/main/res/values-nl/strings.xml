@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">BDO Boss Timers</string>
+    <string name="boss_image">Boss Afbeelding</string>
+    <string name="spawned">Gespawned</string>
+    <string name="spawning">Nu</string>
+    <string name="fab_content_desc">Instellingen</string>
+    <string-array name="preference_server_selection">
+        <item>EU</item>
+        <item>NA</item>
+        <item>SEA</item>
+        <item>XBOX NA</item>
+        <item>XBOX EU</item>
+        <item>PS4 NA</item>
+        <item>PS4 EU</item>
+        <item>PS4 ASIA</item>
+    </string-array>
+    <string-array name="preference_server_selection_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string name="notification_title">BDO World boss</string>
+    <string name="notification_content">%1$s spawns in %2$d minuten om %3$s</string>
+
+    <string name="pref_cat_server">Server</string>
+    <string name="pref_cat_bosses">Bosses</string>
+    <string name="pref_cat_week">Week</string>
+    <string name="pref_cat_alert">Alert</string>
+
+    <string name="pref_label_server">Server &amp; platform</string>
+    <string name="pref_desc_server">Selecteer jouw server en platform</string>
+
+    <string name="pref_desc_boss_garmoth">Geef meldingen voor Garmoth</string>
+    <string name="pref_desc_boss_karanda">Geef meldingen voor Karanda</string>
+    <string name="pref_desc_boss_kutum">Geef meldingen voor Kutum</string>
+    <string name="pref_desc_boss_kzarka">Geef meldingen voor Kzarka</string>
+    <string name="pref_desc_boss_muraka">Geef meldingen voor Muraka</string>
+    <string name="pref_desc_boss_nouver">Geef meldingen voor Nouver</string>
+    <string name="pref_desc_boss_offin">Geef meldingen voor Offin</string>
+    <string name="pref_desc_boss_quint">Geef meldingen voor Quint</string>
+    <string name="pref_desc_boss_vell">Geef meldingen voor Vell</string>
+
+    <string name="pref_label_week_monday">Maandag</string>
+    <string name="pref_desc_week_monday">Geef meldingen op maandag</string>
+    <string name="pref_label_week_tuesday">Dinsdag</string>
+    <string name="pref_desc_week_tuesday">Geef meldingen op dinsdag</string>
+    <string name="pref_label_week_wednesday">Woensdag</string>
+    <string name="pref_desc_week_wednesday">Geef meldingen op woensdag</string>
+    <string name="pref_label_week_thursday">Donderdag</string>
+    <string name="pref_desc_week_thursday">Geef meldingen op donderdag</string>
+    <string name="pref_label_week_friday">Vrijdag</string>
+    <string name="pref_desc_week_friday">Geef meldingen op vrijdag</string>
+    <string name="pref_label_week_saturday">Zaterdag</string>
+    <string name="pref_desc_week_saturday">Geef meldingen op zaterdag</string>
+    <string name="pref_label_week_sunday">Zondag</string>
+    <string name="pref_desc_week_sunday">Geef meldingen op zondag</string>
+
+    <string name="pref_label_alert_vibration">Trillen</string>
+    <string name="pref_desc_alert_vibration">Zet trillen aan bij een melding</string>
+    <string name="pref_label_alert_before_spawn">Melding voordat de boss spawned</string>
+    <string name="pref_unit_alert_before_spawn"> minuten</string>
+    <string name="pref_label_alert_number_of">Aantal meldingen</string>
+    <string name="pref_unit_alert_number_of"> keer</string>
+    <string name="pref_label_alert_interval">Tijd tussen de meldingen</string>
+    <string name="pref_unit_alert_interval"> seconden</string>
+    <string name="pref_label_alert_silent">Stil (experimenteel)</string>
+    <string name="pref_desc_alert_silent">Zet een tijd van/tot waarin je geen meldingen wilt ontvangen</string>
+    <string name="pref_label_alert_silent_after">Geen meldingen na</string>
+    <string name="pref_label_alert_silent_before">Geen meldingen voor</string>
+</resources>

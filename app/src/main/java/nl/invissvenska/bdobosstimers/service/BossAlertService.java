@@ -131,8 +131,8 @@ public class BossAlertService extends Service {
                     .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
                     .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), boss.getBossOneImageResource()))
                     .setContentIntent(pendingIntent)
-                    .setContentTitle("BDO World boss")
-                    .setContentText(boss.getName() + " will spawn in " + boss.getMinutesToSpawn() + " minutes at " + boss.getTimeSpawn());
+                    .setContentTitle(context.getResources().getString(R.string.notification_title))
+                    .setContentText(context.getResources().getString(R.string.notification_content, boss.getName(), boss.getMinutesToSpawn(), boss.getTimeSpawn()));
 
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
         }
