@@ -79,19 +79,13 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         }
         if (position == 0) {
             holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawned));
-            holder.bossSingle.setAlpha(0.6f);
-            holder.boss1.setAlpha(0.6f);
-            holder.boss2.setAlpha(0.6f);
             holder.name.setAlpha(0.4f);
             holder.timeLeft.setAlpha(0.4f);
-            holder.detailsPane.setBackgroundColor(holder.boss1.getResources().getColor(R.color.colorBossSpawned));
+            holder.detailsPane.setAlpha(0.5f);
         } else {
-            holder.bossSingle.setAlpha(1f);
-            holder.boss1.setAlpha(1f);
-            holder.boss2.setAlpha(1f);
             holder.name.setAlpha(1f);
             holder.timeLeft.setAlpha(1f);
-            holder.detailsPane.setBackgroundColor(holder.boss1.getResources().getColor(R.color.colorPrimary));
+            holder.detailsPane.setAlpha(1f);
         }
     }
 

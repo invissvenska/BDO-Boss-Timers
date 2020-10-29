@@ -5,5 +5,5 @@
     <color name="colorAccent">#E91E63</color>
     <color name="colorBackground">#CFCFCF</color>
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorBossSpawned">#9245FF</color>
+    <color name="colorBossBorder">#0B0023</color>
 </resources>

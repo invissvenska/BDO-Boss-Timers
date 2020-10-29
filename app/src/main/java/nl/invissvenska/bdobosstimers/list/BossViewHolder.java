@@ -2,22 +2,22 @@ package nl.invissvenska.bdobosstimers.list;
 
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import nl.invissvenska.bdobosstimers.R;
 
 public class BossViewHolder extends RecyclerView.ViewHolder {
     TextView name;
     TextView spawnTime;
     TextView timeLeft;
-    ImageView bossSingle;
-    ImageView boss1;
-    ImageView boss2;
+    CircleImageView bossSingle;
+    CircleImageView boss1;
+    CircleImageView boss2;
     CountDownTimer timer;
     ConstraintLayout detailsPane;
 

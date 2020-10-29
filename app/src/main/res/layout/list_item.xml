@@ -22,36 +22,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/main_image_boss_single"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:contentDescription="@string/image"
+                app:civ_border_color="@color/colorBossBorder"
+                app:civ_border_width="@dimen/boss_border"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/vell_big" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/main_image_boss_two"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:contentDescription="@string/image"
+                app:civ_border_color="@color/colorBossBorder"
+                app:civ_border_width="@dimen/boss_border"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/vell_big" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/main_image_boss_one"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:layout_marginEnd="40dp"
                 android:contentDescription="@string/image"
+                app:civ_border_color="@color/colorBossBorder"
+                app:civ_border_width="@dimen/boss_border"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -63,7 +69,7 @@
             android:id="@+id/spawn_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="95dp"
             android:layout_marginBottom="@dimen/medium_margin"
             android:drawablePadding="4dp"
             android:gravity="center"
@@ -74,7 +80,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_container"
+            app:layout_constraintTop_toTopOf="@+id/image_container"
             tools:text="16:00" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
