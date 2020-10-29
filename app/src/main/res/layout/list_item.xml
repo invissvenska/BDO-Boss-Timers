@@ -33,7 +33,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/vell_big" />
+                app:srcCompat="@drawable/vell" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/main_image_boss_two"
@@ -47,7 +47,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/vell_big" />
+                app:srcCompat="@drawable/vell" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/main_image_boss_one"
@@ -61,7 +61,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/vell_big" />
+                app:srcCompat="@drawable/vell" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

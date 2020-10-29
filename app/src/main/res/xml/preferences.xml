@@ -24,63 +24,63 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/garmoth_big"
+            android:icon="@drawable/garmoth"
             android:key="garmoth_alert"
             android:summary="@string/pref_desc_boss_garmoth"
             android:title="Garmoth" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/karanda_big"
+            android:icon="@drawable/karanda"
             android:key="karanda_alert"
             android:summary="@string/pref_desc_boss_karanda"
             android:title="Karanda" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/kutum_big"
+            android:icon="@drawable/kutum"
             android:key="kutum_alert"
             android:summary="@string/pref_desc_boss_kutum"
             android:title="Kutum" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/kzarka_big"
+            android:icon="@drawable/kzarka"
             android:key="kzarka_alert"
             android:summary="@string/pref_desc_boss_kzarka"
             android:title="Kzarka" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/muraka_big"
+            android:icon="@drawable/muraka"
             android:key="muraka_alert"
             android:summary="@string/pref_desc_boss_muraka"
             android:title="Muraka" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/nouver_big"
+            android:icon="@drawable/nouver"
             android:key="nouver_alert"
             android:summary="@string/pref_desc_boss_nouver"
             android:title="Nouver" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/offin_big"
+            android:icon="@drawable/offin"
             android:key="offin_alert"
             android:summary="@string/pref_desc_boss_offin"
             android:title="Offin" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/quint_big"
+            android:icon="@drawable/quint"
             android:key="quint_alert"
             android:summary="@string/pref_desc_boss_quint"
             android:title="Quint" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/vell_big"
+            android:icon="@drawable/vell"
             android:key="vell_alert"
             android:summary="@string/pref_desc_boss_vell"
             android:title="Vell" />
