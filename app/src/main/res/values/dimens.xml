@@ -1,7 +1,5 @@
 <resources>
-    <dimen name="small_margin">8dp</dimen>
     <dimen name="medium_margin">16dp</dimen>
     <dimen name="fab_margin">24dp</dimen>
-    <dimen name="boss_size">60dp</dimen>
     <dimen name="boss_border">2dp</dimen>
 </resources>
