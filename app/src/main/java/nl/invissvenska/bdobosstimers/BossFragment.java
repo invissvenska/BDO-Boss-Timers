@@ -1,6 +1,5 @@
 package nl.invissvenska.bdobosstimers;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,8 +7,6 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +20,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
 import nl.invissvenska.bdobosstimers.list.BossAdapter;
 import nl.invissvenska.bdobosstimers.list.SpaceItemDecoration;
@@ -52,8 +51,9 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new SpaceItemDecoration(getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setItemAnimator(new SlideInLeftAnimator());
         adapter = new BossAdapter();
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(new ScaleInAnimationAdapter(adapter));
         checkAndRunAlertService();
 
         FloatingActionButton fb = view.findViewById(R.id.fab);

@@ -20,8 +20,8 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
     private List<Boss> bosses = new ArrayList<>();
 
     public void add(Boss boss) {
-        bosses.add(boss);
-        notifyDataSetChanged();
+        bosses.add(bosses.size(), boss);
+        notifyItemInserted(bosses.size());
     }
 
     public void clear() {
@@ -29,9 +29,9 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void remove(int index) {
-        bosses.remove(index);
-        notifyItemRemoved(0);
+    public void remove(int position) {
+        bosses.remove(position);
+        notifyItemRemoved(position);
     }
 
     @NonNull
