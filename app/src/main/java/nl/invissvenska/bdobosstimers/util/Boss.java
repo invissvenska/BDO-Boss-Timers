@@ -29,15 +29,15 @@ public class Boss {
         this.timeSpawn = TimeHelper.getInstance().hundredToSixtyFormat(timeIntSpawn);
         this.timeIntSpawn = timeIntSpawn;
         Map<String, Integer> imageMap = new HashMap<String, Integer>() {{
-            put(GARMOTH, R.drawable.garmoth_big);
-            put(KARANDA, R.drawable.karanda_big);
-            put(KZARKA, R.drawable.kzarka_big);
-            put(KUTUM, R.drawable.kutum_big);
-            put(OFFIN, R.drawable.offin_big);
-            put(NOUVER, R.drawable.nouver_big);
-            put(QUINT, R.drawable.quint_big);
-            put(MURAKA, R.drawable.muraka_big);
-            put(VELL, R.drawable.vell_big);
+            put(GARMOTH, R.drawable.garmoth);
+            put(KARANDA, R.drawable.karanda);
+            put(KZARKA, R.drawable.kzarka);
+            put(KUTUM, R.drawable.kutum);
+            put(OFFIN, R.drawable.offin);
+            put(NOUVER, R.drawable.nouver);
+            put(QUINT, R.drawable.quint);
+            put(MURAKA, R.drawable.muraka);
+            put(VELL, R.drawable.vell);
         }};
         if (name.contains("&")) {
             String[] names = name.split(("&"));

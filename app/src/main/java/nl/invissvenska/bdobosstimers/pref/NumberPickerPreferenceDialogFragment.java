@@ -49,6 +49,7 @@ public class NumberPickerPreferenceDialogFragment extends CustomPreferenceDialog
         np.setMinValue(minValue);
         np.setMaxValue(maxValue);
         np.setValue(text);
+        np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
     }
 
     @Override

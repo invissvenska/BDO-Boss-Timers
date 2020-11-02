@@ -48,6 +48,17 @@ public class ServerHelper {
             {KARANDA + "&" + KZARKA, EMPTY, EMPTY, KUTUM + "&" + NOUVER, KZARKA, KUTUM, NOUVER, KZARKA, VELL}
     };
 
+    private final Integer[] timeIntGridSA = {250, 325, 500, 1400, 1900, 2100, 2300};
+    private final String[][] bossGridSA = {
+            {OFFIN, EMPTY, KARANDA + "&" + KZARKA, NOUVER, KUTUM + "&" + KZARKA, EMPTY, KUTUM + "&" + NOUVER},
+            {GARMOTH, EMPTY, KUTUM, KZARKA, KUTUM + "&" + NOUVER, EMPTY, KARANDA + "&" + KZARKA},
+            {OFFIN, EMPTY, KZARKA, KARANDA + "&" + KUTUM, KZARKA + "&" + NOUVER, EMPTY, MURAKA + "&" + QUINT},
+            {GARMOTH, EMPTY, KARANDA + "&" + KUTUM, KARANDA + "&" + NOUVER, KUTUM + "&" + KZARKA, EMPTY, KUTUM + "&" + NOUVER},
+            {EMPTY, VELL, KARANDA + "&" + OFFIN, NOUVER, KUTUM + "&" + KZARKA, EMPTY, KZARKA + "&" + NOUVER},
+            {GARMOTH, EMPTY, KZARKA, KARANDA + "&" + KZARKA, KUTUM + "&" + NOUVER, EMPTY, MURAKA + "&" + QUINT},
+            {EMPTY, EMPTY, NOUVER, KUTUM + "&" + NOUVER, KARANDA + "&" + KZARKA, VELL, KARANDA + "&" + NOUVER}
+    };
+
     private final Integer[] timeIntGridSEA = {300, 700, 800, 1200, 1600, 1750};
     private final String[][] bossGridSEA = {
             {KZARKA + "&" + NOUVER, KUTUM + "&" + NOUVER, EMPTY, KARANDA + "&" + KZARKA, OFFIN, NOUVER},
@@ -57,6 +68,17 @@ public class ServerHelper {
             {KUTUM + "&" + KZARKA, KARANDA + "&" + KZARKA, EMPTY, KUTUM + "&" + NOUVER, OFFIN, KARANDA},
             {KUTUM + "&" + KZARKA, KARANDA + "&" + NOUVER, GARMOTH, MURAKA + "&" + QUINT, EMPTY, KZARKA},
             {KARANDA + "&" + NOUVER, KARANDA + "&" + KUTUM, VELL, KARANDA + "&" + KZARKA, KUTUM + "&" + NOUVER, KUTUM}
+    };
+
+    private final Integer[] timeIntGridMENA = {800, 1300, 1500, 1600, 1700, 2025, 2125, 2200};
+    private final String[][] bossGridMENA = {
+            {KZARKA + "&" + NOUVER, KUTUM + "&" + KZARKA, EMPTY, EMPTY, KARANDA + "&" + NOUVER, OFFIN, EMPTY, KUTUM},
+            {KZARKA + "&" + KUTUM, KARANDA + "&" + NOUVER, EMPTY, EMPTY, MURAKA + "&" + QUINT, GARMOTH, EMPTY, KARANDA + "&" + OFFIN},
+            {KUTUM + "&" + NOUVER, KZARKA + "&" + NOUVER, EMPTY, EMPTY, KARANDA + "&" + KZARKA, EMPTY, VELL, KZARKA},
+            {KZARKA + "&" + NOUVER, KARANDA + "&" + KUTUM, EMPTY, EMPTY, KUTUM + "&" + NOUVER, GARMOTH, EMPTY, NOUVER},
+            {KUTUM + "&" + KZARKA, NOUVER, EMPTY, EMPTY, KUTUM + "&" + KZARKA, OFFIN, EMPTY, KARANDA},
+            {KUTUM + "&" + NOUVER, KARANDA + "&" + KZARKA, EMPTY, MURAKA + "&" + QUINT, EMPTY, EMPTY, EMPTY, KARANDA},
+            {KARANDA + "&" + NOUVER, KARANDA + "&" + KUTUM, VELL, EMPTY, KUTUM + "&" + NOUVER, GARMOTH, EMPTY, KZARKA}
     };
 
     private final Integer[] timeIntGridXboxNA = {0, 325, 400, 525, 600, 1400, 1800, 2000, 2100, 2200, 2300};
@@ -120,8 +142,12 @@ public class ServerHelper {
                 return timeIntGridEU;
             case NA:
                 return timeIntGridNA;
+            case SA:
+                return timeIntGridSA;
             case SEA:
                 return timeIntGridSEA;
+            case MENA:
+                return timeIntGridMENA;
             case XBOX_NA:
                 return timeIntGridXboxNA;
             case XBOX_EU:
@@ -143,8 +169,12 @@ public class ServerHelper {
                 return bossGridEU;
             case NA:
                 return bossGridNA;
+            case SA:
+                return bossGridSA;
             case SEA:
                 return bossGridSEA;
+            case MENA:
+                return bossGridMENA;
             case XBOX_NA:
                 return bossGridXboxNA;
             case XBOX_EU:
