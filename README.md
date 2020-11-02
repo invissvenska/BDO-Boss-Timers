@@ -8,26 +8,26 @@ You will never miss the boss fight again.
 ## Features
 View the upcoming next bosses for the next 24 hours in the overview.  
 BDO world bosses:  
-* Garmoth
-* Karanda
-* Kutum
-* Kzarka
-* Muraka
-* Nouver
-* Offin
-* Quint
-* Vell
+* Garmoth  
+* Karanda  
+* Kutum  
+* Kzarka  
+* Muraka  
+* Nouver  
+* Offin  
+* Quint  
+* Vell  
 Alerts can be set for a single region server of BDO.  
 Supported BDO servers in the app:  
-* EU
-* NA
-* SEA
-* XBOX EU
-* XBOX NA
-* PS4 EU
-* PS4 NA
-* PS4 ASIA.
-Configuration of alerts per day and per boss (can set multiple days and/or bosses at once).  
+* EU  
+* NA  
+* SEA  
+* XBOX EU  
+* XBOX NA  
+* PS4 EU  
+* PS4 NA  
+* PS4 ASIA  
+Configuration of alerts per day and per boss (can set multiple days and/or bosses at once).    
 Configure a silent period (boss spawn won't be alerted in this period, eg during the night).  
 
 ## Translation/Contribute
