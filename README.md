@@ -17,6 +17,7 @@ BDO world bosses:
 * Offin  
 * Quint  
 * Vell  
+
 Alerts can be set for a single region server of BDO.  
 Supported BDO servers in the app:  
 * EU  
