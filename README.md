@@ -22,7 +22,9 @@ Alerts can be set for a single region server of BDO.
 Supported BDO servers in the app:  
 * EU  
 * NA  
-* SEA  
+* SA  
+* SEA 
+* MENA 
 * XBOX EU  
 * XBOX NA  
 * PS4 EU  
