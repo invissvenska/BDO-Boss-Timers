@@ -14,7 +14,6 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.Vibrator;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -34,7 +33,6 @@ import timber.log.Timber;
 public class BossAlertService extends Service {
 
     private Binder binder = new Binder();
-    private Vibrator vibrator = null;
     private MediaPlayer mediaPlayer = null;
     private BossAlertRefresher bossAlertRefresher = null;
 
@@ -42,7 +40,6 @@ public class BossAlertService extends Service {
     public void onCreate() {
         super.onCreate();
         AndroidThreeTen.init(this);
-        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         mediaPlayer = MediaPlayer.create(this, R.raw.inflicted);
         mediaPlayer.setLooping(false);
     }
@@ -66,7 +63,7 @@ public class BossAlertService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        bossAlertRefresher = new BossAlertRefresher(mediaPlayer, vibrator, this);
+        bossAlertRefresher = new BossAlertRefresher(mediaPlayer, this);
         bossAlertRefresher.soundsPlayed = 0;
         bossAlertRefresher.execute();
         return START_STICKY;
@@ -74,14 +71,12 @@ public class BossAlertService extends Service {
 
     static class BossAlertRefresher extends AsyncTask<Void, Void, Void> {
         private MediaPlayer mediaPlayer;
-        private Vibrator vibrator;
         @SuppressLint("StaticFieldLeak")
         private Context context;
         private Integer soundsPlayed = 0;
 
-        public BossAlertRefresher(MediaPlayer mediaPlayer, Vibrator vibrator, Context context) {
+        public BossAlertRefresher(MediaPlayer mediaPlayer, Context context) {
             this.mediaPlayer = mediaPlayer;
-            this.vibrator = vibrator;
             this.context = context;
         }
 
@@ -110,8 +105,8 @@ public class BossAlertService extends Service {
 
         private void showNotification(BossSettings bossSettings, Boss boss) {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            String NOTIFICATION_CHANNEL_ID = "bdo_boss_spawn_channel_0";
-            Integer NOTIFICATION_ID = 1;
+            final String NOTIFICATION_CHANNEL_ID = "bdo_boss_spawn_channel_0";
+            final int NOTIFICATION_ID = 1;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "BDO Boss Spawn Notifications", NotificationManager.IMPORTANCE_DEFAULT);
@@ -136,8 +131,8 @@ public class BossAlertService extends Service {
                     .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
                     .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), boss.getBossOneImageResource()))
                     .setContentIntent(pendingIntent)
-                    .setContentTitle("BDO World boss")
-                    .setContentText(boss.getName() + " will spawn in " + boss.getMinutesToSpawn() + " minutes at " + boss.getTimeSpawn());
+                    .setContentTitle(context.getResources().getString(R.string.notification_title))
+                    .setContentText(context.getResources().getString(R.string.notification_content, boss.getName(), boss.getMinutesToSpawn(), boss.getTimeSpawn()));
 
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
         }

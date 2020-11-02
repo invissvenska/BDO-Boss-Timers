@@ -82,7 +82,6 @@ public class TimeHelper {
     private ZonedDateTime convertLocalZoneToUTC() {
         ZoneId utcZoneId = ZoneId.of("UTC");
         ZoneId localZoneId = ZoneId.systemDefault();
-
         LocalDateTime ldt = LocalDateTime.now();
         ZonedDateTime configTime = ldt.atZone(localZoneId);
         return configTime.withZoneSameInstant(utcZoneId);

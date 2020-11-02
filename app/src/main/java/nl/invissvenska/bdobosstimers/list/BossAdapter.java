@@ -20,8 +20,8 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
     private List<Boss> bosses = new ArrayList<>();
 
     public void add(Boss boss) {
-        bosses.add(boss);
-        notifyDataSetChanged();
+        bosses.add(bosses.size(), boss);
+        notifyItemInserted(bosses.size());
     }
 
     public void clear() {
@@ -29,9 +29,9 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void remove(int index) {
-        bosses.remove(index);
-        notifyDataSetChanged();
+    public void remove(int position) {
+        bosses.remove(position);
+        notifyItemRemoved(position);
     }
 
     @NonNull
@@ -46,11 +46,16 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         final Boss boss = bosses.get(position);
         holder.name.setText(boss.getName().replace("&", " & "));
         holder.spawnTime.setText(boss.getTimeSpawn());
-        holder.boss1.setImageResource(boss.getBossOneImageResource());
         if (boss.getBossTwoImageResource() != null) {
+            holder.boss1.setImageResource(boss.getBossOneImageResource());
             holder.boss2.setImageResource(boss.getBossTwoImageResource());
+            holder.bossSingle.setVisibility(View.GONE);
+            holder.boss1.setVisibility(View.VISIBLE);
             holder.boss2.setVisibility(View.VISIBLE);
         } else {
+            holder.bossSingle.setImageResource(boss.getBossOneImageResource());
+            holder.bossSingle.setVisibility(View.VISIBLE);
+            holder.boss1.setVisibility(View.GONE);
             holder.boss2.setVisibility(View.GONE);
         }
         if (holder.timer != null) {
@@ -73,18 +78,14 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
             holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawning));
         }
         if (position == 0) {
-            holder.boss1.setImageAlpha(70);
-            holder.boss2.setImageAlpha(70);
             holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawned));
             holder.name.setAlpha(0.4f);
-            holder.spawnTime.setAlpha(0.4f);
             holder.timeLeft.setAlpha(0.4f);
+            holder.detailsPane.setAlpha(0.5f);
         } else {
-            holder.boss1.setImageAlpha(255);
-            holder.boss2.setImageAlpha(255);
             holder.name.setAlpha(1f);
-            holder.spawnTime.setAlpha(1f);
             holder.timeLeft.setAlpha(1f);
+            holder.detailsPane.setAlpha(1f);
         }
     }
 

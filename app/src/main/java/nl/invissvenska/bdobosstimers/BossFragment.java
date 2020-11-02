@@ -20,9 +20,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import nl.invissvenska.bdobosstimers.helper.BossHelper;
-import nl.invissvenska.bdobosstimers.helper.BossSettings;
 import nl.invissvenska.bdobosstimers.list.BossAdapter;
+import nl.invissvenska.bdobosstimers.list.SpaceItemDecoration;
 import nl.invissvenska.bdobosstimers.service.BossAlertService;
 import nl.invissvenska.bdobosstimers.util.Boss;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
@@ -46,9 +48,12 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_main, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setItemAnimator(new SlideInLeftAnimator());
         adapter = new BossAdapter();
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(new ScaleInAnimationAdapter(adapter));
         checkAndRunAlertService();
 
         FloatingActionButton fb = view.findViewById(R.id.fab);
@@ -100,9 +105,12 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     }
 
     private void updateBoss() {
-        BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
-
-        List<Boss> bosses = BossHelper.getInstance().getNextBosses(bossSettings.getSelectedServer(), 0, new ArrayList<>(), bossSettings.getMaxBosses());
+        List<Boss> bosses = BossHelper.getInstance().getNextBosses(
+                PreferenceUtil.getInstance(getContext()).getSettings().getSelectedServer(),
+                0,
+                new ArrayList<>(),
+                PreferenceUtil.getInstance(getContext()).getSettings().getMaxBosses()
+        );
         if (adapter.getItemCount() == 0) {
             initializeOverview(bosses);
         } else {
@@ -123,16 +131,14 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     }
 
     private void initializeOverview(List<Boss> bosses) {
-        BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
-        adapter.add(BossHelper.getInstance().getPreviousBoss(bossSettings.getSelectedServer(), 0));
+        adapter.add(BossHelper.getInstance().getPreviousBoss(PreferenceUtil.getInstance(getContext()).getSettings().getSelectedServer(), 0));
         for (Boss boss : bosses) {
             adapter.add(boss);
         }
     }
 
     private void renewOverview(List<Boss> bosses) {
-        BossSettings bossSettings = PreferenceUtil.getInstance(getContext()).getSettings();
         adapter.remove(0);
-        adapter.add(bosses.get(bossSettings.getMaxBosses() - 1));
+        adapter.add(bosses.get(PreferenceUtil.getInstance(getContext()).getSettings().getMaxBosses() - 1));
     }
 }
