@@ -28,6 +28,7 @@ Supported BDO servers in the app:
 * PS4 EU  
 * PS4 NA  
 * PS4 ASIA  
+
 Configuration of alerts per day and per boss (can set multiple days and/or bosses at once).    
 Configure a silent period (boss spawn won't be alerted in this period, eg during the night).  
 
