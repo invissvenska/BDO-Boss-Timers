@@ -1,3 +1,5 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/invissvenska/BDO-Boss-Timers)
+
 # BDO Boss Timers #
 
 This is a non official Android application, made by me and not by Kakao Games, Pearl Abyss or any other developers related to game Black Desert Online.  
