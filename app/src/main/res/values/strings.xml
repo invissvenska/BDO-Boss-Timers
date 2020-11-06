@@ -29,16 +29,80 @@
         <item>8</item>
     </string-array>
 
+    <string-array name="preference_timezone_selection">
+        <item>GMT -12</item>
+        <item>GMT -11</item>
+        <item>GMT -10</item>
+        <item>GMT -9</item>
+        <item>GMT -8</item>
+        <item>GMT -7</item>
+        <item>GMT -6</item>
+        <item>GMT -5</item>
+        <item>GMT -4</item>
+        <item>GMT -3</item>
+        <item>GMT -2</item>
+        <item>GMT -1</item>
+        <item>GMT +0</item>
+        <item>GMT +1</item>
+        <item>GMT +2</item>
+        <item>GMT +3</item>
+        <item>GMT +4</item>
+        <item>GMT +5</item>
+        <item>GMT +6</item>
+        <item>GMT +7</item>
+        <item>GMT +8</item>
+        <item>GMT +9</item>
+        <item>GMT +10</item>
+        <item>GMT +11</item>
+        <item>GMT +12</item>
+        <item>GMT +13</item>
+        <item>GMT +14</item>
+    </string-array>
+    <string-array name="preference_timezone_selection_values">
+        <item>-12</item>
+        <item>-11</item>
+        <item>-10</item>
+        <item>-9</item>
+        <item>-8</item>
+        <item>-7</item>
+        <item>-6</item>
+        <item>-5</item>
+        <item>-4</item>
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    </string-array>
+
     <string name="notification_title">BDO World boss</string>
     <string name="notification_content">%1$s spawns in %2$d minutes at %3$s</string>
 
     <string name="pref_cat_server">Server</string>
+    <string name="pref_cat_timezone">Timezone</string>
     <string name="pref_cat_bosses">Bosses</string>
     <string name="pref_cat_week">Week</string>
     <string name="pref_cat_alert">Alert</string>
 
     <string name="pref_label_server">Server &amp; platform</string>
     <string name="pref_desc_server">Select your server and platform</string>
+
+    <string name="pref_desc_timezone">When bosses does not spawn at correct times, you can override your timezone to fix it</string>
+    <string name="pref_label_timezone_override">Set manual timezone</string>
+    <string name="pref_desc_timezone_override">Enable manual timezone to manually set your timezone, otherwise the timezone will be determined by your device</string>
 
     <string name="pref_desc_boss_garmoth">Enable boss alerts for Garmoth</string>
     <string name="pref_desc_boss_karanda">Enable boss alerts for Karanda</string>
@@ -77,4 +141,8 @@
     <string name="pref_desc_alert_silent">Enable to set a time range where in you don\'t receive any alerts</string>
     <string name="pref_label_alert_silent_after">No alerts after</string>
     <string name="pref_label_alert_silent_before">No alerts before</string>
+
+    <string name="notification_service_title">BDO Spawn Service</string>
+    <string name="notification_service_desc">You will receive alerts while the service is running</string>
+    <string name="notification_service_action">Stop service</string>
 </resources>

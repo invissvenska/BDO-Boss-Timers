@@ -1,6 +1,4 @@
-package nl.invissvenska.bdobosstimers.helper;
-
-import nl.invissvenska.bdobosstimers.Server;
+package nl.invissvenska.bdobosstimers.util;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
 import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;

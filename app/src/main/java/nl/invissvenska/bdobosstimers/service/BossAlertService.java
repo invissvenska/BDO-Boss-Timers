@@ -16,19 +16,23 @@ import android.os.Build;
 import android.os.IBinder;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.ArrayList;
 
+import nl.invissvenska.bdobosstimers.Constants;
 import nl.invissvenska.bdobosstimers.MainActivity;
 import nl.invissvenska.bdobosstimers.R;
-import nl.invissvenska.bdobosstimers.helper.BossHelper;
-import nl.invissvenska.bdobosstimers.helper.BossSettings;
-import nl.invissvenska.bdobosstimers.util.Boss;
+import nl.invissvenska.bdobosstimers.model.Boss;
+import nl.invissvenska.bdobosstimers.preference.BossSettings;
+import nl.invissvenska.bdobosstimers.util.BossHelper;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 import timber.log.Timber;
+
+import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
 
 public class BossAlertService extends Service {
 
@@ -40,8 +44,37 @@ public class BossAlertService extends Service {
     public void onCreate() {
         super.onCreate();
         AndroidThreeTen.init(this);
+        startForeground();
         mediaPlayer = MediaPlayer.create(this, R.raw.inflicted);
         mediaPlayer.setLooping(false);
+    }
+
+    private void startForeground() {
+        String channelId = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? createNotificationChannel("bdo_service_channel_0", "BDO Spawn Service") : "";
+
+        Intent stopNotificationIntent = new Intent(this, BossAlertService.class);
+        stopNotificationIntent.setAction(Constants.ACTION.STOP_FOREGROUND_ACTION);
+        PendingIntent Intent = PendingIntent.getService(this, 0, stopNotificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
+        Notification notification = notificationBuilder.setOngoing(true)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setPriority(PRIORITY_MIN)
+                .setContentTitle(getResources().getString(R.string.notification_service_title))
+                .setContentText(getResources().getString(R.string.notification_service_desc))
+                .setCategory(Notification.CATEGORY_SERVICE)
+                .addAction(R.drawable.ic_clock, getResources().getString(R.string.notification_service_action), Intent)
+                .build();
+        startForeground(101, notification);
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private String createNotificationChannel(String channelId, String channelName) {
+        NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_MIN);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager service = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        service.createNotificationChannel(chan);
+        return channelId;
     }
 
     @Override
@@ -63,9 +96,15 @@ public class BossAlertService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        bossAlertRefresher = new BossAlertRefresher(mediaPlayer, this);
-        bossAlertRefresher.soundsPlayed = 0;
-        bossAlertRefresher.execute();
+        if (intent.getAction().equals(Constants.ACTION.STOP_FOREGROUND_ACTION)) {
+            stopForeground(true);
+            stopSelfResult(startId);
+            System.exit(0);
+        } else {
+            bossAlertRefresher = new BossAlertRefresher(mediaPlayer, this);
+            bossAlertRefresher.soundsPlayed = 0;
+            bossAlertRefresher.execute();
+        }
         return START_STICKY;
     }
 
@@ -86,13 +125,13 @@ public class BossAlertService extends Service {
                 BossSettings bossSettings = PreferenceUtil.getInstance(context).getSettings();
                 Integer limitMin = bossSettings.getAlertBefore() != null ? bossSettings.getAlertBefore() : 15;
 
-                Boss nextBoss = BossHelper.getInstance().getNextBosses(bossSettings.getSelectedServer(), 0, new ArrayList<>(), 1).get(0);
+                Boss nextBoss = BossHelper.getInstance().getNextBosses(bossSettings, 0, new ArrayList<>()).get(0);
                 if (BossHelper.getInstance().checkAlertAllowed(nextBoss, bossSettings, soundsPlayed)) {
                     mediaPlayer.seekTo(0);
                     mediaPlayer.start();
                     showNotification(bossSettings, nextBoss);
                     soundsPlayed++;
-                } else if (nextBoss.getMinutesToSpawn() > limitMin) {
+                } else if (nextBoss.getMinutesToSpawn(bossSettings) > limitMin) {
                     soundsPlayed = 0;
                 }
                 try {
@@ -110,6 +149,7 @@ public class BossAlertService extends Service {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "BDO Boss Spawn Notifications", NotificationManager.IMPORTANCE_DEFAULT);
+                notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
 
                 // Configure the notification channel.
                 notificationChannel.setDescription("Alerts for when a boss spawns");
@@ -132,7 +172,7 @@ public class BossAlertService extends Service {
                     .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), boss.getBossOneImageResource()))
                     .setContentIntent(pendingIntent)
                     .setContentTitle(context.getResources().getString(R.string.notification_title))
-                    .setContentText(context.getResources().getString(R.string.notification_content, boss.getName(), boss.getMinutesToSpawn(), boss.getTimeSpawn()));
+                    .setContentText(context.getResources().getString(R.string.notification_content, boss.getName(), boss.getMinutesToSpawn(bossSettings), boss.getTimeSpawn()));
 
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
         }

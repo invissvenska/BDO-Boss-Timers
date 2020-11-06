@@ -1,4 +1,4 @@
-package nl.invissvenska.bdobosstimers.helper;
+package nl.invissvenska.bdobosstimers.util;
 
 import android.annotation.SuppressLint;
 
@@ -6,8 +6,11 @@ import androidx.annotation.Nullable;
 
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.ZoneId;
+import org.threeten.bp.ZoneOffset;
 import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
+
+import nl.invissvenska.bdobosstimers.preference.BossSettings;
 
 import static java.lang.Math.ceil;
 
@@ -39,15 +42,15 @@ public class TimeHelper {
         return alteredWeekDay < 0 ? alteredWeekDay + 7 : alteredWeekDay;
     }
 
-    public Integer getDayOfTheWeek(@Nullable Integer addDays) {
+    public Integer getDayOfTheWeek(@Nullable Integer addDays, final BossSettings bossSettings) {
         addDays = addDays == null ? 0 : addDays;
-        ZonedDateTime convertedTime = convertLocalZoneToUTC();
+        ZonedDateTime convertedTime = convertLocalZoneToUTC(bossSettings);
         Integer weekDay = convertedTime.getDayOfWeek().getValue();
         return normalizeDayOfTheWeek(weekDay, addDays);
     }
 
-    public Integer getTimeOfTheDay() {
-        ZonedDateTime convertedTime = convertLocalZoneToUTC();
+    public Integer getTimeOfTheDay(final BossSettings bossSettings) {
+        ZonedDateTime convertedTime = convertLocalZoneToUTC(bossSettings);
         Integer hourOfDay = convertedTime.getHour();
         Integer minuteOfTheDay = convertedTime.getMinute();
         return sixtyToHundredFormat(hourOfDay, minuteOfTheDay);
@@ -79,24 +82,29 @@ public class TimeHelper {
         return (int) value;
     }
 
-    private ZonedDateTime convertLocalZoneToUTC() {
-        ZoneId utcZoneId = ZoneId.of("UTC");
+    private ZonedDateTime convertLocalZoneToUTC(final BossSettings bossSettings) {
+        ZoneId utcZoneId = ZoneId.ofOffset("UTC", ZoneOffset.ofHours(0));
         ZoneId localZoneId = ZoneId.systemDefault();
+        if (bossSettings.isTimeZoneOverride()) {
+            localZoneId = ZoneId.ofOffset("GMT", ZoneOffset.ofHours(bossSettings.getTimeZone()));
+        }
         LocalDateTime ldt = LocalDateTime.now();
         ZonedDateTime configTime = ldt.atZone(localZoneId);
         return configTime.withZoneSameInstant(utcZoneId);
     }
 
-    public String hundredToSixtyFormat(Integer hundredTime) {
+    public String hundredToSixtyFormat(Integer hundredTime, final BossSettings bossSettings) {
         String timeFormat = "HH:mm";
         DateTimeFormatter format = DateTimeFormatter.ofPattern(timeFormat);
-        return format.format(convertUTCToLocalZone(hundredTime));
+        return format.format(convertUTCToLocalZone(hundredTime, bossSettings));
     }
 
-    private ZonedDateTime convertUTCToLocalZone(final int time) {
-        ZoneId utcZoneId = ZoneId.of("UTC");
+    private ZonedDateTime convertUTCToLocalZone(final int time, final BossSettings bossSettings) {
+        ZoneId utcZoneId = ZoneId.ofOffset("UTC", ZoneOffset.ofHours(0));
         ZoneId localZoneId = ZoneId.systemDefault();
-
+        if (bossSettings.isTimeZoneOverride()) {
+            localZoneId = ZoneId.ofOffset("GMT", ZoneOffset.ofHours(bossSettings.getTimeZone()));
+        }
         LocalDateTime ldt = LocalDateTime.now().withHour(hundredToSixtyFormatHours(time)).withMinute(hundredToSixtyFormatMinutes(time));
         ZonedDateTime configTime = ldt.atZone(utcZoneId);
         return configTime.withZoneSameInstant(localZoneId);

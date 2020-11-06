@@ -5,9 +5,7 @@ import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
-import nl.invissvenska.bdobosstimers.Server;
-import nl.invissvenska.bdobosstimers.helper.BossSettings;
-import nl.invissvenska.bdobosstimers.helper.TimeHelper;
+import nl.invissvenska.bdobosstimers.preference.BossSettings;
 
 public final class PreferenceUtil {
 
@@ -173,6 +171,14 @@ public final class PreferenceUtil {
         return TimeHelper.getInstance().sixtyToHundredFormat(Integer.parseInt(value.split(":")[0]), Integer.parseInt(value.split(":")[1]));
     }
 
+    private Boolean isTimeZoneOverride() {
+        return preferences.getBoolean("timezone_override", false);
+    }
+
+    private Integer getTimeZone() {
+        return Integer.valueOf(preferences.getString("selected_timezone", "0"));
+    }
+
     public BossSettings getSettings() {
         return new BossSettings(isKzarkaEnabled(),
                 isKarandaEnabled(),
@@ -198,6 +204,8 @@ public final class PreferenceUtil {
                 isVibrationEnabled(),
                 getSelectedServer(),
                 getMaximumBosses(),
-                isSilentAlertEnabled());
+                isSilentAlertEnabled(),
+                isTimeZoneOverride(),
+                getTimeZone());
     }
 }

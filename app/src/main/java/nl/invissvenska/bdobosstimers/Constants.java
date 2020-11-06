@@ -12,4 +12,9 @@ public class Constants {
     public final static String QUINT = "Quint";
     public final static String MURAKA = "Muraka";
     public final static String EMPTY = "";
+
+    public interface ACTION {
+        String STOP_FOREGROUND_ACTION = "nl.invissvenska.bdobosstimers.action.stopforeground";
+        String START_FOREGROUND_ACTION = "nl.invissvenska.bdobosstimers.action.startforeground";
+    }
 }

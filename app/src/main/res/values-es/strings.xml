@@ -4,30 +4,6 @@
     <string name="spawned">Desovar</string>
     <string name="spawning">Ahora</string>
     <string name="fab_content_desc">Ajustes</string>
-    <string-array name="preference_server_selection">
-        <item>EU</item>
-        <item>NA</item>
-        <item>SA</item>
-        <item>SEA</item>
-        <item>MENA</item>
-        <item>XBOX NA</item>
-        <item>XBOX EU</item>
-        <item>PS4 NA</item>
-        <item>PS4 EU</item>
-        <item>PS4 ASIA</item>
-    </string-array>
-    <string-array name="preference_server_selection_values">
-        <item>1</item>
-        <item>2</item>
-        <item>9</item>
-        <item>10</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-    </string-array>
 
     <string name="notification_title">BDO World boss</string>
     <string name="notification_content">%1$s se genera en %2$d minutos a las %3$s</string>
@@ -77,4 +53,11 @@
     <string name="pref_desc_alert_silent">Habilite para establecer un intervalo de tiempo en el que no reciba ninguna alerta</string>
     <string name="pref_label_alert_silent_after">No hay alertas después</string>
     <string name="pref_label_alert_silent_before">Alerta antes que o chefe apareça</string>
+    <string name="pref_cat_timezone">Zona horaria</string>
+    <string name="pref_label_timezone_override">Establecer zona horaria manual</string>
+    <string name="pref_desc_timezone_override">Habilite la zona horaria manual para configurar manualmente su zona horaria; de lo contrario, su dispositivo determinará la zona horaria</string>
+    <string name="pref_desc_timezone">Cuando los jefes no aparecen en los momentos correctos, puede anular su zona horaria para solucionarlo</string>
+    <string name="notification_service_title">BDO Servicio de Desove</string>
+    <string name="notification_service_desc">Recibirás alertas mientras el servicio esté funcionando</string>
+    <string name="notification_service_action">Parada de servicio</string>
 </resources>
