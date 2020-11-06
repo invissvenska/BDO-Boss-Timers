@@ -1,9 +1,9 @@
-package nl.invissvenska.bdobosstimers.helper;
+package nl.invissvenska.bdobosstimers.util;
 
 import java.util.List;
 
-import nl.invissvenska.bdobosstimers.Server;
-import nl.invissvenska.bdobosstimers.util.Boss;
+import nl.invissvenska.bdobosstimers.preference.BossSettings;
+import nl.invissvenska.bdobosstimers.model.Boss;
 import timber.log.Timber;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;

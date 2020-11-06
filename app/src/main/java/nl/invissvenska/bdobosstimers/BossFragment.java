@@ -22,11 +22,11 @@ import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-import nl.invissvenska.bdobosstimers.helper.BossHelper;
+import nl.invissvenska.bdobosstimers.util.BossHelper;
 import nl.invissvenska.bdobosstimers.list.BossAdapter;
 import nl.invissvenska.bdobosstimers.list.SpaceItemDecoration;
 import nl.invissvenska.bdobosstimers.service.BossAlertService;
-import nl.invissvenska.bdobosstimers.util.Boss;
+import nl.invissvenska.bdobosstimers.model.Boss;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 
 public class BossFragment extends Fragment implements SynchronizedActivity {

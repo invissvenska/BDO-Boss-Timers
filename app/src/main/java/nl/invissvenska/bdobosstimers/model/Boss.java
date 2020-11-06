@@ -1,10 +1,10 @@
-package nl.invissvenska.bdobosstimers.util;
+package nl.invissvenska.bdobosstimers.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import nl.invissvenska.bdobosstimers.R;
-import nl.invissvenska.bdobosstimers.helper.TimeHelper;
+import nl.invissvenska.bdobosstimers.util.TimeHelper;
 
 import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
 import static nl.invissvenska.bdobosstimers.Constants.KARANDA;

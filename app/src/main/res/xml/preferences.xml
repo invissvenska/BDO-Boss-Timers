@@ -153,7 +153,7 @@
             android:title="@string/pref_label_alert_vibration"
             app:iconSpaceReserved="false" />
 
-        <nl.invissvenska.bdobosstimers.pref.NumberDialogPreference
+        <nl.invissvenska.bdobosstimers.preference.util.NumberDialogPreference
             android:descendantFocusability="blocksDescendants"
             android:key="alert_before"
             android:title="@string/pref_label_alert_before_spawn"
@@ -163,7 +163,7 @@
             app:numberPickerPreference_minValue="1"
             app:numberPickerPreference_unitText="@string/pref_unit_alert_before_spawn" />
 
-        <nl.invissvenska.bdobosstimers.pref.NumberDialogPreference
+        <nl.invissvenska.bdobosstimers.preference.util.NumberDialogPreference
             android:descendantFocusability="blocksDescendants"
             android:key="number_of_alerts"
             android:title="@string/pref_label_alert_number_of"
@@ -173,7 +173,7 @@
             app:numberPickerPreference_minValue="1"
             app:numberPickerPreference_unitText="@string/pref_unit_alert_number_of" />
 
-        <nl.invissvenska.bdobosstimers.pref.NumberDialogPreference
+        <nl.invissvenska.bdobosstimers.preference.util.NumberDialogPreference
             android:descendantFocusability="blocksDescendants"
             android:key="alert_delay"
             android:title="@string/pref_label_alert_interval"
@@ -190,14 +190,14 @@
             android:title="@string/pref_label_alert_silent"
             app:iconSpaceReserved="false" />
 
-        <nl.invissvenska.bdobosstimers.pref.TimeDialogPreference
+        <nl.invissvenska.bdobosstimers.preference.util.TimeDialogPreference
             android:key="time_after"
             android:title="@string/pref_label_alert_silent_after"
             app:customFormat="HH:mm"
             app:force24HourModePicker="true"
             app:iconSpaceReserved="false" />
 
-        <nl.invissvenska.bdobosstimers.pref.TimeDialogPreference
+        <nl.invissvenska.bdobosstimers.preference.util.TimeDialogPreference
             android:key="time_before"
             android:title="@string/pref_label_alert_silent_before"
             app:customFormat="HH:mm"

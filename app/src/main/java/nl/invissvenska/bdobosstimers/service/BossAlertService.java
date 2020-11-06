@@ -24,9 +24,9 @@ import java.util.ArrayList;
 
 import nl.invissvenska.bdobosstimers.MainActivity;
 import nl.invissvenska.bdobosstimers.R;
-import nl.invissvenska.bdobosstimers.helper.BossHelper;
-import nl.invissvenska.bdobosstimers.helper.BossSettings;
-import nl.invissvenska.bdobosstimers.util.Boss;
+import nl.invissvenska.bdobosstimers.util.BossHelper;
+import nl.invissvenska.bdobosstimers.preference.BossSettings;
+import nl.invissvenska.bdobosstimers.model.Boss;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 import timber.log.Timber;
 

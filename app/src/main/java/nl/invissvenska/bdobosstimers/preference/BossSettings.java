@@ -1,4 +1,4 @@
-package nl.invissvenska.bdobosstimers.helper;
+package nl.invissvenska.bdobosstimers.preference;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.invissvenska.bdobosstimers.Server;
+import nl.invissvenska.bdobosstimers.util.Server;
 
 import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
 import static nl.invissvenska.bdobosstimers.Constants.KARANDA;

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.invissvenska.bdobosstimers.R;
-import nl.invissvenska.bdobosstimers.helper.TimeHelper;
-import nl.invissvenska.bdobosstimers.util.Boss;
+import nl.invissvenska.bdobosstimers.util.TimeHelper;
+import nl.invissvenska.bdobosstimers.model.Boss;
 
 public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
 
