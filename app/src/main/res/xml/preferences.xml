@@ -19,6 +19,32 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:title="@string/pref_cat_timezone"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:summary="@string/pref_desc_timezone"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="timezone_override"
+            android:summary="@string/pref_desc_timezone_override"
+            android:title="@string/pref_label_timezone_override"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/preference_timezone_selection"
+            android:entryValues="@array/preference_timezone_selection_values"
+            android:key="selected_timezone"
+            android:title="@string/pref_cat_timezone"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/pref_cat_bosses"
         app:iconSpaceReserved="false">
 

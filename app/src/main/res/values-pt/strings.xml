@@ -4,30 +4,6 @@
     <string name="spawned">Gerado</string>
     <string name="spawning">Agora</string>
     <string name="fab_content_desc">Definições</string>
-    <string-array name="preference_server_selection">
-        <item>EU</item>
-        <item>NA</item>
-        <item>SA</item>
-        <item>SEA</item>
-        <item>MENA</item>
-        <item>XBOX NA</item>
-        <item>XBOX EU</item>
-        <item>PS4 NA</item>
-        <item>PS4 EU</item>
-        <item>PS4 ASIA</item>
-    </string-array>
-    <string-array name="preference_server_selection_values">
-        <item>1</item>
-        <item>2</item>
-        <item>9</item>
-        <item>3</item>
-        <item>10</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-    </string-array>
 
     <string name="notification_title">BDO World boss</string>
     <string name="notification_content">%1$s desova em %2$d minutos às %3$s</string>
@@ -77,4 +53,8 @@
     <string name="pref_desc_alert_silent">Ative para definir um intervalo de tempo em que você não recebe nenhum alerta</string>
     <string name="pref_label_alert_silent_after">Sem alertas depois</string>
     <string name="pref_label_alert_silent_before">Nenhum alerta antes</string>
+    <string name="pref_cat_timezone">Fuso horário</string>
+    <string name="pref_label_timezone_override">Definir fuso horário manual</string>
+    <string name="pref_desc_timezone_override">Ative o fuso horário manual para definir manualmente o seu fuso horário, caso contrário, o fuso horário será determinado pelo seu dispositivo</string>
+    <string name="pref_desc_timezone">Quando os chefes não aparecem nos horários corretos, você pode substituir seu fuso horário para corrigi-lo</string>
 </resources>

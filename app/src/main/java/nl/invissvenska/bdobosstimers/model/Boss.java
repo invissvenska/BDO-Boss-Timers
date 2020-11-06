@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import nl.invissvenska.bdobosstimers.R;
+import nl.invissvenska.bdobosstimers.preference.BossSettings;
 import nl.invissvenska.bdobosstimers.util.TimeHelper;
 
 import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
@@ -24,9 +25,9 @@ public class Boss {
     private Integer bossOneImageResource;
     private Integer bossTwoImageResource;
 
-    public Boss(String name, Integer timeIntSpawn) {
+    public Boss(String name, Integer timeIntSpawn, BossSettings bossSettings) {
         this.name = name;
-        this.timeSpawn = TimeHelper.getInstance().hundredToSixtyFormat(timeIntSpawn);
+        this.timeSpawn = TimeHelper.getInstance().hundredToSixtyFormat(timeIntSpawn, bossSettings);
         this.timeIntSpawn = timeIntSpawn;
         Map<String, Integer> imageMap = new HashMap<String, Integer>() {{
             put(GARMOTH, R.drawable.garmoth);
@@ -56,8 +57,8 @@ public class Boss {
         return this.timeSpawn;
     }
 
-    public Integer getMinutesToSpawn() {
-        final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
+    public Integer getMinutesToSpawn(final BossSettings bossSettings) {
+        final Integer now = TimeHelper.getInstance().getTimeOfTheDay(bossSettings);
         Integer timeDiff = TimeHelper.getInstance().getTimeDifference(timeIntSpawn, now);
         if (timeDiff < 0) {
             return TimeHelper.getInstance().getTimeDifferenceNextDay(timeIntSpawn, now);

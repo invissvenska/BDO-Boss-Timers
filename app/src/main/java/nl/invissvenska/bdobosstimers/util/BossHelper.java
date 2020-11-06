@@ -2,8 +2,8 @@ package nl.invissvenska.bdobosstimers.util;
 
 import java.util.List;
 
-import nl.invissvenska.bdobosstimers.preference.BossSettings;
 import nl.invissvenska.bdobosstimers.model.Boss;
+import nl.invissvenska.bdobosstimers.preference.BossSettings;
 import timber.log.Timber;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
@@ -22,50 +22,50 @@ public class BossHelper {
         return INSTANCE;
     }
 
-    public List<Boss> getNextBosses(Server server, Integer addDays, List<Boss> bosses, Integer max) {
-        final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
-        final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(addDays);
-        for (int i = 0; i < ServerHelper.getInstance().getTimeIntGrid(server).length; i++) {
+    public List<Boss> getNextBosses(BossSettings bossSettings, Integer addDays, List<Boss> bosses) {
+        final Integer now = TimeHelper.getInstance().getTimeOfTheDay(bossSettings);
+        final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(addDays, bossSettings);
+        for (int i = 0; i < ServerHelper.getInstance().getTimeIntGrid(bossSettings.getSelectedServer()).length; i++) {
             // loopt over the timespans
-            if ((addDays >= 1 || (ServerHelper.getInstance().getTimeIntGrid(server)[i] > now)) && !ServerHelper.getInstance().getBossGrid(server)[dayOfTheWeek][i].equals(EMPTY)) {
+            if ((addDays >= 1 || (ServerHelper.getInstance().getTimeIntGrid(bossSettings.getSelectedServer())[i] > now)) && !ServerHelper.getInstance().getBossGrid(bossSettings.getSelectedServer())[dayOfTheWeek][i].equals(EMPTY)) {
                 //check if timespan is greater (future) then current time
-                bosses.add(resolveBoss(i, dayOfTheWeek, server));
+                bosses.add(resolveBoss(i, dayOfTheWeek, bossSettings));
             }
-            if (bosses.size() >= max) {
+            if (bosses.size() >= bossSettings.getMaxBosses()) {
                 break;
             }
         }
-        if (bosses.size() < max) {
-            return getNextBosses(server, addDays + 1, bosses, max);
+        if (bosses.size() < bossSettings.getMaxBosses()) {
+            return getNextBosses(bossSettings, addDays + 1, bosses);
         }
         return bosses;
     }
 
-    public Boss getPreviousBoss(Server server, Integer addDays) {
+    public Boss getPreviousBoss(BossSettings bossSettings, Integer addDays) {
         Boss boss = null;
-        final Integer now = TimeHelper.getInstance().getTimeOfTheDay();
-        final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(addDays);
-        for (int i = ServerHelper.getInstance().getTimeIntGrid(server).length - 1; i >= 0; i--) {
+        final Integer now = TimeHelper.getInstance().getTimeOfTheDay(bossSettings);
+        final Integer dayOfTheWeek = TimeHelper.getInstance().getDayOfTheWeek(addDays, bossSettings);
+        for (int i = ServerHelper.getInstance().getTimeIntGrid(bossSettings.getSelectedServer()).length - 1; i >= 0; i--) {
             // loopt over the timespans
-            if ((addDays <= -1 || (ServerHelper.getInstance().getTimeIntGrid(server)[i] < now)) && !ServerHelper.getInstance().getBossGrid(server)[dayOfTheWeek][i].equals(EMPTY)) {
+            if ((addDays <= -1 || (ServerHelper.getInstance().getTimeIntGrid(bossSettings.getSelectedServer())[i] < now)) && !ServerHelper.getInstance().getBossGrid(bossSettings.getSelectedServer())[dayOfTheWeek][i].equals(EMPTY)) {
                 //check if timespan is greater (future) then current time
-                boss = resolveBoss(i, dayOfTheWeek, server);
+                boss = resolveBoss(i, dayOfTheWeek, bossSettings);
                 break;
             }
         }
         if (boss == null) {
-            return getPreviousBoss(server, addDays - 1);
+            return getPreviousBoss(bossSettings, addDays - 1);
         }
         return boss;
     }
 
-    private Boss resolveBoss(Integer pointer, Integer dayOfWeek, Server server) {
+    private Boss resolveBoss(Integer pointer, Integer dayOfWeek, BossSettings bossSettings) {
         try {
-            Integer time = ServerHelper.getInstance().getTimeIntGrid(server)[pointer];
-            String bossName = ServerHelper.getInstance().getBossGrid(server)[dayOfWeek][pointer];
-            return new Boss(bossName, time);
+            Integer time = ServerHelper.getInstance().getTimeIntGrid(bossSettings.getSelectedServer())[pointer];
+            String bossName = ServerHelper.getInstance().getBossGrid(bossSettings.getSelectedServer())[dayOfWeek][pointer];
+            return new Boss(bossName, time, bossSettings);
         } catch (Exception e) {
-            return new Boss(EMPTY, 0);
+            return new Boss(EMPTY, 0, bossSettings);
         }
     }
 
@@ -74,8 +74,8 @@ public class BossHelper {
         Integer alertTimes = bossSettings.getAlertTimes() != null ? bossSettings.getAlertTimes() : 3;
 
         //time to spawn
-        if (nextBoss.getMinutesToSpawn() > limitMin || soundsPlayed >= alertTimes) {
-            Timber.d("Don't alert yet, minutes till spawn: %d, minutes to alert ahead: %d", nextBoss.getMinutesToSpawn(), limitMin);
+        if (nextBoss.getMinutesToSpawn(bossSettings) > limitMin || soundsPlayed >= alertTimes) {
+            Timber.d("Don't alert yet, minutes till spawn: %d, minutes to alert ahead: %d", nextBoss.getMinutesToSpawn(bossSettings), limitMin);
             return false;
         }
 
@@ -90,7 +90,7 @@ public class BossHelper {
 
         //check weekday
         int state = -1;
-        switch (TimeHelper.getInstance().getDayOfTheWeek(null)) {
+        switch (TimeHelper.getInstance().getDayOfTheWeek(null, bossSettings)) {
             case 0:
                 state = bossSettings.getMonday() != null ? bossSettings.getMonday() : 1;
                 break;

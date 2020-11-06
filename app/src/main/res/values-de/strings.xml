@@ -4,30 +4,6 @@
     <string name="spawned">Spawned</string>
     <string name="spawning">Jetzt</string>
     <string name="fab_content_desc">die Einstellungen</string>
-    <string-array name="preference_server_selection">
-        <item>EU</item>
-        <item>NA</item>
-        <item>SA</item>
-        <item>SEA</item>
-        <item>MENA</item>
-        <item>XBOX NA</item>
-        <item>XBOX EU</item>
-        <item>PS4 NA</item>
-        <item>PS4 EU</item>
-        <item>PS4 ASIA</item>
-    </string-array>
-    <string-array name="preference_server_selection_values">
-        <item>1</item>
-        <item>2</item>
-        <item>9</item>
-        <item>3</item>
-        <item>10</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-    </string-array>
 
     <string name="notification_title">BDO World boss</string>
     <string name="notification_content">%1$s erscheint in %2$d Minuten um %3$s Uhr</string>
@@ -77,4 +53,8 @@
     <string name="pref_desc_alert_silent">Aktivieren Sie diese Option, um einen Zeitraum festzulegen, in dem Sie keine Benachrichtigungen erhalten</string>
     <string name="pref_label_alert_silent_after">Keine Warnungen danach</string>
     <string name="pref_label_alert_silent_before">Keine Warnungen zuvor</string>
+    <string name="pref_cat_timezone">Zeitzone</string>
+    <string name="pref_label_timezone_override">Stellen Sie die manuelle Zeitzone ein</string>
+    <string name="pref_desc_timezone_override">Aktivieren Sie die manuelle Zeitzone, um Ihre Zeitzone manuell einzustellen. Andernfalls wird die Zeitzone von Ihrem Gerät bestimmt</string>
+    <string name="pref_desc_timezone">Wenn Bosse nicht zu den richtigen Zeiten erscheinen, können Sie Ihre Zeitzone überschreiben, um das Problem zu beheben</string>
 </resources>

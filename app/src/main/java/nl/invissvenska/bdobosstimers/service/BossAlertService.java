@@ -86,13 +86,13 @@ public class BossAlertService extends Service {
                 BossSettings bossSettings = PreferenceUtil.getInstance(context).getSettings();
                 Integer limitMin = bossSettings.getAlertBefore() != null ? bossSettings.getAlertBefore() : 15;
 
-                Boss nextBoss = BossHelper.getInstance().getNextBosses(bossSettings.getSelectedServer(), 0, new ArrayList<>(), 1).get(0);
+                Boss nextBoss = BossHelper.getInstance().getNextBosses(bossSettings, 0, new ArrayList<>()).get(0);
                 if (BossHelper.getInstance().checkAlertAllowed(nextBoss, bossSettings, soundsPlayed)) {
                     mediaPlayer.seekTo(0);
                     mediaPlayer.start();
                     showNotification(bossSettings, nextBoss);
                     soundsPlayed++;
-                } else if (nextBoss.getMinutesToSpawn() > limitMin) {
+                } else if (nextBoss.getMinutesToSpawn(bossSettings) > limitMin) {
                     soundsPlayed = 0;
                 }
                 try {
@@ -132,7 +132,7 @@ public class BossAlertService extends Service {
                     .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), boss.getBossOneImageResource()))
                     .setContentIntent(pendingIntent)
                     .setContentTitle(context.getResources().getString(R.string.notification_title))
-                    .setContentText(context.getResources().getString(R.string.notification_content, boss.getName(), boss.getMinutesToSpawn(), boss.getTimeSpawn()));
+                    .setContentText(context.getResources().getString(R.string.notification_content, boss.getName(), boss.getMinutesToSpawn(bossSettings), boss.getTimeSpawn()));
 
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
         }

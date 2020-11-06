@@ -22,11 +22,11 @@ import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-import nl.invissvenska.bdobosstimers.util.BossHelper;
 import nl.invissvenska.bdobosstimers.list.BossAdapter;
 import nl.invissvenska.bdobosstimers.list.SpaceItemDecoration;
-import nl.invissvenska.bdobosstimers.service.BossAlertService;
 import nl.invissvenska.bdobosstimers.model.Boss;
+import nl.invissvenska.bdobosstimers.service.BossAlertService;
+import nl.invissvenska.bdobosstimers.util.BossHelper;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 
 public class BossFragment extends Fragment implements SynchronizedActivity {
@@ -106,10 +106,9 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
 
     private void updateBoss() {
         List<Boss> bosses = BossHelper.getInstance().getNextBosses(
-                PreferenceUtil.getInstance(getContext()).getSettings().getSelectedServer(),
+                PreferenceUtil.getInstance(getContext()).getSettings(),
                 0,
-                new ArrayList<>(),
-                PreferenceUtil.getInstance(getContext()).getSettings().getMaxBosses()
+                new ArrayList<>()
         );
         if (adapter.getItemCount() == 0) {
             initializeOverview(bosses);
@@ -117,7 +116,7 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
             renewOverview(bosses);
         }
 
-        timer = new CountDownTimer((bosses.get(0).getMinutesToSpawn() + 1) * 60 * 1000, 1000L) {
+        timer = new CountDownTimer((bosses.get(0).getMinutesToSpawn(PreferenceUtil.getInstance(getContext()).getSettings()) + 1) * 60 * 1000, 1000L) {
             @Override
             public void onTick(long millisUntilFinished) {
             }
@@ -131,7 +130,7 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
     }
 
     private void initializeOverview(List<Boss> bosses) {
-        adapter.add(BossHelper.getInstance().getPreviousBoss(PreferenceUtil.getInstance(getContext()).getSettings().getSelectedServer(), 0));
+        adapter.add(BossHelper.getInstance().getPreviousBoss(PreferenceUtil.getInstance(getContext()).getSettings(), 0));
         for (Boss boss : bosses) {
             adapter.add(boss);
         }
