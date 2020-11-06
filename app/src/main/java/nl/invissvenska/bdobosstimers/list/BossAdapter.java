@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.invissvenska.bdobosstimers.R;
-import nl.invissvenska.bdobosstimers.helper.TimeHelper;
-import nl.invissvenska.bdobosstimers.util.Boss;
+import nl.invissvenska.bdobosstimers.preference.BossSettings;
+import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
+import nl.invissvenska.bdobosstimers.util.TimeHelper;
+import nl.invissvenska.bdobosstimers.model.Boss;
 
 public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
 
@@ -44,6 +46,7 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BossViewHolder holder, int position) {
         final Boss boss = bosses.get(position);
+        BossSettings bossSettings = PreferenceUtil.getInstance(holder.name.getContext()).getSettings();
         holder.name.setText(boss.getName().replace("&", " & "));
         holder.spawnTime.setText(boss.getTimeSpawn());
         if (boss.getBossTwoImageResource() != null) {
@@ -61,8 +64,8 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
         if (holder.timer != null) {
             holder.timer.cancel();
         }
-        if (boss.getMinutesToSpawn() > 0 && position != 0) {
-            holder.timer = new CountDownTimer(boss.getMinutesToSpawn() * 60 * 1000, 1000L) {
+        if (boss.getMinutesToSpawn(bossSettings) > 0 && position != 0) {
+            holder.timer = new CountDownTimer(boss.getMinutesToSpawn(bossSettings) * 60 * 1000, 1000L) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     holder.timeLeft.setText(TimeHelper.getInstance().secondsToHoursAndMinutesAndSeconds(millisUntilFinished / 1000));
@@ -74,7 +77,7 @@ public class BossAdapter extends RecyclerView.Adapter<BossViewHolder> {
                 }
             };
             holder.timer.start();
-        } else if (boss.getMinutesToSpawn() == 0) {
+        } else if (boss.getMinutesToSpawn(bossSettings) == 0) {
             holder.timeLeft.setText(holder.boss1.getContext().getString(R.string.spawning));
         }
         if (position == 0) {

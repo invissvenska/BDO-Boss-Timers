@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
+import nl.invissvenska.bdobosstimers.logging.ReleaseTree;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package nl.invissvenska.bdobosstimers.pref;
+package nl.invissvenska.bdobosstimers.preference.util;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;

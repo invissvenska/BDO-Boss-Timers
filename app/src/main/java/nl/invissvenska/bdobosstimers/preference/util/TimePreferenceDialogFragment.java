@@ -1,4 +1,4 @@
-package nl.invissvenska.bdobosstimers.pref;
+package nl.invissvenska.bdobosstimers.preference.util;
 
 import android.os.Build;
 import android.os.Bundle;

@@ -4,30 +4,6 @@
     <string name="spawned">Gespawned</string>
     <string name="spawning">Nu</string>
     <string name="fab_content_desc">Instellingen</string>
-    <string-array name="preference_server_selection">
-        <item>EU</item>
-        <item>NA</item>
-        <item>SA</item>
-        <item>SEA</item>
-        <item>MENA</item>
-        <item>XBOX NA</item>
-        <item>XBOX EU</item>
-        <item>PS4 NA</item>
-        <item>PS4 EU</item>
-        <item>PS4 ASIA</item>
-    </string-array>
-    <string-array name="preference_server_selection_values">
-        <item>1</item>
-        <item>2</item>
-        <item>9</item>
-        <item>3</item>
-        <item>10</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-    </string-array>
 
     <string name="notification_title">BDO World boss</string>
     <string name="notification_content">%1$s spawns in %2$d minuten om %3$s</string>
@@ -77,4 +53,11 @@
     <string name="pref_desc_alert_silent">Zet een tijd van/tot waarin je geen meldingen wilt ontvangen</string>
     <string name="pref_label_alert_silent_after">Geen meldingen na</string>
     <string name="pref_label_alert_silent_before">Geen meldingen voor</string>
+    <string name="pref_cat_timezone">Tijdzone</string>
+    <string name="pref_label_timezone_override">Zet tijdzone handmatig</string>
+    <string name="pref_desc_timezone_override">Zet tijdzone handmatig aan als je handmatig je tijdzone wilt bepalen, anders wordt de tijdzone door je apparaat bepaald.</string>
+    <string name="pref_desc_timezone">Wanneer de bazen niet op de correcte tijden spawnen, kun je je tijdzone aanpassen om dit op te lossen</string>
+    <string name="notification_service_title">BDO Spawn Service</string>
+    <string name="notification_service_desc">Zolang de service draait kun je meldingen ontvangen</string>
+    <string name="notification_service_action">Stop service</string>
 </resources>

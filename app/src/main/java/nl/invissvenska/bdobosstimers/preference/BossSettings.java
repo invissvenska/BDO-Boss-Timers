@@ -1,4 +1,4 @@
-package nl.invissvenska.bdobosstimers.helper;
+package nl.invissvenska.bdobosstimers.preference;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.invissvenska.bdobosstimers.Server;
+import nl.invissvenska.bdobosstimers.util.Server;
 
 import static nl.invissvenska.bdobosstimers.Constants.GARMOTH;
 import static nl.invissvenska.bdobosstimers.Constants.KARANDA;
@@ -45,6 +45,8 @@ public class BossSettings implements Parcelable {
     private Server server;
     private Integer maxBosses;
     private Boolean silentPeriod;
+    private Boolean timeZoneOverride;
+    private Integer timeZone;
 
     public BossSettings(Parcel parcel) {
         kzarka = parcel.readInt() == 1;
@@ -72,6 +74,8 @@ public class BossSettings implements Parcelable {
         server = Server.valueOf(parcel.readString());
         maxBosses = parcel.readInt();
         silentPeriod = parcel.readInt() == 1;
+        timeZoneOverride = parcel.readInt() == 1;
+        timeZone = parcel.readInt();
     }
 
     public BossSettings(Boolean kzarka, Boolean karanda, Boolean nouver, Boolean kutum, Boolean garmoth,
@@ -79,7 +83,7 @@ public class BossSettings implements Parcelable {
                         Integer tuesday, Integer wednesday, Integer thursday, Integer friday, Integer saturday,
                         Integer sunday, Integer timeFrom, Integer timeTo, Integer alertBefore,
                         Integer alertTimes, Integer alertDelay, Boolean vibration, Server server, Integer maxBosses,
-                        Boolean silentPeriod) {
+                        Boolean silentPeriod, Boolean timeZoneOverride, Integer timeZone) {
         this.kzarka = kzarka;
         this.karanda = karanda;
         this.nouver = nouver;
@@ -105,6 +109,8 @@ public class BossSettings implements Parcelable {
         this.server = server;
         this.maxBosses = maxBosses;
         this.silentPeriod = silentPeriod;
+        this.timeZoneOverride = timeZoneOverride;
+        this.timeZone = timeZone;
     }
 
     @Override
@@ -139,6 +145,8 @@ public class BossSettings implements Parcelable {
         dest.writeString(server.name());
         dest.writeInt(maxBosses);
         dest.writeInt(silentPeriod ? 1 : 0);
+        dest.writeInt(timeZoneOverride ? 1 : 0);
+        dest.writeInt(timeZone);
     }
 
     public static final Creator<BossSettings> CREATOR = new Creator<BossSettings>() {
@@ -247,5 +255,13 @@ public class BossSettings implements Parcelable {
 
     public Boolean isSilentPeriod() {
         return silentPeriod;
+    }
+
+    public Boolean isTimeZoneOverride() {
+        return timeZoneOverride;
+    }
+
+    public Integer getTimeZone() {
+        return timeZone;
     }
 }

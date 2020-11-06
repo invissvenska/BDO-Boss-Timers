@@ -4,30 +4,6 @@
     <string name="spawned">Frayer</string>
     <string name="spawning">Maintenant</string>
     <string name="fab_content_desc">Réglages</string>
-    <string-array name="preference_server_selection">
-        <item>EU</item>
-        <item>NA</item>
-        <item>SA</item>
-        <item>SEA</item>
-        <item>MENA</item>
-        <item>XBOX NA</item>
-        <item>XBOX EU</item>
-        <item>PS4 NA</item>
-        <item>PS4 EU</item>
-        <item>PS4 ASIA</item>
-    </string-array>
-    <string-array name="preference_server_selection_values">
-        <item>1</item>
-        <item>2</item>
-        <item>9</item>
-        <item>10</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-    </string-array>
 
     <string name="notification_title">BDO World boss</string>
     <string name="notification_content">%1$s apparaît en %2$d minutes à %3$s</string>
@@ -77,4 +53,11 @@
     <string name="pref_desc_alert_silent">Activer pour définir une plage horaire où vous ne recevez aucune alerte</string>
     <string name="pref_label_alert_silent_after">Aucune alerte après</string>
     <string name="pref_label_alert_silent_before">Aucune alerte avant</string>
+    <string name="pref_cat_timezone">Fuseau horaire</string>
+    <string name="pref_label_timezone_override">Définir le fuseau horaire manuel</string>
+    <string name="pref_desc_timezone_override">Activez le fuseau horaire manuel pour définir manuellement votre fuseau horaire, sinon le fuseau horaire sera déterminé par votre appareil</string>
+    <string name="pref_desc_timezone">Lorsque les boss n\'apparaissent pas au bon moment, vous pouvez remplacer votre fuseau horaire pour le corriger</string>
+    <string name="notification_service_title">BDO Service de Spawn</string>
+    <string name="notification_service_desc">Vous recevrez des alertes pendant l\'exécution du service</string>
+    <string name="notification_service_action">Aire d\'autoroute</string>
 </resources>
