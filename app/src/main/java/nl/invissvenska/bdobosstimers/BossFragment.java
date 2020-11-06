@@ -68,11 +68,13 @@ public class BossFragment extends Fragment implements SynchronizedActivity {
 
     private void communicateWithService() {
         Intent serviceIntent = new Intent(getContext(), BossAlertService.class);
+        serviceIntent.setAction(Constants.ACTION.START_FOREGROUND_ACTION);
         getActivity().startService(serviceIntent);
     }
 
     private void checkAndRunAlertService() {
         Intent intent = new Intent(getContext(), BossAlertService.class);
+        intent.setAction(Constants.ACTION.START_FOREGROUND_ACTION);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             getActivity().startForegroundService(intent);
         } else {

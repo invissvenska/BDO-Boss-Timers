@@ -57,4 +57,7 @@
     <string name="pref_label_timezone_override">Establecer zona horaria manual</string>
     <string name="pref_desc_timezone_override">Habilite la zona horaria manual para configurar manualmente su zona horaria; de lo contrario, su dispositivo determinará la zona horaria</string>
     <string name="pref_desc_timezone">Cuando los jefes no aparecen en los momentos correctos, puede anular su zona horaria para solucionarlo</string>
+    <string name="notification_service_title">BDO Servicio de Desove</string>
+    <string name="notification_service_desc">Recibirás alertas mientras el servicio esté funcionando</string>
+    <string name="notification_service_action">Parada de servicio</string>
 </resources>

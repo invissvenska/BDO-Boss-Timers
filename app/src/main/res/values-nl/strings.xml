@@ -57,4 +57,7 @@
     <string name="pref_label_timezone_override">Zet tijdzone handmatig</string>
     <string name="pref_desc_timezone_override">Zet tijdzone handmatig aan als je handmatig je tijdzone wilt bepalen, anders wordt de tijdzone door je apparaat bepaald.</string>
     <string name="pref_desc_timezone">Wanneer de bazen niet op de correcte tijden spawnen, kun je je tijdzone aanpassen om dit op te lossen</string>
+    <string name="notification_service_title">BDO Spawn Service</string>
+    <string name="notification_service_desc">Zolang de service draait kun je meldingen ontvangen</string>
+    <string name="notification_service_action">Stop service</string>
 </resources>

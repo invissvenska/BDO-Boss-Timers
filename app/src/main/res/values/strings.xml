@@ -141,4 +141,8 @@
     <string name="pref_desc_alert_silent">Enable to set a time range where in you don\'t receive any alerts</string>
     <string name="pref_label_alert_silent_after">No alerts after</string>
     <string name="pref_label_alert_silent_before">No alerts before</string>
+
+    <string name="notification_service_title">BDO Spawn Service</string>
+    <string name="notification_service_desc">You will receive alerts while the service is running</string>
+    <string name="notification_service_action">Stop service</string>
 </resources>

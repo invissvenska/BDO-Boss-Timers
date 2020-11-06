@@ -57,4 +57,7 @@
     <string name="pref_label_timezone_override">Définir le fuseau horaire manuel</string>
     <string name="pref_desc_timezone_override">Activez le fuseau horaire manuel pour définir manuellement votre fuseau horaire, sinon le fuseau horaire sera déterminé par votre appareil</string>
     <string name="pref_desc_timezone">Lorsque les boss n\'apparaissent pas au bon moment, vous pouvez remplacer votre fuseau horaire pour le corriger</string>
+    <string name="notification_service_title">BDO Service de Spawn</string>
+    <string name="notification_service_desc">Vous recevrez des alertes pendant l\'exécution du service</string>
+    <string name="notification_service_action">Aire d\'autoroute</string>
 </resources>

@@ -57,4 +57,7 @@
     <string name="pref_label_timezone_override">Definir fuso horário manual</string>
     <string name="pref_desc_timezone_override">Ative o fuso horário manual para definir manualmente o seu fuso horário, caso contrário, o fuso horário será determinado pelo seu dispositivo</string>
     <string name="pref_desc_timezone">Quando os chefes não aparecem nos horários corretos, você pode substituir seu fuso horário para corrigi-lo</string>
+    <string name="notification_service_title">BDO Serviço de Desova</string>
+    <string name="notification_service_desc">Você receberá alertas enquanto o serviço estiver em execução</string>
+    <string name="notification_service_action">Parar serviço</string>
 </resources>

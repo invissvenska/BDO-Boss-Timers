@@ -57,4 +57,7 @@
     <string name="pref_label_timezone_override">Stellen Sie die manuelle Zeitzone ein</string>
     <string name="pref_desc_timezone_override">Aktivieren Sie die manuelle Zeitzone, um Ihre Zeitzone manuell einzustellen. Andernfalls wird die Zeitzone von Ihrem Gerät bestimmt</string>
     <string name="pref_desc_timezone">Wenn Bosse nicht zu den richtigen Zeiten erscheinen, können Sie Ihre Zeitzone überschreiben, um das Problem zu beheben</string>
+    <string name="notification_service_title">BDO Spawn-Service</string>
+    <string name="notification_service_desc">Sie erhalten Benachrichtigungen, während der Dienst ausgeführt wird</string>
+    <string name="notification_service_action">Dienst anhalten</string>
 </resources>
