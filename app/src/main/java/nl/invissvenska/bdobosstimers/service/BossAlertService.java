@@ -96,7 +96,7 @@ public class BossAlertService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent.getAction().equals(Constants.ACTION.STOP_FOREGROUND_ACTION)) {
+        if (intent != null && intent.getAction() != null && intent.getAction().equals(Constants.ACTION.STOP_FOREGROUND_ACTION)) {
             stopForeground(true);
             stopSelfResult(startId);
             System.exit(0);
