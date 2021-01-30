@@ -7,10 +7,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import nl.invissvenska.bdobosstimers.preference.util.NumberDialogPreference;
-import nl.invissvenska.bdobosstimers.preference.util.NumberPickerPreferenceDialogFragment;
 import nl.invissvenska.bdobosstimers.preference.util.TimeDialogPreference;
 import nl.invissvenska.bdobosstimers.preference.util.TimePreferenceDialogFragment;
+import nl.invissvenska.numberpickerpreference.NumberDialogPreference;
+import nl.invissvenska.numberpickerpreference.NumberPickerPreferenceDialogFragment;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -40,6 +40,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                             dialogPreference.getKey(),
                             dialogPreference.getMinValue(),
                             dialogPreference.getMaxValue(),
+                            dialogPreference.getStepValue(),
                             dialogPreference.getUnitText()
                     );
         } else if (preference instanceof TimeDialogPreference) {
