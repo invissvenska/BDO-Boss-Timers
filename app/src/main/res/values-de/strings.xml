@@ -49,7 +49,7 @@
     <string name="pref_unit_alert_number_of">&#160;mal</string>
     <string name="pref_label_alert_interval">Zeit zwischen Warnungen</string>
     <string name="pref_unit_alert_interval">&#160;Sekunden</string>
-    <string name="pref_label_alert_silent">Lautlos (experimentell)</string>
+    <string name="pref_label_alert_silent">Lautlos</string>
     <string name="pref_desc_alert_silent">Aktivieren Sie diese Option, um einen Zeitraum festzulegen, in dem Sie keine Benachrichtigungen erhalten</string>
     <string name="pref_label_alert_silent_after">Keine Warnungen danach</string>
     <string name="pref_label_alert_silent_before">Keine Warnungen zuvor</string>
