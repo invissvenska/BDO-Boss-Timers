@@ -24,7 +24,7 @@ public class ServerHelper {
         return INSTANCE;
     }
 
-    private final Integer[] timeIntGridEU = {100, 400, 800, 1100, 1500, 1800, 2125, 2225, 2325};
+    private final Integer[] timeIntGridEU = {0, 300, 700, 1000, 1400, 1700, 2025, 2125, 2225};
     private final String[][] bossGridEU = {
             {KARANDA, KZARKA, KZARKA, OFFIN, KUTUM, NOUVER, KZARKA, EMPTY, KARANDA},
             {KUTUM, KZARKA, NOUVER, KUTUM, NOUVER, KARANDA, GARMOTH, EMPTY, KUTUM + "&" + KZARKA},
@@ -46,7 +46,18 @@ public class ServerHelper {
             {KARANDA + "&" + KZARKA, EMPTY, EMPTY, KUTUM + "&" + NOUVER, KZARKA, KUTUM, NOUVER, KZARKA, VELL}
     };
 
-    private final Integer[] timeIntGridSA = {250, 325, 500, 1400, 1900, 2100, 2300};
+    private final Integer[] timeIntGridRU = {500, 700, 900, 1100, 1300, 1500, 2000, 2100, 2200};
+    private final String[][] bossGridRU = {
+            {EMPTY, EMPTY, KUTUM, NOUVER, KARANDA, KUTUM, KARANDA + "&" + NOUVER, KZARKA, KARANDA},
+            {EMPTY, EMPTY, KARANDA, KZARKA, KUTUM, KARANDA, MURAKA + "&" + QUINT, KUTUM, NOUVER},
+            {EMPTY, EMPTY, EMPTY, KARANDA, NOUVER, KZARKA + "&" + OFFIN, VELL, KARANDA, KUTUM},
+            {EMPTY, EMPTY, NOUVER, KUTUM, NOUVER, KZARKA, GARMOTH, NOUVER, KZARKA},
+            {EMPTY, EMPTY, KARANDA, KUTUM, NOUVER, KZARKA, OFFIN, KZARKA + "&" + NOUVER, KUTUM},
+            {KZARKA, NOUVER, KUTUM, MURAKA + "&" + QUINT, KARANDA, KUTUM, EMPTY, GARMOTH, KZARKA},
+            {KARANDA, KUTUM, GARMOTH, KUTUM, VELL, KZARKA + "&" + NOUVER, OFFIN, KARANDA + "&" + KZARKA, NOUVER}
+    };
+
+    private final Integer[] timeIntGridSA = {275, 325, 500, 1400, 1900, 2100, 2300};
     private final String[][] bossGridSA = {
             {OFFIN, EMPTY, KARANDA + "&" + KZARKA, NOUVER, KUTUM + "&" + KZARKA, EMPTY, KUTUM + "&" + NOUVER},
             {GARMOTH, EMPTY, KUTUM, KZARKA, KUTUM + "&" + NOUVER, EMPTY, KARANDA + "&" + KZARKA},
@@ -136,8 +147,6 @@ public class ServerHelper {
 
     public Integer[] getTimeIntGrid(Server server) {
         switch (server) {
-            case EU:
-                return timeIntGridEU;
             case NA:
                 return timeIntGridNA;
             case SA:
@@ -156,6 +165,9 @@ public class ServerHelper {
                 return timeIntGridPs4EU;
             case PS4_ASIA:
                 return timeIntGridPs4ASIA;
+            case RU:
+                return timeIntGridRU;
+            case EU:
             default:
                 return timeIntGridEU;
         }
@@ -163,8 +175,6 @@ public class ServerHelper {
 
     public String[][] getBossGrid(Server server) {
         switch (server) {
-            case EU:
-                return bossGridEU;
             case NA:
                 return bossGridNA;
             case SA:
@@ -183,6 +193,9 @@ public class ServerHelper {
                 return bossGridPs4EU;
             case PS4_ASIA:
                 return bossGridPs4ASIA;
+            case RU:
+                return bossGridRU;
+            case EU:
             default:
                 return bossGridEU;
         }
