@@ -7,26 +7,28 @@
     <string-array name="preference_server_selection">
         <item>EU</item>
         <item>NA</item>
-        <item>SA</item>
+        <item>RU</item>
         <item>SEA</item>
+        <item>SA</item>
         <item>MENA</item>
         <item>XBOX NA</item>
         <item>XBOX EU</item>
-        <item>PS4 NA</item>
-        <item>PS4 EU</item>
         <item>PS4 ASIA</item>
+        <item>PS4 EU</item>
+        <item>PS4 NA</item>
     </string-array>
     <string-array name="preference_server_selection_values">
         <item>1</item>
         <item>2</item>
+        <item>11</item>
+        <item>3</item>
         <item>9</item>
         <item>10</item>
-        <item>3</item>
         <item>4</item>
         <item>5</item>
-        <item>6</item>
-        <item>7</item>
         <item>8</item>
+        <item>7</item>
+        <item>6</item>
     </string-array>
 
     <string-array name="preference_timezone_selection">

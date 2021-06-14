@@ -91,8 +91,8 @@ public final class PreferenceUtil {
         String value = preferences.getString("selected_server", "1");
         int newValue = Integer.parseInt(value);
         switch (newValue) {
-            case 1:
-                return Server.EU;
+            case 11:
+                return Server.RU;
             case 2:
                 return Server.NA;
             case 3:
@@ -111,6 +111,7 @@ public final class PreferenceUtil {
                 return Server.SA;
             case 10:
                 return Server.MENA;
+            case 1:
             default:
                 return Server.EU;
         }
