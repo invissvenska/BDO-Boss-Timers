@@ -6,11 +6,11 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.TimePicker;
 
-import java.text.ParseException;
-import java.util.Calendar;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.text.ParseException;
+import java.util.Calendar;
 
 public class TimePreferenceDialogFragment extends CustomPreferenceDialogFragmentCompat {
     private static final String ARG_FORCE_12_HOUR_PICKER = "force_12_hour_picker";
@@ -46,6 +46,9 @@ public class TimePreferenceDialogFragment extends CustomPreferenceDialogFragment
         } else {
             text = savedInstanceState.getString(SAVE_STATE_TIME);
         }
+        if (text == null) {
+            text = getTimeDialogPreference().getSerializedValue();
+        }
 
         final boolean force12HourPicker = getArguments().getBoolean(ARG_FORCE_12_HOUR_PICKER, false);
         final boolean force24HourPicker = getArguments().getBoolean(ARG_FORCE_24_HOUR_PICKER, false);
@@ -76,7 +79,6 @@ public class TimePreferenceDialogFragment extends CustomPreferenceDialogFragment
         setHourAndMinute(hour, minute);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onDialogClosed(boolean positiveResult) {
         if (positiveResult) {
@@ -98,7 +100,6 @@ public class TimePreferenceDialogFragment extends CustomPreferenceDialogFragment
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void setHourAndMinute(int hour, int minute) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mTimePicker.setHour(hour);

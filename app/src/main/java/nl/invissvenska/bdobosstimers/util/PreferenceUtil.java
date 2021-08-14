@@ -10,7 +10,7 @@ import nl.invissvenska.bdobosstimers.preference.BossSettings;
 public final class PreferenceUtil {
 
     private static PreferenceUtil INSTANCE;
-    private SharedPreferences preferences;
+    private final SharedPreferences preferences;
 
     private PreferenceUtil(Context context) {
         this.preferences = PreferenceManager.getDefaultSharedPreferences(context);

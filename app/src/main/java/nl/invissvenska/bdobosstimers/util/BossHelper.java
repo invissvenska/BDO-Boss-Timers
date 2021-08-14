@@ -8,11 +8,12 @@ import timber.log.Timber;
 
 import static nl.invissvenska.bdobosstimers.Constants.EMPTY;
 
-public class BossHelper {
+public final class BossHelper {
 
     private static BossHelper INSTANCE = null;
 
     private BossHelper() {
+        // Hide public constructor
     }
 
     public static BossHelper getInstance() {

@@ -18,11 +18,11 @@ import static nl.invissvenska.bdobosstimers.Constants.QUINT;
 import static nl.invissvenska.bdobosstimers.Constants.VELL;
 
 public class Boss {
-    private String name;
-    private String timeSpawn;
-    private Integer timeIntSpawn;
+    private final String name;
+    private final String timeSpawn;
+    private final Integer timeIntSpawn;
 
-    private Integer bossOneImageResource;
+    private final Integer bossOneImageResource;
     private Integer bossTwoImageResource;
 
     public Boss(String name, Integer timeIntSpawn, BossSettings bossSettings) {
