@@ -11,10 +11,14 @@ import static nl.invissvenska.bdobosstimers.Constants.OFFIN;
 import static nl.invissvenska.bdobosstimers.Constants.QUINT;
 import static nl.invissvenska.bdobosstimers.Constants.VELL;
 
-public class ServerHelper {
+/**
+ * All spawn times are in UTC +0 configured
+ */
+public final class ServerHelper {
     private static ServerHelper INSTANCE = null;
 
     private ServerHelper() {
+        // Hide public constructor
     }
 
     public static ServerHelper getInstance() {

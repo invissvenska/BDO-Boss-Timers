@@ -17,7 +17,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private static final String DIALOG_FRAGMENT_TAG = "CustomPreferenceDialog";
 
     public SettingsFragment() {
-        //keep empty constructor
+        //keep default constructor
     }
 
     @Override

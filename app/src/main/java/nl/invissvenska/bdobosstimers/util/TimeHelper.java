@@ -14,11 +14,12 @@ import nl.invissvenska.bdobosstimers.preference.BossSettings;
 
 import static java.lang.Math.ceil;
 
-public class TimeHelper {
+public final class TimeHelper {
 
     private static TimeHelper INSTANCE = null;
 
     private TimeHelper() {
+        // Hide public constructor
     }
 
     public static TimeHelper getInstance() {

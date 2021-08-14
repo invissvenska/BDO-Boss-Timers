@@ -1,6 +1,6 @@
 package nl.invissvenska.bdobosstimers;
 
-public class Constants {
+public final class Constants {
 
     public final static String KZARKA = "Kzarka";
     public final static String KARANDA = "Karanda";
@@ -16,5 +16,9 @@ public class Constants {
     public interface ACTION {
         String STOP_FOREGROUND_ACTION = "nl.invissvenska.bdobosstimers.action.stopforeground";
         String START_FOREGROUND_ACTION = "nl.invissvenska.bdobosstimers.action.startforeground";
+    }
+
+    private Constants() {
+        // Hide public constructor
     }
 }
