@@ -7,7 +7,7 @@ android {
         applicationId "nl.invissvenska.bdobosstimers"
         minSdkVersion 22
         targetSdkVersion 31
-        versionCode 31
+        versionCode 32
         versionName "1.2.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
