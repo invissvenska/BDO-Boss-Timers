@@ -16,6 +16,7 @@ public final class Constants {
     public interface ACTION {
         String STOP_FOREGROUND_ACTION = "nl.invissvenska.bdobosstimers.action.stopforeground";
         String START_FOREGROUND_ACTION = "nl.invissvenska.bdobosstimers.action.startforeground";
+        String NOTIFICATION_CLICKED = "NOTIFICATION_CLICKED";
     }
 
     private Constants() {
