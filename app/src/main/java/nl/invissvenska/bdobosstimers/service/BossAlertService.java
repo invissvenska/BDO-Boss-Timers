@@ -33,6 +33,7 @@ import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 import timber.log.Timber;
 
 import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
+import static nl.invissvenska.bdobosstimers.Constants.ACTION.NOTIFICATION_CLICKED;
 
 public class BossAlertService extends Service {
 
@@ -162,8 +163,9 @@ public class BossAlertService extends Service {
 
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
             Intent intent = new Intent(context, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            intent.putExtra(NOTIFICATION_CLICKED, true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
             notificationBuilder.setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setWhen(System.currentTimeMillis())
