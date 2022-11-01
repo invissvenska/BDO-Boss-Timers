@@ -1,5 +1,8 @@
 package nl.invissvenska.bdobosstimers.service;
 
+import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
+import static nl.invissvenska.bdobosstimers.Constants.ACTION.NOTIFICATION_CLICKED;
+
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -32,12 +35,9 @@ import nl.invissvenska.bdobosstimers.util.BossHelper;
 import nl.invissvenska.bdobosstimers.util.PreferenceUtil;
 import timber.log.Timber;
 
-import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
-import static nl.invissvenska.bdobosstimers.Constants.ACTION.NOTIFICATION_CLICKED;
-
 public class BossAlertService extends Service {
 
-    private Binder binder = new Binder();
+    private final Binder binder = new Binder();
     private MediaPlayer mediaPlayer = null;
     private BossAlertRefresher bossAlertRefresher = null;
 
@@ -55,7 +55,13 @@ public class BossAlertService extends Service {
 
         Intent stopNotificationIntent = new Intent(this, BossAlertService.class);
         stopNotificationIntent.setAction(Constants.ACTION.STOP_FOREGROUND_ACTION);
-        PendingIntent Intent = PendingIntent.getService(this, 0, stopNotificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        int pendingFlags;
+        if (Build.VERSION.SDK_INT >= 31) {
+            pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
+        } else {
+            pendingFlags = PendingIntent.FLAG_UPDATE_CURRENT;
+        }
+        PendingIntent Intent = PendingIntent.getService(this, 0, stopNotificationIntent, pendingFlags);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
         Notification notification = notificationBuilder.setOngoing(true)
@@ -64,6 +70,7 @@ public class BossAlertService extends Service {
                 .setContentTitle(getResources().getString(R.string.notification_service_title))
                 .setContentText(getResources().getString(R.string.notification_service_desc))
                 .setCategory(Notification.CATEGORY_SERVICE)
+                .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
                 .addAction(R.drawable.ic_clock, getResources().getString(R.string.notification_service_action), Intent)
                 .build();
         startForeground(101, notification);
@@ -165,7 +172,13 @@ public class BossAlertService extends Service {
             Intent intent = new Intent(context, MainActivity.class);
             intent.putExtra(NOTIFICATION_CLICKED, true);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+            int pendingFlags;
+            if (Build.VERSION.SDK_INT >= 31) {
+                pendingFlags = PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE;
+            } else {
+                pendingFlags = PendingIntent.FLAG_ONE_SHOT;
+            }
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, pendingFlags);
             notificationBuilder.setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setWhen(System.currentTimeMillis())
